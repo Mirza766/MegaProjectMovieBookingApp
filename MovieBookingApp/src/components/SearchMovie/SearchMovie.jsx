@@ -1,14 +1,23 @@
 import React, { useState } from 'react'
 import {useQuery} from '@tanstack/react-query'
 import FetchSearchMovieData from '../APIData/SearchMovieApi'
+import "../stylingSheets/SearchMovie.css";
+import useDebouncing from '../Debouncing/MovieSearchDebouncing';
+
+
 
 function SearchMovie() {
   
+
 const [movie,setMovie]=useState("")
+const debounceSearch=useDebouncing(movie,600)
+
 
   const {data,isError,error,isPending}=useQuery({
-    queryKey:["movie-search-engine",movie],
-    queryFn:()=>FetchSearchMovieData(movie)
+    queryKey:["movie-search-engine",debounceSearch],
+    queryFn:()=>FetchSearchMovieData(debounceSearch),
+    enabled:debounceSearch.trim().length>0
+
   });
 
   console.log(data?.results)
@@ -16,26 +25,34 @@ const [movie,setMovie]=useState("")
 
   
   return (
-    <div>
-      <div>
-      <input value={movie} onChange={(e)=>setMovie(e.target.value)}>
-      </input>
+    <div className='Search-movie-background'>
+      <div className='Search-movie-container'>
+      
+      <div className='Search-movie-input'>
+      <input className='input-box-data' value={movie} onChange={(e)=>setMovie(e.target.value)}
+      placeholder='Search a Movie'/>
       </div>
       {
         isPending && <p>Loading......</p>}
         {
         isError && <p>{error.message}</p>
       }
-      <div>
+      <div className='search-movie-cards'>
         {
-         data?.results?.map((movie)=>(
-          <div>
-            <h2>{movie.title}</h2>
-            <p>{movie.overview}</p>
+         data?.results?.filter((movie)=>movie.poster_path && movie.overview).map((movie)=>(
+          <div key={movie.id} className='search-movie-img-cont'>
+          
+          <img className='movie-image' src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}/>
+
+            <div className='search-movie-title-cont'>
+            <h2 className='search-movie-head'>{movie.title}</h2>
+            <p className='search-movie-cont'>{movie.overview}</p>
+            </div>
             </div>
          ))
         }
       </div>
+    </div>
     </div>
   )
 }

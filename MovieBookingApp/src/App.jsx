@@ -23,8 +23,7 @@ function App() {
 const queryclient=new QueryClient();
   const router=createBrowserRouter(
     createRoutesFromElements(
-      <>
-     
+      <> 
    <Route element={<Layout/>}>
     <Route path='/' element={<HomeContent/>}/>
     <Route path='/about' element={<AboutUs/>}/>
