@@ -1,0 +1,116 @@
+.subsc-container{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   align-items: center;
+  
+}
+.subsc-cards{
+     max-width: 1440px;
+   margin-left: auto;
+   margin-right: auto;
+width: 90%;
+display: flex;
+flex-direction: row;
+gap:1rem
+}
+.head-div{
+text-align: center;
+}
+
+.subsc-card-data{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap:20px;
+    width:33%
+}
+.subsc-upper-total{
+    display: flex;
+    flex-direction: column;
+    gap:3px
+}
+.subsc-img-text{
+    display: flex;
+    gap:5px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.subsc-para{
+    padding: 0px;
+    margin: 0px;
+     font-size: 12px;
+     font-weight: 400;
+     color:#162f72;
+}
+.subsc-img{
+
+    height: 20px;
+    width:23px
+}
+.price-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+.subsc-content{
+    display: flex;
+    flex-direction: column;
+      gap:14px;
+      background: #c7ebe9;
+      padding:32px 32px 32px 32px;
+      border-radius: 16px;
+      min-height: 300px;
+}
+.dup{
+    background:#4463f2;
+    color:white;
+}
+
+.subsc-price{
+    padding: 0px;
+    margin: 0px;
+    font-size: 14px;
+    font-weight: 700;
+    color:#162f72
+}
+.icon-content{
+    display: flex;
+    gap:3px
+    
+}
+.subsc-inner-cont{
+    font-size: 14px;
+    color: #162f72;
+    padding: 0px;
+    margin: 0px;
+}
+.cont-dup{
+    color:white;
+}
+
+.subsc-btn-div{
+    margin-top: 100px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.subsc-btn{
+    padding:9px 15px 9px 15px;
+    color:#162f72;
+    background: white;
+    width: 100%;
+    border-radius:8px
+}
+.dup2{
+    background: #162f72;
+}
+
+.img-dup{
+    width: 30px;
+    height: 30px;
+}
