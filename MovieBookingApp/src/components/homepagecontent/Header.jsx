@@ -1,8 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import NavBarMenuModal from '../../models/NavBarMenuModal';
 import { useState } from 'react';
 import "../stylingSheets/NavbarImg.css";
+import { lazy } from 'react';
+const NavBarMenuModal=lazy(()=>import('../../models/NavBarMenuModal'))
+
+
+
 function Header() {
 
 const [isOpen,setisOpen]=useState(false);

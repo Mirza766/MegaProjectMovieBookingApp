@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import OverviewModel from '../../models/OverviewModel';
-import PricingModel from '../../models/PricingModel';
 import ImageGrid from './ImageGrid';
 import SubscriptionContent from './SubscriptionContent';
-
+import { lazy } from 'react';
+const OverviewModel=lazy(()=>import('../../models/OverviewModel'));
+const PricingModel=lazy(()=>import('../../models/PricingModel'));
 
 
 
