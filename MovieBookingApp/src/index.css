@@ -1,9 +1,14 @@
+
 body{
   margin:0px;
   padding:0px;
   font-family: 'Manrope','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
 }
+
+
+
+
 .Navbar{
       max-width: 1440px;
     position: relative;

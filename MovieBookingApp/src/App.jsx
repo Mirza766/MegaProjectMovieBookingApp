@@ -2,6 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import 'react-datepicker/dist/react-datepicker.css';
+
 import Header from './components/homepagecontent/Header'
 import { BrowserRouter, createBrowserRouter,  createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -13,7 +15,7 @@ const HomeContent=lazy(()=>import('./components/homepagecontent/HomeContent'))
 const Layout=lazy(()=>import('./components/OverallLayout/Layout'))
 const AboutUs=lazy(()=>import('./components/NavbarComponents/AboutUs'))
 const ContactUs=lazy(()=>import('./components/NavbarComponents/ContactUs'))
-const SignUpPage=lazy(()=>import('./components/NavbarComponents/SignUpPage'))
+const SignUpPage=lazy(()=>import('./components/NavbarComponents/SignUpPage/SignUpPage'))
 const Login=lazy(()=>import('./components/NavbarComponents/Login'))
 
 
