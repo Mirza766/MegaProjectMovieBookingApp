@@ -51,7 +51,14 @@ const password=watch('password');
          control={control}
          rules={{required:'Email is Required is required',pattern:{
             value:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-            
+
+         },
+         validate:{
+            emailAvailable:async(fieldValue)=>{
+               const response=await fetch(`http://localhost:5000/users?email=${fieldValue}`);
+               const data=await response.json();
+               return data.length==0 || "Email  Exists"
+            }
          }
     }}
        render={({field,fieldState})=>(

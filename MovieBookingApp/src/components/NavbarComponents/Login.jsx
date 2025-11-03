@@ -36,7 +36,18 @@ catch(error){
      <Controller
              name='email'
              control={control}
-             rules={{required:'Please Specify your Email'}}
+             rules={{required:'Please Specify your Email',
+              pattern:{
+ value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      message: "Enter a valid email format"
+              },
+              validate:{
+              validateEmail:async(fieldValue)=>{
+                const response=await fetch(`http://localhost:5000/users?email=${fieldValue}`)
+                const data=await response.json();
+                 return data.length>0 || "Email Doesnot Exists"
+              }
+             }}}
              render={({field,fieldState})=>(
                 <TextField
                 {...field}
