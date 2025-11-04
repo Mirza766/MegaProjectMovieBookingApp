@@ -1,14 +1,18 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import "../stylingSheets/ContactUs.css";
-import {useDispatch} from 'react-redux';
-import { addContactUsData } from "../../redux/ContactUs/ContactUsActions";
-import ContactUsRetrieveData from "../FormDataRetrieval/ContactUsRetrieveData";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { ContactUsFormData } from '../../redux/ContactUs/ContactUsReducer'
+import { editContactUsData,deleteContactUsData,emptyContactUsData } from '../../redux/ContactUs/ContactUsActions';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import "../stylingSheets/ContactUsRetrieveData.css";
 
 
-function ContactUs() {
-  const { reset, formState, register, setError, handleSubmit } = useForm({
+
+
+function ContactUsRetrieveData() {
+
+const { reset, formState, register, setError, handleSubmit,setValue } = useForm({
     defaultValues: {
       fullName: "",
       email: "",
@@ -19,31 +23,60 @@ function ContactUs() {
     mode: "onChange",
   });
 
+  
+const { errors,isSubmitting,isSubmitSuccessful } = formState;
+
+const [editId,setEditId]=useState(null);
 const dispatch=useDispatch();
 
-  const { errors,isSubmitting,isSubmitSuccessful } = formState;
+  const ContactUsUsers=useSelector((state)=>state.ContactUsFormData);
+  console.log(ContactUsUsers);
 
-  const onSubmission = async(data) => {
-    try{
-      await new Promise((resolve)=>setTimeout(resolve,1000));
-      console.log("Form Submitted Successfully: ", data);
-      const SubmittedDataArray=dispatch(addContactUsData(data));
-      console.log('Global Data is: ',SubmittedDataArray)
-      reset();
-    }
-    catch(error){
-      console.log('Error is: ', error.message)
-    }
-  };
+const setEditing=(exp)=>{
+setEditId(exp.id);
+setValue('fullName',exp.fullName);
+setValue("email",exp.email);
+setValue("phoneNumber",exp.phoneNumber);
+setValue("queryType",exp.queryType);
+setValue("message",exp.message);
+}
 
-  return (
-    <div className="Contact-Us-Container">
+
+const Cancelling=()=>{
+    reset();
+    setEditId(null);
+}
+
+const updatingData=(data)=>{
+    dispatch(editContactUsData({id:editId,...data}));
+    reset();
+    setEditId(null);
+}
+
+
+const ClearData=(id)=>{
+   dispatch(deleteContactUsData(id));
+}
+
+
+
+    return (
+   <>
+   <div className='contactus-retrieve'>
+      <h2 className='heading-retrieve'>Contact Us Users Global Data</h2>
+    <div className='contactus-retrieve-master'>
+    {
+       ContactUsUsers.map((user)=>(
+        <div className='handling' key={user.id}>
+            {
+           editId===user.id?(
+        <div className="Contact-Us-Container retrievedata">
       <div className="contactus-master-cont">
       <div className="contactus-heading">
         <h2 className="contactus-heading-content">Get in Touch</h2>
       </div>
       <div className="contactus-form">
-        <form className="form-content-container" onSubmit={handleSubmit(onSubmission)}>
+        <form className="form-content-container" onSubmit={handleSubmit(updatingData)}>
           <div className="form-div">
             <label className="field-label">Full Name</label>
             <input
@@ -153,9 +186,11 @@ const dispatch=useDispatch();
             <p className="field-error-message">{errors.message?.message}</p>
           </div>
           <div className="btn-styling-form">
-          <button className="form-btn">{isSubmitting? 'Loading....':'Submit'}</button>
+          <button type='submit' className="form-btn">Update</button>
+          <button 
+          onClick={()=>Cancelling()} className="form-btn">Cancel</button>
           <div>
-           <Link to='/contactusdata'>See All Contact Us Data here</Link>
+          
           {isSubmitSuccessful && <p className="success-message"> Thank you! Your request has been submitted.
 Our support team will get back to you within 1–3 hours.</p>}
          </div>
@@ -164,7 +199,27 @@ Our support team will get back to you within 1–3 hours.</p>}
       </div>
       </div>
     </div>
-  );
+           ):    
+      <div className='contact-retrieve-data-container'>
+        <p  className='cont-retrieve-data-para'><span className='cont-retrieve-data'>User ID: </span>{user.id}</p>
+        <p className='cont-retrieve-data-para'><span className='cont-retrieve-data'>Full Name: </span>{user.fullName}</p>
+        <p className='cont-retrieve-data-para'><span className='cont-retrieve-data'>Email: </span>{user.email}</p>
+        <p className='cont-retrieve-data-para'><span className='cont-retrieve-data'>Query type: </span>{user.queryType}</p>
+        <p className='cont-retrieve-data-para'><span className='cont-retrieve-data'>Phone Number: </span>{user.phoneNumber}</p>
+        <p className='cont-retrieve-data-para'><span className='cont-retrieve-data'>Message: </span>{user.message}</p>
+        <div className='retrieve-btn-div'>
+            <button className="form-btn retrieve" onClick={()=>setEditing(user)}>Edit</button>
+            <button className="form-btn retrieve" onClick={()=>ClearData(user.id)}>Delete Data</button>
+        </div>
+        </div>
+            }
+           
+    </div>
+    ))}
+        </div>
+   </div>
+   </>
+  )
 }
 
-export default ContactUs;
+export default ContactUsRetrieveData

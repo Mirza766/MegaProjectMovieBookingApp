@@ -10,6 +10,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lazy } from 'react'
 import { Suspense } from 'react'
 
+
+
+const ContactUsRetrieveData=lazy(()=>import('./components/FormDataRetrieval/ContactUsRetrieveData'))
 const SearchMovie=lazy(()=>import('./components/SearchMovie/SearchMovie'))
 const HomeContent=lazy(()=>import('./components/homepagecontent/HomeContent'))
 const Layout=lazy(()=>import('./components/OverallLayout/Layout'))
@@ -32,8 +35,8 @@ const queryclient=new QueryClient();
     <Route path='/contact' element={<ContactUs/>}/>
      <Route path='/signup' element={<SignUpPage/>}/>
      <Route path='/login' element={<Login/>}/>
-     
- <Route path='search-movie' element={<SearchMovie/>}/>
+     <Route path='/contactusdata' element={<ContactUsRetrieveData/>}/>
+    <Route path='search-movie' element={<SearchMovie/>}/>
    
     
    </Route>

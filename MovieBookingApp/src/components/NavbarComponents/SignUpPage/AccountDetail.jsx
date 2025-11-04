@@ -55,9 +55,9 @@ const password=watch('password');
          },
          validate:{
             emailAvailable:async(fieldValue)=>{
-               const response=await fetch(`http://localhost:5000/users?email=${fieldValue}`);
+               const response=await fetch(`http://localhost:3000/users?email=${fieldValue}`);
                const data=await response.json();
-               return data.length==0 || "Email  Exists"
+               return data.length===0 || "Email Already Exists Exists"
             }
          }
     }}
