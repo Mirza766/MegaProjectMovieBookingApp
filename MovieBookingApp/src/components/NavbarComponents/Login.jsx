@@ -2,8 +2,13 @@ import React from 'react'
 import "../stylingSheets/Login.css";
 import {useForm,FormProvider,Controller} from 'react-hook-form'
 import {Button,Checkbox,TextField,FormControlLabel} from '@mui/material'
-
+import { useDispatch } from 'react-redux';
+import { addLoginData } from '../../redux/Login/LogininActions';
+import { Link } from 'react-router-dom';
 function Login() {
+
+
+
 
 const {control,formState,handleSubmit,reset}=useForm({
   mode:'onChange',
@@ -14,10 +19,16 @@ const {control,formState,handleSubmit,reset}=useForm({
 })
 const {isSubmitting}=formState
 
+
+const dispatch=useDispatch();
+
+
+
 const onSubmission=async(data)=>{
 try{
 await new Promise((resolve)=>setTimeout(resolve,1000))
    console.log('Form submitted successfully',data);
+   dispatch(addLoginData(data));
    reset();   
 }
 catch(error){
@@ -75,6 +86,7 @@ catch(error){
              )}       
              />
              <Button fullWidth variant='contained' type='submit'>{isSubmitting?'Loading....':'Login'}</Button>
+             <Link to='/loginPage'>Go to Login Global Data</Link>
      </form>  
     </div>
     </div>

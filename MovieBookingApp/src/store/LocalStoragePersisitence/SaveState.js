@@ -6,6 +6,7 @@ export const saveState=(data)=>{
     const stateToSave={
         ContactUsFormData:data.ContactUsFormData,
         SignUpFormData:data.SignUpFormData,
+        LoginFormData:data.LoginFormData
     };
     localStorage.setItem("appData",JSON.stringify(stateToSave));
 
