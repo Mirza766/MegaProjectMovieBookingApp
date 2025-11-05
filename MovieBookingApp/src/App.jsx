@@ -3,13 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import 'react-datepicker/dist/react-datepicker.css';
-
-import Header from './components/homepagecontent/Header'
-import { BrowserRouter, createBrowserRouter,  createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
+import {createBrowserRouter,  createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lazy } from 'react'
-import { Suspense } from 'react'
-import EditData from './components/FormDataRetrieval/EditData';
+
+
 
 
 const SearchMovie=lazy(()=>import('./components/SearchMovie/SearchMovie'))
@@ -20,6 +18,9 @@ const ContactUs=lazy(()=>import('./components/NavbarComponents/ContactUs'))
 const SignUpPage=lazy(()=>import('./components/NavbarComponents/SignUpPage/SignUpPage'))
 const Login=lazy(()=>import('./components/NavbarComponents/Login'))
 const ContactUsRetrieveData=lazy(()=>import('./components/FormDataRetrieval/ContactUsRetrieveData'));
+const EditData=lazy(()=>import('./components/FormDataRetrieval/EditData'))
+const SignUpPageDataRetrievel=lazy(()=>import('./components/FormDataRetrieval/SignUpPageDataRetrievel'))
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -36,6 +37,7 @@ const queryclient=new QueryClient();
      <Route path='/login' element={<Login/>}/>
      <Route path='/contactusdata' element={<ContactUsRetrieveData/>}/>
      <Route path='/contactusedit/:id' element={<EditData/>}/>
+     <Route path='/signUpPage' element={<SignUpPageDataRetrievel/>}/>
     <Route path='search-movie' element={<SearchMovie/>}/>
    
     

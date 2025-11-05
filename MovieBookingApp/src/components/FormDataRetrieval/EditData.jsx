@@ -6,7 +6,7 @@ import { editContactUsData,deleteContactUsData,emptyContactUsData } from '../../
 import {useNavigate,useParams} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
-import "../stylingSheets/ContactUs.css";
+import "../stylingSheets/ContactUsRetrieveData.css";
 
 
 function EditData() {
@@ -165,7 +165,7 @@ const updatingData=(data)=>{
             />
             <p className="field-error-message">{errors.message?.message}</p>
           </div>
-          <div className="btn-styling-form">
+          <div className="btn-styling-form edit">
           <button type='submit' className="form-btn">Update</button>
           <button 
           onClick={()=>navigate("/")} className="form-btn">Cancel</button>

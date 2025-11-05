@@ -82,3 +82,8 @@ width:90%
     align-items: center;
 
 }
+.edit{
+    display: flex;
+    flex-direction: row;
+    gap:1rem
+}

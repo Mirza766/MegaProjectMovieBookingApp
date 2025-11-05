@@ -1,13 +1,22 @@
 import React, { useState } from 'react'
-import {useForm,FormProvider,Controller} from 'react-hook-form'
-import {Button,Checkbox,TextField,FormControlLabel} from '@mui/material'
-import AccountDetail from './AccountDetail';
-import Verification from './Verification';
-import Preference from './Preference';
+import {useForm,FormProvider} from 'react-hook-form'
+import {Button} from '@mui/material'
 import '../../stylingSheets/SignUp.css';
+import { addSignUpData } from '../../../redux/SignUp/SignUpActions';
+import {useDispatch} from 'react-redux';
+import { Link } from 'react-router-dom';
+import { lazy } from 'react';
 
+const AccountDetail=lazy(()=>import('./AccountDetail'))
+const Verification=lazy(()=>import('./Verification'))
+const Preference=lazy(()=>import('./Preference'))
 
 function SignUpPage() {
+
+const dispatch=useDispatch();
+
+
+
 
 const methods=useForm({mode:'onChange',
   defaultValues: {
@@ -27,14 +36,23 @@ const methods=useForm({mode:'onChange',
     notifications:''
   }
 });
-const {handleSubmit,trigger}=methods;
-
+const {handleSubmit,trigger,reset,formState}=methods;
+const {isSubmitting,isSubmitSuccessful}=formState;
 const [step,setStep]=useState(1);
 
 
-const onSubmission=(data)=>{
-  console.log('Final form data: ',data);
+const onSubmission=async(data)=>{
+  try{
 
+    await new Promise((resolve)=>setTimeout(resolve,2000));
+    console.log('Final form data: ',data);
+    dispatch(addSignUpData({...data,dob:new Date(data.dob).toISOString()}));
+    reset()
+    
+  }
+  catch(error){
+    console.log("Submission errror is: ",error.message)
+  }
 }
 
 const prevStep=()=>setStep((prev)=>prev-1);
@@ -73,10 +91,19 @@ const nextStep=async()=>
            }
            {
             step===3 && (
-               <Button fullWidth variant='contained' type='submit'>Submit</Button>
+             <div>
+               <Button className='signup-btn-div' fullWidth variant='contained' type='submit'>{isSubmitting?'Loading':'Submit'}</Button>
+               
+                <Link to='/signUpPage'>
+                  Go to see the SignUpData
+              </Link>
+              </div>
+              
             )
            }    
+            
            </div>  
+           {isSubmitSuccessful && <p className='signup-btn-para'>User Signed Up Successfully</p>}
         </form>  
         </FormProvider>  
     </div>
