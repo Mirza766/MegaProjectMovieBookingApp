@@ -9,10 +9,9 @@ import { BrowserRouter, createBrowserRouter,  createRoutesFromElements, Route, R
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lazy } from 'react'
 import { Suspense } from 'react'
+import EditData from './components/FormDataRetrieval/EditData';
 
 
-
-const ContactUsRetrieveData=lazy(()=>import('./components/FormDataRetrieval/ContactUsRetrieveData'))
 const SearchMovie=lazy(()=>import('./components/SearchMovie/SearchMovie'))
 const HomeContent=lazy(()=>import('./components/homepagecontent/HomeContent'))
 const Layout=lazy(()=>import('./components/OverallLayout/Layout'))
@@ -20,7 +19,7 @@ const AboutUs=lazy(()=>import('./components/NavbarComponents/AboutUs'))
 const ContactUs=lazy(()=>import('./components/NavbarComponents/ContactUs'))
 const SignUpPage=lazy(()=>import('./components/NavbarComponents/SignUpPage/SignUpPage'))
 const Login=lazy(()=>import('./components/NavbarComponents/Login'))
-
+const ContactUsRetrieveData=lazy(()=>import('./components/FormDataRetrieval/ContactUsRetrieveData'));
 
 function App() {
   const [count, setCount] = useState(0)
@@ -36,6 +35,7 @@ const queryclient=new QueryClient();
      <Route path='/signup' element={<SignUpPage/>}/>
      <Route path='/login' element={<Login/>}/>
      <Route path='/contactusdata' element={<ContactUsRetrieveData/>}/>
+     <Route path='/contactusedit/:id' element={<EditData/>}/>
     <Route path='search-movie' element={<SearchMovie/>}/>
    
     
