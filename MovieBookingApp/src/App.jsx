@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import {createBrowserRouter,  createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lazy } from 'react'
+import MovieStore from './components/MovieStore/MovieStore';
 
 const SearchMovie=lazy(()=>import('./components/SearchMovie/SearchMovie'))
 const HomeContent=lazy(()=>import('./components/homepagecontent/HomeContent'))
@@ -37,8 +38,7 @@ const queryclient=new QueryClient();
      <Route path='/signUpPage' element={<SignUpPageDataRetrievel/>}/>
      <Route path='/loginPage' element={<LoginPageDataRetrieval/>}/>
     <Route path='/search-movie' element={<SearchMovie/>}/>
-   
-    
+    <Route path='/buy-movie' element={<MovieStore/>}/>
    </Route>
    
       </>
