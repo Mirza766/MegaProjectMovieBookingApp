@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import {createBrowserRouter,  createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lazy } from 'react'
-import MovieStore from './components/MovieStore/MovieStore';
+
 
 const SearchMovie=lazy(()=>import('./components/SearchMovie/SearchMovie'))
 const HomeContent=lazy(()=>import('./components/homepagecontent/HomeContent'))
@@ -19,6 +19,9 @@ const ContactUsRetrieveData=lazy(()=>import('./components/FormDataRetrieval/Cont
 const EditData=lazy(()=>import('./components/FormDataRetrieval/EditData'))
 const SignUpPageDataRetrievel=lazy(()=>import('./components/FormDataRetrieval/SignUpPageDataRetrievel'))
 const LoginPageDataRetrieval=lazy(()=>import('./components/FormDataRetrieval/LoginPageDataRetrieval'))
+const MovieStore=lazy(()=>import('./components/MovieStore/MovieStore'))
+const MovieCart=lazy(()=>import('./components/MovieStore/MovieCart'))
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -39,6 +42,7 @@ const queryclient=new QueryClient();
      <Route path='/loginPage' element={<LoginPageDataRetrieval/>}/>
     <Route path='/search-movie' element={<SearchMovie/>}/>
     <Route path='/buy-movie' element={<MovieStore/>}/>
+    <Route path='/cartData' element={<MovieCart/>}/>
    </Route>
    
       </>

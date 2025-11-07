@@ -22,6 +22,7 @@ console.log(MovieData);
   return (
 
   <div className='movieproduct-container'>
+    <Header/>
     <h2 className='movieproduct-head'>Buy Your Favourate Movie</h2>
     <div className='movieproductData'>
     {MovieData?.map((movie)=>(
