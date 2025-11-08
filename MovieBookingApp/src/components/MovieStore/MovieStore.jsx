@@ -5,6 +5,7 @@ import { productList } from '../../redux/Product/ProductActions'
 import { addDataToCart,removeDataFromCart,deleteDataFromCart } from '../../redux/CartData/CartDataActions'
 import Header from './Header'
 import "../stylingSheets/MovieStore.css";
+import BookingPage from '../Subscription/SubscriptionPageDataEntry'
 function MovieStore() {
 
 
@@ -42,8 +43,9 @@ console.log(MovieData);
     ))}
     </div>
    <button className='movieproduct-btns-inner' onClick={()=>dispatch(removeDataFromCart())}>Empty Cart</button>
+  
   </div>
-
+   
   )
 }
 

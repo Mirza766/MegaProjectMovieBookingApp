@@ -1,9 +1,26 @@
 import React from 'react'
 import "../stylingSheets/Subscription.css";
+import SubscriptionContext from '../context/SubscriptionContext';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
+
 function SubscriptionContent() {
-  
-  
-  
+    
+
+const navigate=useNavigate();
+
+
+
+  const {AddSubscription}=useContext(SubscriptionContext);
+
+const handleSubscriber=(planName, price)=>{
+    AddSubscription({planName,price});
+    navigate('/bookingpage');
+}
+
+
   return (
     <>
 
@@ -58,11 +75,11 @@ function SubscriptionContent() {
                   <div className='icon-content'>
                     <img className='subsc-img' src='/images/Frame.png'/>
                  <p className='subsc-inner-cont'>
-                    Validity od 10 Years Continiously
+                    Validity of 10 Years Continiously
                  </p>
                  </div>
                  <div className='subsc-btn-div'>
-                 <button className='subsc-btn'>Subscribe Now</button>
+                 <button onClick={()=>handleSubscriber("Basic Pass — Your Ticket to the Big Screen", "£80 / year")} className='subsc-btn'>Subscribe Now</button>
               </div>
               </div>
               
@@ -115,7 +132,7 @@ function SubscriptionContent() {
                  </p>
                  </div>
                  <div className='subsc-btn-div'>
-                 <button className='subsc-btn'>Subscribe Now</button>
+                 <button onClick={()=>handleSubscriber("Premium Pass — “Cinema Without Limits", "£180 / year")} className='subsc-btn'>Subscribe Now</button>
               </div>
               </div>
               
@@ -168,7 +185,7 @@ function SubscriptionContent() {
                  </p>
                  </div>
                  <div className='subsc-btn-div'>
-                 <button className='subsc-btn'>Subscribe Now</button>
+                 <button  onClick={()=>handleSubscriber("VIP Experience — “The Ultimate Movie Night", "£380 / year")} className='subsc-btn'>Subscribe Now</button>
               </div>
               </div>
               

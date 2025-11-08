@@ -29,6 +29,8 @@ margin: 0;
     justify-content: center;
     gap:2rem;
     margin-bottom: 30px;
+    max-width: 1440px;
+   
     
 }
 
@@ -37,6 +39,7 @@ margin: 0;
     flex-direction: column;
     width:70%;
 }
+
 .CartDataPriceContainer{
     display: flex;
     flex-direction: column;
@@ -114,4 +117,9 @@ border-bottom: 2px solid grey;
 
 .red{
     color: red;
+}
+
+.subscrip{
+    border:2px solid purple;
+    border-radius: 36px;
 }
