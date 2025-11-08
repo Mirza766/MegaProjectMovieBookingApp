@@ -1,0 +1,3 @@
+export const SET_MOVIE='SET_MOVIE'
+export const TOGGLE_SEAT='TOGGLE_MOVIE'
+export const CONFIRM_BOOKING='CONFIRM_BOOKING'

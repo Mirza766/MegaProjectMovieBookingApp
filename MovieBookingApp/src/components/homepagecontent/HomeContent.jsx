@@ -107,7 +107,7 @@ At CineWave, we believe that booking a movie should be as fun as watching it. Th
        
         <div className='hero-btns'>
             <Link to='/search-movie' className='hero-btns-mod'>Search Movie</Link>
-           <Link to='/about' className='hero-btns-mod' >Book a Ticket</Link>
+           <Link to='/bookmovie' className='hero-btns-mod' >Book a Ticket</Link>
             <Link to='/buy-movie' className='hero-btns-mod' >Visit Store Outlet </Link>
         </div>
         </div>

@@ -104,8 +104,18 @@ text-align: center;
     color:#162f72;
     background: white;
     width: 100%;
-    border-radius:8px
+    border-radius:8px;
+   cursor: pointer;    
 }
+
+.subsc-btn:hover{
+
+    background:#162f72;
+    color: white;
+}
+
+
+
 .dup2{
     background: #162f72;
 }

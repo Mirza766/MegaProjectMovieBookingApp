@@ -17,7 +17,7 @@ const navigate=useNavigate();
 
 const handleSubscriber=(planName, price)=>{
     AddSubscription({planName,price});
-    navigate('/bookingpage');
+    navigate('/subscpage');
 }
 
 
