@@ -1,0 +1,112 @@
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  gap: 10px;
+  justify-content: center;
+}
+
+.renderSeatHead{
+    text-align: center;
+}
+
+
+.seat {
+    font-size: 16px;
+  padding: 4px;
+  text-align: center;
+  border: 1px solid gray;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.seat.booked {
+  background-color: red;
+  cursor: not-allowed;
+}
+
+.seat.selected {
+  background-color: green;
+}
+
+
+.booking-container{
+    display:flex;
+    flex-direction: column;
+    justify-content:center ;
+    align-items: center;
+    padding-top:40px ;
+    background: #162f72;
+ 
+}
+
+.booking-form-container{
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    margin: auto 0px;
+    max-width: 1440px;
+    background: white;
+     border: 2px solid purple;
+      padding:20px;
+        border-radius: 10px;
+    
+}
+.form-grid{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+
+}
+.master-head-booking{
+    font-size: 32px;
+    padding-bottom: 20px;
+    color: #eee;
+}
+.booking-form-master{
+    display: flex;
+    flex-direction: column;
+    gap:2px;
+}
+
+.bookinglabel{
+    font-size: 16px;
+    font-weight: 700;
+
+}
+
+.bookingInput{
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    border:2px solid grey
+}
+
+.confirm-btn{
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 16px 10px 16px;
+    border: 2px solid black;
+    border-radius: 6px;
+    color:white;
+    background: #162f72;
+    cursor: pointer;
+}
+
+.confirm-btn:hover{
+    color:#162f72;
+    background:grey;
+
+}
+.renderSeatHead{
+    font-size: 25px;
+    color: #162f72;
+
+}
+
+.renderSeatPara{
+    color: #162f72;
+}

@@ -1,3 +1,4 @@
+import MovieBooking from "../../redux/Booking/BookingReducers";
 import { getCartData } from "../../redux/CartData/CartDataReducers";
 import { ContactUsFormData } from "../../redux/ContactUs/ContactUsReducer"
 import { SignUpFormData } from "../../redux/SignUp/SignUpReducers";
@@ -8,7 +9,8 @@ export const saveState=(data)=>{
         ContactUsFormData:data.ContactUsFormData,
         SignUpFormData:data.SignUpFormData,
         LoginFormData:data.LoginFormData,
-        getCartData:data.getCartData
+        getCartData:data.getCartData,
+        MovieBooking:data.MovieBooking
     };
     localStorage.setItem("appData",JSON.stringify(stateToSave));
 
