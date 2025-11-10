@@ -6,8 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import {createBrowserRouter,  createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lazy } from 'react'
-import SubscriptionDataRetrieval from './components/FormDataRetrieval/SubscriptionPageDataRetrieval';
-import BookingPage from './components/Booking/BookingPage';
+
 
 
 
@@ -26,6 +25,10 @@ const LoginPageDataRetrieval=lazy(()=>import('./components/FormDataRetrieval/Log
 const MovieStore=lazy(()=>import('./components/MovieStore/MovieStore'))
 const MovieCart=lazy(()=>import('./components/MovieStore/MovieCart'))
 const SubscriptionPage=lazy(()=>import('./components/Subscription/SubscriptionPageDataEntry'))
+const SubscriptionDataRetrieval=lazy(()=>import('./components/FormDataRetrieval/SubscriptionPageDataRetrieval'))
+const BookingPage=lazy(()=>import('./components/Booking/BookingPage'));
+const BookingDataRetrival=lazy(()=>import('./components/FormDataRetrieval/BookingDataRetrival'))
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -50,6 +53,7 @@ const queryclient=new QueryClient();
    <Route path='/subscpage' element={<SubscriptionPage/>}/>
    <Route path='bookmovie' element={<BookingPage/>}/>
     <Route path='/dataentrycont' element={<SubscriptionDataRetrieval/>}/>
+   <Route path='/bookDataRetrieve' element={<BookingDataRetrival/>}/>
     </Route>
    
       </>

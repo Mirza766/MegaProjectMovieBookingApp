@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setMovie,
@@ -9,6 +10,7 @@ import {
 } from "../../redux/Booking/BookingActions";
 import { useForm } from "react-hook-form";
 import "../stylingSheets/BookingPage.css";
+
 
 const BookingPage = () => {
   const dispatch = useDispatch();
@@ -173,26 +175,9 @@ const BookingPage = () => {
         <button type="submit" className="confirm-btn">
           Confirm Booking
         </button>
+        <Link to='/bookDataRetrieve'>Go to see the Global Booking Data</Link>
       </form>
 
-     
-      <div className="confirmed-section">
-        <h3>Your Confirmed Bookings</h3>
-        <ul>
-          {bookingDetails.map((booking) => (
-            <li key={booking.id}>
-              Booking ID: {booking.id} <br />
-              Movie: {booking.movie} <br />
-              Seats: {booking.seats.join(", ")} <br />
-              Date: {booking.date} <br />
-              Time: {booking.time} <br />
-              Timestamp: {booking.timestamp ? new Date(booking.timestamp).toLocaleString() : "-"}{" "}
-              <br />
-              User: {booking.name}
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 };
