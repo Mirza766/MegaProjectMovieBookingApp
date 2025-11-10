@@ -18,7 +18,9 @@ console.log(bookingDetails);
       <h2 className='heading-retrieve'>Contact Us Users Global Data</h2>
     <div className='contactus-retrieve-master'>
     {
-       bookingDetails.map((book)=>(
+       bookingDetails.map((book)=>{
+        const TicketPrice=10*book.seats.length;
+        return(
       <div className='contact-retrieve-data-container'>
         <p  className='cont-retrieve-data-para'><span className='cont-retrieve-data'>User ID: </span>{book.id}</p>
         <p className='cont-retrieve-data-para'><span className='cont-retrieve-data'>Full Name: </span>{book.name}</p>
@@ -28,8 +30,10 @@ console.log(bookingDetails);
         <p className='cont-retrieve-data-para'><span className='cont-retrieve-data'>Seats: </span>{book.seats.join(' , ')}</p>
         <p className='cont-retrieve-data-para'><span className='cont-retrieve-data'>Time: </span>{book.time}</p>
          <p className='cont-retrieve-data-para'><span className='cont-retrieve-data'>Timestamp: </span> {book.timestamp ? new Date(book.timestamp).toLocaleString() : "-"}{" "}</p>
+         <p className='cont-retrieve-data-para'><span className='cont-retrieve-data'>Total Price: </span>${TicketPrice}</p>
         </div>
-    ))}
+        )
+})}
         </div>
    </div>
   )
