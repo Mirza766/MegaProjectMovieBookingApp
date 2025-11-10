@@ -13,10 +13,7 @@ function EditData() {
 
 
 const {formState, register,handleSubmit,setValue } = useForm();
-
-  
 const { errors,isSubmitting,isSubmitSuccessful } = formState;
-
 const dispatch=useDispatch();
 const navigate=useNavigate();
   const {id}=useParams();
@@ -166,11 +163,12 @@ const updatingData=(data)=>{
             <p className="field-error-message">{errors.message?.message}</p>
           </div>
           <div className="btn-styling-form edit">
-          <button type='submit' className="form-btn">Update</button>
+            <div className='editcontactusdatabtns'>
+              <button type='submit' className="form-btn">Update</button>
           <button 
           onClick={()=>navigate("/")} className="form-btn">Cancel</button>
+            </div>  
           <div>
-          
           {isSubmitSuccessful && <p className="success-message"> Thank you! Your request has been submitted.
 Our support team will get back to you within 1–3 hours.</p>}
          </div>

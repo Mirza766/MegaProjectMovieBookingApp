@@ -124,3 +124,18 @@ text-align: center;
     width: 30px;
     height: 30px;
 }
+
+/* Responsiveness of Subscription */
+
+@media  (max-width: 767px){
+    .subsc-cards{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .subsc-card-data{
+        width: 90%;
+    }
+
+}

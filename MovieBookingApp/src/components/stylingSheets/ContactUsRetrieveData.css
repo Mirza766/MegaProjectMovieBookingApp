@@ -87,3 +87,9 @@ width:90%
     flex-direction: row;
     gap:1rem
 }
+
+.editcontactusdatabtns{
+    display: flex;
+    flex-direction: row;
+    gap:1rem;
+}

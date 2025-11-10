@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import ImageGrid from './ImageGrid';
 import SubscriptionContent from './SubscriptionContent';
 import { lazy } from 'react';
+
 const OverviewModel=lazy(()=>import('../../models/OverviewModel'));
 const PricingModel=lazy(()=>import('../../models/PricingModel'));
 
@@ -97,6 +98,7 @@ At CineWave, we believe that booking a movie should be as fun as watching it. Th
 
   return (
     <>
+ 
     <div className='hero-section'>
         <div className='hero-total'>
         <div className='hero-Uppercontent'>

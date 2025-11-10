@@ -17,6 +17,8 @@ const BookingPage = () => {
   const { movies, selectedMovie, selectedSeats, bookingDetails, selectedDate, selectedTime } =
     useSelector((state) => state.MovieBooking);
 
+
+ 
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       name: "",
@@ -67,7 +69,7 @@ const BookingPage = () => {
     const cols = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const showKey = `${selectedDate}_${selectedTime}`;
     const bookedSeats = selectedMovie.showtimes?.[showKey] || [];
-
+    
     return (
       <div className="seat-grid">
         {rows.map((row) =>

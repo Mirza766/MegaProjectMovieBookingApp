@@ -25,6 +25,7 @@
     "react-router-dom": "^7.9.4",
     "redux": "^5.0.1",
     "redux-saga": "^1.4.2",
+    "remixicon": "^4.7.0",
     "uuid": "^13.0.0"
   },
   "devDependencies": {

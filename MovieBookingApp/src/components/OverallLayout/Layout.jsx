@@ -6,6 +6,8 @@ import Footer from '../homepagecontent/Footer'
 
 
 function Layout() {
+
+
   return (
     <>
     <Header/>

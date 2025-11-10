@@ -30,7 +30,7 @@ From the latest blockbusters to hidden gems — CineWave brings the silver scree
                 </div>
                 <div className='footer-links'>
                    <Link className='footer-links' to='/about'>About</Link>
-                   <Link className='footer-links' to='/pricing'>Pricing</Link>
+                   <Link className='footer-links' to='/head-side'>Pricing</Link>
                    <Link className='footer-links' to='/contact'>Contact</Link>
                 </div>
              </div>

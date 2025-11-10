@@ -5,7 +5,75 @@ body{
   font-family: 'Manrope','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
 }
+/* Side Bar */
+.image{
+  display: flex;
+  flex-direction: row;
+}
+.ri-menu-line{
+  font-size: 32px;
+  font-weight: 800;
+  margin-top: 25px;
+}
 
+
+.sidebarContainer{
+position: absolute;
+z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  background: #222f3e;
+  color: #ddd;
+  text-decoration: none;
+  top:1;
+  left: 0;
+  height: 100vh;
+  width:280px;
+  transform: translateX(-100%);
+  transition: all 0.4s;
+}
+
+.sidebarContainer--open{
+    transform: translateX(0%);
+}
+
+
+
+.ri-database-fill{
+  margin-top: 2px;
+}
+
+
+.backdrop{
+  position: fixed;
+  top:1px;
+  left:0;
+  width:100%;
+  height: 100vh;
+  background-color: #10245a;
+}
+
+.backdrop--open{
+  display: block;
+}
+
+.DataLinks{
+  display: flex;
+  flex-direction: row;
+  gap:5px;
+  list-style: none;
+  text-decoration: none;
+     color: #ddd;
+  padding:1rem 2rem;
+  
+  border-bottom: 2px solid whitesmoke;
+}
+
+
+.DataLinks:hover{
+  background: #fff;
+  color:black
+}
 
 
 
@@ -427,4 +495,81 @@ max-width:1440px
 .content{
   border:3px solid #ddd;
   padding:5px
+}
+
+/* Responsiveness of HomePage Content */
+@media  (max-width: 950px) {
+  .hero-container {
+    margin-top: 30rem;
+    width: 92%;
+  }
+.hero-Uppercontent{
+margin-bottom: 503px;
+gap:1rem
+}
+
+  .subsc-card-data{
+    flex-basis:47%;
+   
+  }
+.subsc-cards{
+  flex-wrap:wrap ;
+  justify-content: center;
+ 
+}
+.hero-heading{
+font-size: 25px;
+}
+ 
+
+
+.foot-right-cont{
+ 
+  flex-wrap: wrap; 
+  justify-content:left;
+ align-items: flex-start;
+  gap:62px;
+ 
+}
+ .foot-right{
+  flex-basis: 33%;
+
+}
+
+}
+
+@media  (max-width: 767px){
+   .hero-container{
+    flex-direction: column;
+    margin-bottom: -300px;
+    justify-content: center;
+    align-items: center;
+   }
+   .hero-heading{
+    font-size: 20px;
+   }
+   .hero-section{
+    height: 119vh;
+   }
+   .hero-btns-mod{
+    font-size: 12px;
+    padding: 5px 10px 5px 10px;
+   }
+   .feat-head{
+    font-size: 18px;
+   }
+       .hero-Uppercontent {
+        margin-bottom: 700px;
+       }
+       .Features-And-Categories{
+        width: 80%;
+       }
+       .hero-total{
+      height: 700px;
+       }
+       .img-head{
+     font-size: 16px;
+       }
+
+
 }
