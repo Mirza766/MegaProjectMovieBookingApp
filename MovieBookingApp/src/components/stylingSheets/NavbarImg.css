@@ -2,6 +2,10 @@
     position: relative;
 }
 
+
+
+
+
 .dropdown-cont{
     position: absolute;
     right: 10px;
@@ -99,3 +103,22 @@
     color: #162f72;
 
 }
+
+@media  (max-width: 767px){
+    .sidebarmastercont{
+        width: 35%;
+    }
+    .SidebarLink{
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media  (max-width: 767px){
+     .SidebarLink{
+        font-size: 15px;
+     }
+     .Navbar-Buttons{
+        display: none;
+     }
+}
+

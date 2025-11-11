@@ -24,3 +24,28 @@
     color:#162f72
 }
 
+@media (max-width:900px){
+    .signUp-total{
+        width: 70%;
+    }
+
+   
+}
+
+@media (max-width:500px){
+ 
+    .signUp-total{
+        width: 80%;
+    }
+}
+
+
+@media (max-width:450px){
+    .signUp-total{
+        width: 90%;
+    }
+    .signup-heading{
+        font-size: 25px;
+    }
+     
+}

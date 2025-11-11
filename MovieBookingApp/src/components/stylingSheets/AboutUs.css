@@ -24,3 +24,18 @@ color: #162f72;
 font-weight: 400;
 font-size: 16px;
 }
+
+@media (max-width:767px){
+    .about-us-master{
+        width: 90%;
+
+    }
+    .aboutus-head{
+        font-size: 25px;
+    }
+    .aboutus-para-content{
+       font-size: 14px;
+    }
+   
+
+}

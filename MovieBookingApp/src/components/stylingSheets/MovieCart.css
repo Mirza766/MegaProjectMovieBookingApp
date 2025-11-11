@@ -123,3 +123,59 @@ border-bottom: 2px solid grey;
     border:2px solid purple;
     border-radius: 36px;
 }
+
+@media (max-width:950px){
+    .CartItems-master-cont{
+        flex-direction: column;
+    }
+    .CartItems-submaster-cont{
+        width: 100%;
+    }
+    .CartDataPriceContainer{
+        width: 35%;
+    }
+}
+
+@media (max-width:767px){
+
+.thtags{
+    padding:4px;
+    font-size: 13px;
+}
+.thtagshead{
+    padding: 5px;
+}
+
+}
+
+@media (max-width:550px){
+
+    .thtags{
+        font-size: 10px;
+        padding: 0;
+    }
+    .cartData-head{
+        font-size: 25px;
+    }
+    .CartItems-master-cont{
+        width: 95%;
+        margin-left: 2px;
+        margin-right: 2px;
+        
+    }
+    .thtagshead{
+        font-size: 9px;
+    }
+    .summ-price{
+        font-size: 15px;
+    }
+    .adjustPrice{
+        font-size: 17px;
+    }
+    .cruse-data{
+        font-size: 7px;
+    }
+    .CartDataPriceContainer {
+   width: 60%;
+        }
+}

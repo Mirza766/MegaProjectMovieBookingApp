@@ -538,6 +538,11 @@ font-size: 25px;
 
 }
 
+
+
+
+
+
 @media  (max-width: 767px){
    .hero-container{
     flex-direction: column;
@@ -549,7 +554,8 @@ font-size: 25px;
     font-size: 20px;
    }
    .hero-section{
-    height: 119vh;
+    height: 170vh;
+    margin-top: -350px;
    }
    .hero-btns-mod{
     font-size: 12px;
@@ -559,17 +565,31 @@ font-size: 25px;
     font-size: 18px;
    }
        .hero-Uppercontent {
-        margin-bottom: 700px;
+        margin-bottom: 460px;
        }
        .Features-And-Categories{
         width: 80%;
        }
        .hero-total{
-      height: 700px;
+      height: 627px;
        }
        .img-head{
      font-size: 16px;
        }
 
 
+}
+
+
+@media  (max-width: 520px){
+  .hero-section{
+    height: 180vh;
+  }
+      .hero-Uppercontent {
+        margin-bottom: 750px;
+    }
+    .hero-section {
+        height: 180vh;
+        margin-top: -271px;
+    }
 }

@@ -13,8 +13,9 @@ align-items: center;
 flex-direction: column;
 max-width:1440px;
 margin:auto 0px;
-
 }
+
+
 
 /* .contactus-form{
     display: flex;
@@ -90,3 +91,28 @@ margin-top: 30px;
     text-align: center;
 }
 
+
+
+
+
+@media (max-width:900px){
+    .contactus-master-cont{
+        width: 70%;
+    }
+
+   
+}
+
+@media (max-width:500px){
+    .contactus-master-cont{
+        width: 80%;
+    }
+}
+
+
+@media (max-width:450px){
+    .contactus-master-cont{
+        width: 90%;
+    }
+     
+}
