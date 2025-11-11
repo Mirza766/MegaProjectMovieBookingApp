@@ -3,21 +3,29 @@ import {Link} from 'react-router-dom';
 import { useState } from 'react';
 import "../stylingSheets/NavbarImg.css";
 import { lazy } from 'react';
-
 const NavBarMenuModal=lazy(()=>import('../../models/NavBarMenuModal'))
 const SideBarMenuModel=lazy(()=>import('../../models/SideBarMenuModel'))
+const NavContentMenu=lazy(()=>import('../../models/NavContentMenu'))
+
 
 
 function Header() {
-
-
-  const [openSideBar,setOpenSideBar]=useState(false);
+const [openSideBar,setOpenSideBar]=useState(false);
 const [isOpen,setisOpen]=useState(false);
+const [openNavContent,setNavContent]=useState(false);
+
+
 const closeMenuButton=()=>setisOpen(false);
 const closeSideBar=()=>setOpenSideBar(false);
+const closeNavContent=()=>setNavContent(false);
+
 
 const handleCloseSideBarButton=(
   <button className='NavImg-btn' onClick={closeSideBar}>Close</button>
+)
+
+const handleCloseNavContent=(
+  <button className='NavImg-btn' onClick={closeNavContent}>Close</button>
 )
 
 const handleCloseMenuButton=(
@@ -25,6 +33,7 @@ const handleCloseMenuButton=(
 )
 
 const mainMenu=(
+  
   <NavBarMenuModal closeMenuButton={closeMenuButton} handleCloseMenuButton={handleCloseMenuButton}>
     <Link to='signup'>
   <p className='nav-conten'>Sign/up</p>
@@ -49,6 +58,16 @@ const SidebarMenu=(
   </SideBarMenuModel>
 )
 
+const NavContentMenuTotal=(
+  <NavContentMenu handleCloseNavContent={handleCloseNavContent} closeNavContent={closeNavContent}>
+   <div className='sidebarlinkcontent'>
+    <Link className='SidebarLink' to='/'>Home</Link>
+    <Link className='SidebarLink' to='/contact'>Contact Us</Link>
+    <Link className='SidebarLink' to='/about'>About Us</Link>
+</div>
+  </NavContentMenu>
+)
+
   return (
 
   <>
@@ -65,6 +84,12 @@ const SidebarMenu=(
           <Link to='/'  className='Nav-btns img1'>Home</Link>
           <Link to='/about' className='Nav-btns img2'>About Us</Link>
           <Link to='/contact'  className='Nav-btns img3' >Contact Us</Link>
+     </div>
+     <div  className='responsive-sidebar-contact'>
+      < i onClick={()=>setNavContent(true)} className="ri-arrow-left-down-box-fill"></i>
+     {
+      openNavContent && NavContentMenuTotal
+     }
      </div>
      <div   className='sign-up-image'>
         <img onClick={()=>setisOpen(true)}  className='User-logo' style={{height:'40px' ,width:'40px',cursor:'pointer'}} src='/images/User-logo.png' />

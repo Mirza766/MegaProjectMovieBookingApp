@@ -2,10 +2,6 @@
     position: relative;
 }
 
-
-
-
-
 .dropdown-cont{
     position: absolute;
     right: 10px;
@@ -82,7 +78,14 @@
     position: relative;
 }
 
-
+.ri-arrow-left-down-box-fill{
+    font-size: 35px;
+   padding-top: 12px;
+}
+.responsive-sidebar-contact{
+   margin-top: 6px;
+   display: none;
+}
 .sidebarlinkcontent{
     margin-top: 15px;
     display: flex;
@@ -117,6 +120,10 @@
      .SidebarLink{
         font-size: 15px;
      }
+     .responsive-sidebar-contact{
+        display: block;
+     }
+
      .Navbar-Buttons{
         display: none;
      }

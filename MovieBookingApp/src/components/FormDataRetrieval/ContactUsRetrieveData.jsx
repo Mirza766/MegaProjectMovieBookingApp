@@ -28,7 +28,7 @@ const ClearData=(id)=>{
     <div className='contactus-retrieve-master'>
     {
        ContactUsUsers.map((user)=>(
-      <div className='contact-retrieve-data-container'>
+      <div className='contact-retrieve-data-container' key={user.id}>
         <p  className='cont-retrieve-data-para'><span className='cont-retrieve-data'>User ID: </span>{user.id}</p>
         <p className='cont-retrieve-data-para'><span className='cont-retrieve-data'>Full Name: </span>{user.fullName}</p>
         <p className='cont-retrieve-data-para'><span className='cont-retrieve-data'>Email: </span>{user.email}</p>

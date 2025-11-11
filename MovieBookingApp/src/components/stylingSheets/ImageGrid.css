@@ -137,7 +137,7 @@ transition:opacity 0.3s ease;
     }
     .Image-Container{
       flex-direction: column;
-      height: 370vh;
+             height: 235vh;
       
     }
      .img-head{
@@ -147,26 +147,12 @@ transition:opacity 0.3s ease;
        }
 }
 
-@media  (max-width: 787px){
-    
-     .img-desc{
-        text-align: center;
-     }
-     .portal-root-inner-div{
-         width:78%;
-     }
-     .overview-para{
-      font-size: 16px;
-     }
-     .table-master-content{
-        font-size: 12px;
-     }
-}
+
 
 
 @media  (max-width: 487px){
  .Image-Container{
-        height: 370vh;
+        height: 245vh;
      }
 .img-grid{
     display: block;
