@@ -10,7 +10,7 @@ import "../stylingSheets/ContactUsRetrieveData.css";
 
 
 const ContactCard=React.memo(({user,onEdit,onDelete})=>{
-console.log('Rendering Contact Card........ ')
+console.log('Rendering Contact Card ')
 return (
   <div className='contact-retrieve-data-container' >
         <p  className='cont-retrieve-data-para'><span className='cont-retrieve-data'>User ID: </span>{user.id}</p>

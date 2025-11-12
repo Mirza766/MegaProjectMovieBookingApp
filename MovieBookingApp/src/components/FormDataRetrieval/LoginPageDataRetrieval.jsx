@@ -10,7 +10,7 @@ import { deleteLoginData,emptyLoginData } from '../../redux/Login/LogininActions
 
 const LoginCard=React.memo(({user,onDelete})=>{
 
-console.log('Rendering Login Card........',user.id )
+console.log('Rendering Login Card',user.id )
     return (
 
          <TableRow>

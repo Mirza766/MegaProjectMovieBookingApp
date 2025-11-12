@@ -1,4 +1,4 @@
-import React, { Children, useEffect, useState } from "react";
+import React, { Children, useEffect, useMemo, useState } from "react";
 import SubscriptionContext from "./SubscriptionContext";
 
 const SubscriptionContextProvider=({children})=>{
@@ -29,9 +29,11 @@ const updateSubscription=(id,newData)=>{
     setAddSubscription((prev)=>prev.map((subsc)=>
     subsc.id===id?{...subsc,...newData}:subsc));
 }
-
+const value=useMemo(()=>({
+    addSubscription,AddSubscription,DeleteSubscription,updateSubscription
+}),[addSubscription,AddSubscription,DeleteSubscription,updateSubscription])
     return(
-        <SubscriptionContext.Provider value={{addSubscription,setAddSubscription,AddSubscription,DeleteSubscription,updateSubscription}}>
+        <SubscriptionContext.Provider value={value}>
       {children}
         </SubscriptionContext.Provider>
     )

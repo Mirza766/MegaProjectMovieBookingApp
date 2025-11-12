@@ -1,13 +1,36 @@
-import React, { useContext } from 'react'
+import React, { useCallback, useContext } from 'react'
 import SubscriptionContext from '../context/SubscriptionContext'
 import "../stylingSheets/MovieCart.css";
 import {Button, TableCell} from '@mui/material';
+import { useDispatch } from 'react-redux';
+
+
+
+const SubscriptionCard=React.memo(({subscription,onDelete})=>{
+  console.log('Rendering Subscription Card',subscription.id )
+
+  return(
+     <tr className='headinsideCart'>
+                <th className='thtags'>{subscription.id}</th>
+                 <th className='thtags'>{subscription.name}</th>
+                  <th className='thtags'>{subscription.email}</th>
+                   <th className='thtags'>{subscription.phoneNumber}</th>
+                    <th className='thtags'>{subscription.planName}</th>
+                     <th className='thtags'>${subscription.price}</th>
+                     <TableCell>
+                       <Button  variant='contained' color='error' size="small" onClick={()=>onDelete(subscription.id)} >Delete</Button>
+                     </TableCell>
+            </tr>
+  )
+})
+
 
 
 
 function SubscriptionDataRetrieval() {
-const {addSubscription}=useContext(SubscriptionContext)
 
+const {addSubscription,DeleteSubscription}=useContext(SubscriptionContext);
+const deleteSubscriber=useCallback((id)=>DeleteSubscription(id),[DeleteSubscription]);
 
 
   return (
@@ -29,19 +52,9 @@ const {addSubscription}=useContext(SubscriptionContext)
         </thead>
         <tbody>
             {
-                addSubscription?.map((addSubscription)=>(
-               <tr key={addSubscription.id} className='headinsideCart'>
-                <th className='thtags'>{addSubscription.id}</th>
-                 <th className='thtags'>{addSubscription.name}</th>
-                  <th className='thtags'>{addSubscription.email}</th>
-                   <th className='thtags'>{addSubscription.phoneNumber}</th>
-                    <th className='thtags'>{addSubscription.planName}</th>
-                     <th className='thtags'>${addSubscription.price}</th>
-                     <TableCell>
-                       <Button  variant='contained' color='error' size="small" onClick={()=>onDelete(user.id)} >Delete</Button>
-                     </TableCell>
-            </tr>
-                ))
+               addSubscription?.map((sub) => (
+  <SubscriptionCard key={sub.id} subscription={sub} onDelete={deleteSubscriber} />
+))
              
             }
           

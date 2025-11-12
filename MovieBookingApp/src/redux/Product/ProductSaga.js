@@ -10,6 +10,7 @@ yield put({type:SET_PRODUCT_DATA,payload});
 
 function *productSaga(){
 yield takeLatest(GET_PRODUCT_DATA,getProducts)
+
 }
 
 

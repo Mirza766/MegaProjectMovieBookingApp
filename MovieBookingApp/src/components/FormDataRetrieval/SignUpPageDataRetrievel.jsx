@@ -6,7 +6,7 @@ import { emptySignUpData,deleteSignUpData } from '../../redux/SignUp/SignUpActio
 
 
 const SignUpDataCart=React.memo(({user,onDelete})=>{
-  console.log('Rendering Contact Card........ ')
+  console.log('Rendering Contact Card')
   return(
 <Grid item xs={12} sm={6} lg={3} key={user.id}>
         <Card  sx={{boxShadow:4,borderRadius:3}}>

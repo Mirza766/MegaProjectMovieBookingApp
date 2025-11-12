@@ -14,7 +14,7 @@ switch(action.type){
         return [];
     case DELETE_CART_DATA:
         const targetData=data.find((user)=>user.id===action.payload.id);
-        if(targetData>1){
+        if(targetData.quantity>1){
             return data.map((item)=>item.id===action.payload.id?{...item,quantity:item.quantity-1}:item)
         }
         else{
