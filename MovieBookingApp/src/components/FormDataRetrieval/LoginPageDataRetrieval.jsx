@@ -1,16 +1,38 @@
 import React from 'react'
+import { useCallback } from 'react';
 import { useDispatch,useSelector } from 'react-redux'
 import { Table,TableBody,TableHead,TableCell,TableContainer,TableRow,Paper,Button, Typography } from '@mui/material'
 
 import { LoginFormData } from '../../redux/Login/LoginReducers';
 import { deleteLoginData,emptyLoginData } from '../../redux/Login/LogininActions';
 
+
+
+const LoginCard=React.memo(({user,onDelete})=>{
+
+console.log('Rendering Login Card........',user.id )
+    return (
+
+         <TableRow>
+                    <TableCell>{user.id}</TableCell>
+                    <TableCell>{user.email}</TableCell>
+                    <TableCell>{user.password}</TableCell>
+                    <TableCell>
+                        <Button variant='contained' color='error' size="small" onClick={()=>onDelete(user.id)} >Delete</Button>
+                    </TableCell>
+                </TableRow>
+       
+)
+})
+
+
+
 function LoginPageDataRetrieval() {
   const dispatch=useDispatch();
   const loggedInUsers=useSelector((state)=>state.LoginFormData);
-  console.log(loggedInUsers)
-  
-  
+
+const DeleteData=useCallback((id)=>dispatch(deleteLoginData(id)),[dispatch]);
+
     return (
         <>
         
@@ -25,16 +47,11 @@ function LoginPageDataRetrieval() {
             </TableRow>
            </TableHead>
            <TableBody>
-            {loggedInUsers.map((user)=>(
-                <TableRow key={user.id}>
-                    <TableCell>{user.id}</TableCell>
-                    <TableCell>{user.email}</TableCell>
-                    <TableCell>{user.password}</TableCell>
-                    <TableCell>
-                        <Button variant='contained' color='error' size="small" onClick={()=>dispatch(deleteLoginData(user.id))} >Delete</Button>
-                    </TableCell>
-                </TableRow>
-            ))}
+           {
+            loggedInUsers.map((user)=>(
+                <LoginCard key={user.id} user={user} onDelete={DeleteData} />
+            ))
+           }
            </TableBody>
         </Table>
         <Button onClick={()=>dispatch(emptyLoginData())} variant='contained' color='error' sx={{mt:4}}>Empty All Records</Button>

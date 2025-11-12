@@ -3,10 +3,11 @@ import { useDispatch,useSelector } from 'react-redux'
 import { getCartData } from '../../redux/CartData/CartDataReducers'
 import { Link } from 'react-router-dom'
 import "../stylingSheets/MovieCartHeader.css";
-function Header() {
-const DataPresentInCart=useSelector((state)=>state.getCartData)
 
-console.log(DataPresentInCart);
+
+
+const Header=React.memo(function Header() {
+const DataPresentInCart=useSelector((state)=>state.getCartData)
 
   return (
     <div className='moviebook-cont'>
@@ -20,5 +21,6 @@ console.log(DataPresentInCart);
 
   )
 }
+)
 
 export default Header

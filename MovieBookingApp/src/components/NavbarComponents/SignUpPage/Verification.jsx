@@ -2,10 +2,9 @@ import React from 'react'
 import {useFormContext,Controller, useForm} from 'react-hook-form'
 import {Button,Checkbox,TextField,FormControlLabel, FormLabel} from '@mui/material'
 import '../../stylingSheets/SignUp.css';
-function Verification() {
-  
+const Verification=React.memo(function Verification() {
   const {control}=useFormContext();
-  
+
   return (
     <div className='Verification-master-container'>
     <div className='Verification-container'>
@@ -65,5 +64,6 @@ function Verification() {
     </div>
   )
 }
+)
 
 export default Verification

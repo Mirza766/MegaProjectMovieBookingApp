@@ -1,9 +1,16 @@
-import React, { Children, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import SubscriptionContext from "./SubscriptionContext";
 
 const SubscriptionContextProvider=({children})=>{
 
-const [addSubscription,setAddSubscription]=useState([]);
+const [addSubscription,setAddSubscription]=useState(()=>{
+    const saved=localStorage.getItem('subscription');
+    return saved?JSON.parse(saved):[];
+});
+
+useEffect(()=>{
+ localStorage.setItem('subscription',JSON.stringify(addSubscription));
+},[addSubscription]);
 
 const AddSubscription=(updater)=>{
     setAddSubscription((prev)=>{

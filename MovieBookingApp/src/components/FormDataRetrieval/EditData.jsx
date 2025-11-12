@@ -18,7 +18,7 @@ const dispatch=useDispatch();
 const navigate=useNavigate();
   const {id}=useParams();
   const ContactUsUsers=useSelector((state)=>state.ContactUsFormData);
-  console.log(ContactUsUsers);
+  
 
 const userData=ContactUsUsers.find((u)=>u.id===id);
 

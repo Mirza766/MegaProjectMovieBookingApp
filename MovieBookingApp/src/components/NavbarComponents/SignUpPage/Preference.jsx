@@ -4,9 +4,10 @@ import {Checkbox,FormControlLabel, InputLabel, Select, MenuItem, FormControl, Fo
 import '../../stylingSheets/SignUp.css';
 
 
-function Preference() {
+const Preference=React.memo(function Preference() {
 
   const {control}=useFormContext();
+console.log("Prefernece Re-renders")
 
   return (
     <div className='signUpPreference'> 
@@ -155,5 +156,6 @@ render={({field})=>(
     </div>
   )
 }
+)
 
 export default Preference

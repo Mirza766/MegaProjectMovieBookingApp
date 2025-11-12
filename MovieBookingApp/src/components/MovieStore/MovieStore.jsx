@@ -18,7 +18,7 @@ useEffect(()=>{
 
 
 const MovieData=useSelector((state)=>state.getMovieData);
-console.log(MovieData);
+
 
   return (
 

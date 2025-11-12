@@ -5,10 +5,13 @@ import '../../stylingSheets/SignUp.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 
-function AccountDetail() {
+const AccountDetail=React.memo(function AccountDetail() {
 
 const {control,watch}=useFormContext();
 const password=watch('password');
+
+
+console.log("AccountDetail Rerender");
     return (
 
     <div className='detail-container'>
@@ -146,5 +149,6 @@ const password=watch('password');
     </div>
   )
 }
+)
 
 export default AccountDetail

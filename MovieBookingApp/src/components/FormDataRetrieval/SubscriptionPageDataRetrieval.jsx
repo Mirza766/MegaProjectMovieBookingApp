@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import SubscriptionContext from '../context/SubscriptionContext'
 import "../stylingSheets/MovieCart.css";
-
+import {Button, TableCell} from '@mui/material';
 
 
 
@@ -33,10 +33,13 @@ const {addSubscription}=useContext(SubscriptionContext)
                <tr key={addSubscription.id} className='headinsideCart'>
                 <th className='thtags'>{addSubscription.id}</th>
                  <th className='thtags'>{addSubscription.name}</th>
-                  <th className='thtags'>${addSubscription.email}</th>
+                  <th className='thtags'>{addSubscription.email}</th>
                    <th className='thtags'>{addSubscription.phoneNumber}</th>
                     <th className='thtags'>{addSubscription.planName}</th>
-                     <th className='thtags'>{addSubscription.price}</th>
+                     <th className='thtags'>${addSubscription.price}</th>
+                     <TableCell>
+                       <Button  variant='contained' color='error' size="small" onClick={()=>onDelete(user.id)} >Delete</Button>
+                     </TableCell>
             </tr>
                 ))
              
@@ -44,6 +47,7 @@ const {addSubscription}=useContext(SubscriptionContext)
           
         </tbody>
      </table>
+   
   </div>
 </div>
        
