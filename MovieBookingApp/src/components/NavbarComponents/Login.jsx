@@ -28,7 +28,6 @@ const dispatch=useDispatch();
 const onSubmission=async(data)=>{
 try{
 await new Promise((resolve)=>setTimeout(resolve,1000))
-   console.log('Form submitted successfully',data);
    dispatch(addLoginData(data));
    reset();   
 }
@@ -55,9 +54,11 @@ catch(error){
               },
               validate:{
               validateEmail:async(fieldValue)=>{
-                const response=await fetch(`http://localhost:3000/users?email=${fieldValue}`)
+                const response=await fetch('/db/db.json')
                 const data=await response.json();
-                 return data.length>0 || "Email Doesnot Exists"
+                const users=data.users || [];
+                const exists=users.some((user)=>user.email===fieldValue)
+                 return exists || "Email Doesnot Exists"
               }
              }}}
              render={({field,fieldState})=>(

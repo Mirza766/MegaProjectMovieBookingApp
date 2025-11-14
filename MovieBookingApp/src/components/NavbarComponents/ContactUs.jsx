@@ -10,6 +10,10 @@ import { Link } from "react-router-dom";
 
 
 function ContactUs() {
+
+
+
+  
   const { reset, formState, register, setError, handleSubmit } = useForm({
     defaultValues: {
       fullName: "",
