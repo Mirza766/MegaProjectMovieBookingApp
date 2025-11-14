@@ -196,5 +196,7 @@ transition:opacity 0.3s ease;
         height: 248vh;
 }
 
-
+.subsc-container {
+padding-top: 6rem;
+}
 }
