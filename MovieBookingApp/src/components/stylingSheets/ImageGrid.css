@@ -193,6 +193,9 @@ transition:opacity 0.3s ease;
 }
 
 .Image-Container{
-        height: 300vh;
+        height: 248vh;
+}
+.subsc-container{
+    margin-top: 10rem;
 }
 }
