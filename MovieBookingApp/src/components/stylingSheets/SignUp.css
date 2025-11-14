@@ -125,3 +125,26 @@ font-weight: 500;
   text-align: center;
   font-size: 14px;  
 }
+
+
+@media (max-width:900px){
+    .signUp-total{
+        width: 70%;
+    }
+
+   
+}
+
+@media (max-width:500px){
+    .signUp-total{
+        width: 80%;
+    }
+}
+
+
+@media (max-width:450px){
+    .signUp-total{
+        width: 90%;
+    }
+     
+}

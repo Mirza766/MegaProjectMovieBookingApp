@@ -18,7 +18,7 @@ const SubscriptionCard=React.memo(({subscription,onDelete})=>{
                     <th className='thtags'>{subscription.planName}</th>
                      <th className='thtags'>${subscription.price}</th>
                      <TableCell>
-                       <Button  variant='contained' color='error' size="small" onClick={()=>onDelete(subscription.id)} >Delete</Button>
+                       <Button className='Subscribe-btton'  variant='contained' color='error' size="small" onClick={()=>onDelete(subscription.id)} >Delete</Button>
                      </TableCell>
             </tr>
   )

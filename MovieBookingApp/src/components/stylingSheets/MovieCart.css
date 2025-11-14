@@ -178,5 +178,13 @@ border-bottom: 2px solid grey;
     .CartDataPriceContainer {
    width: 60%;
         }
+        .Subscribe-btton{
+            font-size: 12px;
+            padding:0px;
+            margin: auto;
+        }
+        .CartItems-master-cont{
+            width: 98%;
+        }
 }
 

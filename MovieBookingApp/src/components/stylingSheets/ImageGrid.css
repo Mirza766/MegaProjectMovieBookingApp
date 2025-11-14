@@ -179,4 +179,20 @@ transition:opacity 0.3s ease;
     .table-master-content {
     font-size: 8px;
     }
+
+}
+
+
+@media  (max-width: 397px){
+    .hero-section{
+                height: 159vh;
+    }
+.img-desc{
+    margin-top: -1px;
+
+}
+
+.Image-Container{
+height: 260vh;
+}
 }
