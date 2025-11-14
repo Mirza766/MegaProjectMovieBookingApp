@@ -48,6 +48,7 @@ const deleteSubscriber=useCallback((id)=>DeleteSubscription(id),[DeleteSubscript
                 <th  className='thtagshead'>Phone Number</th>
                 <th  className='thtagshead'>Plan Name</th>
                 <th  className='thtagshead'>Price</th>
+                  <th  className='thtagshead'></th>
             </tr>
         </thead>
         <tbody>

@@ -1,5 +1,5 @@
 .Image-Container{
-margin-top: 6rem;
+margin-top: 2rem;
  max-width: 1440px;
  margin-left: auto;  
   margin-right: auto;
@@ -83,7 +83,7 @@ grid-row: span 1;
 }
 
 .img-desc{
-    margin-top: auto;
+    margin-top: -17px;
     
     color:#162f72;
     font-weight: 500;
@@ -140,6 +140,18 @@ transition:opacity 0.3s ease;
              height: 235vh;
       
     }
+
+    .img-head-desc{
+        margin-bottom: 35px;
+    }
+
+.img-desc{
+    text-align: left;
+        margin-top: -20px;
+    color: #162f72;
+    font-weight: 500;
+}
+
      .img-head{
      font-size: 25px;
      align-items: center;
