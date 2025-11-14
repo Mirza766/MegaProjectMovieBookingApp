@@ -540,9 +540,6 @@ font-size: 25px;
 
 
 
-
-
-
 @media  (max-width: 767px){
    .hero-container{
     flex-direction: column;
@@ -554,8 +551,9 @@ font-size: 25px;
     font-size: 20px;
    }
    .hero-section{
-    height: 129vh;
-    margin-top: -271px;
+           height: 249vh;
+        margin-top: -271px;
+  
    }
    .hero-btns-mod{
     font-size: 12px;
@@ -570,51 +568,47 @@ font-size: 25px;
        .Features-And-Categories{
         width: 80%;
        }
-       .hero-total{
-      height: 565px;
-       }
+     
        .img-head{
      font-size: 16px;
        }
 
 
 }
-/* @media  (max-width: 787px){
-    
-     .img-desc{
-        text-align: center;
-     }
-      .Image-Container{
-        height: 245vh;
-     }
-     .hero-section{
-        margin-top: -550px;
-     }
-     .hero-UpperContent{
-      margin-bottom: 700px;
-     }
-     .portal-root-inner-div{
-         width:78%;
-     }
-     .overview-para{
-      font-size: 16px;
-     }
-     .table-master-content{
-        font-size: 12px;
-     }
-} */
+
 
 @media  (max-width: 520px){
       .hero-section {
-        height: 176vh;
+        height: 245vh;
         margin-top: -276px;
     }
       .hero-Uppercontent {
         margin-bottom: 750px;
     }
-    .hero-section {
-        height: 142vh;
-        margin-top: -271px;
-    }
+ 
 }
+@media  (max-width: 487px){
+ .Image-Container{
+        height: 245vh;
+     }
+.img-grid{
+    display: block;
+}
+.subsc-container{
+    margin-top: 18rem;
+}
+.portal-root-inner-div{
+    width:100%;
+}
+
+    .table-master-content {
+    font-size: 8px;
+    }
+
+}
+
+
+
+
+
 

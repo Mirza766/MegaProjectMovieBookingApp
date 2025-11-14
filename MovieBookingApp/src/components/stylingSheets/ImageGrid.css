@@ -160,43 +160,17 @@ transition:opacity 0.3s ease;
 }
 
 
-
-
-@media  (max-width: 487px){
- .Image-Container{
-        height: 245vh;
-     }
-.img-grid{
-    display: block;
-}
-.subsc-container{
-    margin-top: 18rem;
-}
-.portal-root-inner-div{
-    width:100%;
-}
-
-    .table-master-content {
-    font-size: 8px;
+/* 
+@media  (max-width: 390px) {
+    .hero-section {
+       height: 232vh;
     }
 
-}
+} */
 
 
-@media  (max-width: 397px){
-    .hero-section{
-                height: 159vh;
-    }
-.img-desc{
-    margin-top: -1px;
 
-}
 
-.Image-Container{
-        height: 248vh;
-}
 
-.subsc-container {
-padding-top: 6rem;
-}
-}
+
+
