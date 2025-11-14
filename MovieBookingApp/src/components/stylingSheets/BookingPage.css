@@ -139,3 +139,23 @@
   }
   
 }
+
+@media (max-width:398px){
+.seat-grid {
+        grid-template-columns: repeat(10, 27px);
+}
+.bookinglabel{
+  font-size: 17px;
+}
+.bookingInput {
+    padding: 4px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+.master-head-booking{
+  font-size: 25px;
+}
+    .booking-form-container {
+        width: 80%;
+    }
+}
