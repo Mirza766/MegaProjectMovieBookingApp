@@ -169,9 +169,9 @@ transition:opacity 0.3s ease;
 .img-grid{
     display: block;
 }
-
-
-
+.subsc-container{
+    margin-top: 15rem;
+}
 .portal-root-inner-div{
     width:100%;
 }
@@ -195,7 +195,6 @@ transition:opacity 0.3s ease;
 .Image-Container{
         height: 248vh;
 }
-.subsc-container{
-    margin-top: 20rem;
-}
+
+
 }
