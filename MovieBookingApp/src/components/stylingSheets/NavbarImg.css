@@ -92,6 +92,14 @@
     flex-direction: column;
     gap:1rem
 }
+.responsive-sidebar-contact{
+    cursor: pointer;
+}
+
+
+.ri-menu-line{
+   cursor: pointer;
+}
 .SidebarLink{
     color: #eee;
     text-decoration: none;
@@ -115,6 +123,7 @@
         padding: 0.5rem 1rem;
     }
 }
+
 
 @media  (max-width: 767px){
      .SidebarLink{

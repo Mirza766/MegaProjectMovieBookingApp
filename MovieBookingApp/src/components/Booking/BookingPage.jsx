@@ -41,6 +41,7 @@ const BookingPage = () => {
       ...data, 
     };
 
+
     dispatch(confirmBooking(bookingPayload));
 
    
@@ -118,6 +119,7 @@ const BookingPage = () => {
               {...register("email", { required: true })}
               placeholder="Your Email"
             />
+            
           </div>
           <div className="booking-form-master">
             <label className="bookinglabel">Phone:</label>

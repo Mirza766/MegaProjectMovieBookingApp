@@ -22,5 +22,5 @@ switch(action.type){
         }
         default:
             return data
-}
+  }
 }
