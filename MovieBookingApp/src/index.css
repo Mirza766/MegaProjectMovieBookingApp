@@ -552,7 +552,7 @@ font-size: 25px;
    }
    .hero-section{
            height: 249vh;
-        margin-top: -271px;
+        margin-top: -302px;
   
    }
    .hero-btns-mod{
@@ -563,7 +563,7 @@ font-size: 25px;
     font-size: 18px;
    }
        .hero-Uppercontent {
-        margin-bottom: 650px;
+        margin-bottom: 590px;
        }
        .Features-And-Categories{
         width: 80%;
@@ -572,7 +572,10 @@ font-size: 25px;
        .img-head{
      font-size: 16px;
        }
-
+    .Image-Container {
+        flex-direction: column;
+        height: 473vh;
+    }
 
 }
 
@@ -588,12 +591,8 @@ font-size: 25px;
  
 }
 @media  (max-width: 487px){
- .Image-Container{
-        height: 245vh;
-     }
-.img-grid{
-    display: block;
-}
+
+
 .subsc-container{
     margin-top: 18rem;
 }

@@ -137,7 +137,9 @@ transition:opacity 0.3s ease;
     }
     .Image-Container{
       flex-direction: column;
-             height: 235vh;
+               
+        height: 470vh;
+    
       
     }
 
@@ -160,13 +162,20 @@ transition:opacity 0.3s ease;
 }
 
 
-/* 
-@media  (max-width: 390px) {
-    .hero-section {
-       height: 232vh;
-    }
+@media  (max-width: 750px) {
+.Image-Container {
+    margin-top: 10rem;
+}
 
-} */
+}
+
+@media  (max-width: 480px){
+   .Image-Container {
+       
+       padding-top: 20px;
+    } 
+}
+
 
 
 
