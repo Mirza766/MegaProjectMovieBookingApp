@@ -212,8 +212,8 @@ At CineWave, we believe that booking a movie should be as fun as watching it. Th
    </div>
    </div>
    </div>
+    <SubscriptionContent/>
    <ImageGrid/>
-   <SubscriptionContent/>
     </>
   )
 }
