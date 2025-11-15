@@ -547,12 +547,15 @@ font-size: 25px;
     justify-content: center;
     align-items: center;
    }
+   .hero-total{
+        height: 700px;
+   }
    .hero-heading{
     font-size: 20px;
    }
    .hero-section{
-           height: 132vh;
-        margin-top: -302px;
+                height: 270vh;
+        margin-top: -329px;
   
    }
    .hero-btns-mod{
@@ -582,8 +585,7 @@ font-size: 25px;
 
 @media  (max-width: 520px){
       .hero-section {
-        height: 150vh;
-        margin-top: -276px;
+      
     }
       .hero-Uppercontent {
         margin-bottom: 750px;

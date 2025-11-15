@@ -148,10 +148,16 @@ text-align: center;
 }
 
 
-@media  (max-width: 455px){
+@media  (max-width: 480px){
     .subsc-container {
-            padding-top: 18rem;
+         padding-top: 0rem;
        margin-top: 0rem; 
     }
     
+}
+@media (max-width: 350px) {
+    .subsc-container {
+        padding-top: 6rem;
+        margin-top: 0rem;
+    }
 }
