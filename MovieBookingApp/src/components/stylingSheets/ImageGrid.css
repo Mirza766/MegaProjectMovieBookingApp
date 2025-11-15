@@ -170,7 +170,7 @@ transition:opacity 0.3s ease;
 
 @media  (max-width: 480px){
    .Image-Container {
-        height: 287vh; ;
+        height: 290vh; ;
        padding-top: 20px;
     } 
 } 
