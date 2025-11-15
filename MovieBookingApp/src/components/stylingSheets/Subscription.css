@@ -150,13 +150,7 @@ text-align: center;
 }
 
 
-@media  (max-width: 487px){
-    .subsc-container {
-      
-       /* margin-top: 12rem;  */
-    }
-    
-}
+
 @media (max-width: 350px) {
     .subsc-container {
         padding-top: 6rem;

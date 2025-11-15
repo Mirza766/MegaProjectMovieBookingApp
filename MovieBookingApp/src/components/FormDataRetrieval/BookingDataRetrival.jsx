@@ -15,7 +15,7 @@ console.log(bookingDetails);
     return (
        <div className='cont-retrieve-masterclass'>
    
-      <h2 className='heading-retrieve'>Contact Us Users Global Data</h2>
+      <h2 className='heading-retrieve'>Booked Users Data Bank</h2>
     <div className='contactus-retrieve-master'>
     {
        bookingDetails.map((book)=>{
