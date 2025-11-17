@@ -8,7 +8,7 @@
        background-position: center;
     background-blend-mode: overlay;
     background-color: rgba(0,0,0,0.55);
-    background-image:url('images/movie-background-collage.jpg');
+    background-image:url('/images/movie-background-collage.jpg');
     background-size: cover;
     object-fit: cover;
     padding-top: 10px;
