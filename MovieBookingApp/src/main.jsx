@@ -7,12 +7,12 @@ import store from './store/store.js'
 import SubscriptionContextProvider from './components/context/SubscriptionContextProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
-  // <StrictMode>
+  <StrictMode>
    <Provider store={store} >
     <SubscriptionContextProvider>
 
     <App />
     </SubscriptionContextProvider>
    </Provider>
-  // {/* </StrictMode>, */}
+   </StrictMode>,
 )

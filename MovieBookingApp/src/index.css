@@ -558,9 +558,9 @@ font-size: 25px;
    .hero-container{
     margin-bottom: 0px;
    }
-   .hero-section{
-     height: 120vh;
-   }
+   .hero-section {
+        height: 250vh;
+    }
    .hero-btns-mod{
     font-size: 12px;
     padding: 5px 10px 5px 10px;
@@ -587,9 +587,7 @@ font-size: 25px;
 
 
 @media  (max-width: 520px){
-       .hero-section{
-     height: 158vh;
-   }
+    
       .hero-Uppercontent {
         margin-bottom: 750px;
     }

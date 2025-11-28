@@ -15,7 +15,7 @@ margin-top: 2rem;
     display: grid;
     gap:1rem;
     grid-template-columns: repeat(5,1fr);
-    grid-template-rows: repeat(3.200px);
+    grid-template-rows: repeat(3,200px);
     height: 600px;
      
 }
@@ -165,17 +165,27 @@ transition:opacity 0.3s ease;
        }
 }
 
-
+@media (max-width:767px) {
+      .Image-Container {
+        height: 453vh;
+    }
+}
 
 
 @media  (max-width: 480px){
    .Image-Container {
-        height: 300vh; ;
+        height: 300vh;
        padding-top: 20px;
     } 
 } 
 
+@media  (max-width: 520px){
+ .Image-Container {
+     height: 450vh;
 
+   }
+
+}
 
 
 
