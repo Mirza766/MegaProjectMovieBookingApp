@@ -58,7 +58,7 @@ catch(error){
                 const data=await response.json();
                 const users=data.users || [];
                 const exists=users.some((user)=>user.email===fieldValue)
-                 return exists || "Email Doesnot Exists"
+                 return exists || "Email Doesnot Exists. Enter saifmirza766@gmail.com or se json file"
               }
              }}}
              render={({field,fieldState})=>(
