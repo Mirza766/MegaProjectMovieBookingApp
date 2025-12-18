@@ -12,10 +12,10 @@ useEffect(()=>{
 
   return ReactDOM.createPortal(
     <>
-    <div  className='portal-root-css' onClick={closePricingModal}>
-     <div className='portal-root-inner-div'>
+    <div  className='px-2 text-sm portal-root-css bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text' onClick={closePricingModal}>
+     <div className='flex flex-col w-full md:w-xl lg:w-3xl'>
     {children}
-     {handleCloseButtonPricing}
+
      </div>
     </div>
     </>,

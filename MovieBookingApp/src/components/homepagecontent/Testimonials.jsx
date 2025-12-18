@@ -36,7 +36,7 @@ function Testimonials() {
    <div className='flex flex-col lg:flex-row space-y-3 md:space-y-5'>
 
     <div className=' lg:w-1/2 flex justify-center  md:text-left flex-col'>
-        <h2 className='text-5xl sm:text-4xl   gap-8 sm:gap-12 text-gray-200 font-bold mb-4 sm:mb-6'>What Industry Voices Say</h2>
+        <h2 className='text-4xl sm:text-4xl   gap-8 sm:gap-12 text-gray-200 font-bold mb-4 sm:mb-6'>What Industry Voices Say</h2>
         <p className='text-gray-400 text-xl mb-10 sm:text-2xl md:text-3xl '>Hear from film professionals and movie lovers who appreciate a fast, reliable, and seamless ticket booking experience.</p>
     </div>
 

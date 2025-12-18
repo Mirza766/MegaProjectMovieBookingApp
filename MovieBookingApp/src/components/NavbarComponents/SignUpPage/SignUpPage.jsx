@@ -40,6 +40,8 @@ const methods=useForm({mode:'onChange',
 const {handleSubmit,trigger,reset,formState}=methods;
 const {isSubmitting,isSubmitSuccessful}=formState;
 const [step,setStep]=useState(1);
+const totalSteps=3;
+const progress=(step/totalSteps)*100;
 
 
 const onSubmission=async(data)=>{
@@ -70,6 +72,39 @@ const nextStep=async()=>
     <div className=' relative w-full max-w-xl bg-white/5 backdrop-blur-xl rounded-2xl p-2 shadow-2xl border border-white/10 '>
       <h2 className=' text-2xl sm:text-3xl md:text-4xl sm:h-10 md:h-15 font-bold bg-linear-to-r from-blue-300 to-cyan-300 text-transparent items-center justify-center flex mb-5 bg-clip-text'>Ready to sign up here</h2>
     <div className='w-full'>
+
+
+<div className='w-full mb-6'>
+  <div className='flex justify-between mb-2 text-xs text-blue-300'>
+    <span className={step >= 1 ? "text-blue-400 " : ""}>Account</span>
+    <span className={step >= 2 ? "text-blue-400" : ""}>Verification</span>
+    <span className={step >= 3 ? "text-blue-400" : ""}>Preferences</span>
+   
+  </div>
+
+  <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+    <div
+      className="h-full bg-linear-to-r from-blue-500 to-cyan-400 transition-all duration-500 ease-in-out"
+      style={{ width: `${progress}%` }}
+    />
+  </div>
+
+</div>
+<div className="flex justify-between items-center mb-4">
+  {[1,2,3].map((s) => (
+    <div
+      key={s}
+      className={`w-8 h-8 flex items-center justify-center rounded-full text-sm font-bold
+        ${step >= s ? "bg-blue-500 text-white" : "bg-white/10 text-gray-400"}`}
+    >
+      {s}
+    </div>
+  ))}
+</div>
+
+
+
+
      <FormProvider {...methods} >
 
      

@@ -5,7 +5,7 @@ function Carousel() {
   return (
     <div className='text-white mt-25 flex flex-col'>
      <div className=' mb-6 flex flex-col space-y-2 sm:space-y-3 md:space-y-4 justify-center items-center'>
-         <h2 className='text-3xl mb-4 sm:text-3xl md:text-4xl lg:text-3xl xl:text-6xl font font-semibold leading-tight duration-700 delay-100 slide-in-from-bottom  block bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400 text-transparent  bg-clip-text'>Wants to Give Your Feedback</h2>
+         <h2 className='text-2xl mb-4 sm:text-3xl md:text-4xl lg:text-3xl xl:text-6xl font font-semibold leading-tight duration-700 delay-100 slide-in-from-bottom  block bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400 text-transparent  bg-clip-text'>Wants to Give Your Feedback</h2>
          <div className='flex flex-row gap-4 w-full px-4 justify-center'>
            <button className='group flex items-center gap-1 w-full  sm:w-auto justify-center rounded-lg text-sm sm:text-base bg-linear-to-b from-blue-600 to-blue-400 font-semibold px:6
                     sm:px-8 sm:py-4 py-3 hover:scale-102 transition-all duration-300  '>

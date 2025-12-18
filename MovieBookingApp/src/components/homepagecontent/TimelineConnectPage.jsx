@@ -170,11 +170,11 @@ console.log(TimeLineData);
 const dispatch=useDispatch();
     return (
       
-    <div className=' text-white flex flex-col  mt-25 max-w-7xl mx-auto px-4'>
-      <h2 className='text-center text-4xl  mb-10 font-bold bg-linear-to-b from-blue-400 to-cyan-400 bg-clip-text text-transparent  '>{selectedTimeline.name} Contact Info</h2>
-      <div className=' flex flex-col lg:flex-row lg:gap-4 gap-10 justify-center items-center  '>
+    <div className=' text-white flex flex-col  mt-25 max-w-7xl sm:max-w-4xl mx-auto px-4'>
+      <h2 className='text-center text-3xl  mb-10 font-bold bg-linear-to-b from-blue-400 to-cyan-400 bg-clip-text text-transparent  '>{selectedTimeline.name} Contact Info</h2>
+      <div className='flex flex-col lg:flex-row lg:gap-4 gap-10 justify-center items-center  '>
         
-       <div className='relative w-1/2  '>
+       <div className='relative w-full sm:w-xl lg:w-1/2   '>
        
        <div className="absolute  inset-0 bg-linear-to-b from-slate-900/80 via-slate-900/90 to-slate-900 pointer-events-none rounded-lg border border-white/5 hover:border-white/10" />  
             <div className=' flex flex-col p-2 items-center justify-center w-full  mx-auto'>
@@ -240,10 +240,10 @@ const dispatch=useDispatch();
     </div>
     
     </div>
-
+   <div className='bg-white/5 flex justify-center items-center border border-slate-400/20 rounded-lg p-4'>
     <div className='relative w-1/2 order-2 flex flex-col items-center justify-center'>
     <div className=''/>
-    <h2 className='text-center text-4xl h-auto mb-10 font-bold bg-linear-to-b from-blue-400 to-cyan-400 bg-clip-text text-transparent'>Select a TimeSlot of your choice</h2>
+    <h2 className='text-center text-3xl h-auto mb-10 font-bold bg-linear-to-b from-blue-400 to-cyan-400 bg-clip-text text-transparent'>Select a TimeSlot of your choice</h2>
 {
        openMenu && (
      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-center'>      
@@ -251,7 +251,7 @@ const dispatch=useDispatch();
   className='border bg-white/5 hover:bg-white/10 border-slate-800/20 text-sm sm:text-sm md:text-base cursor-pointer lg:text-lg h-10 rounded-lg p-2'   aria-placeholder='Select a TimeSlot' 
   {...register("SelectedSlot", { required: "Please select a time slot" })} 
 >
-      <option className='bg-black/20 text-blue-400'>Select a TimeSlot</option>
+      <option value='' className='bg-black/20 text-blue-400'>Select a TimeSlot</option>
       {
        selectedTimeline.days.map((dayObject,index)=>{
         const [day,timeSlots]=Object.entries(dayObject)[0];
@@ -304,6 +304,7 @@ const dispatch=useDispatch();
 )}   
       
        
+    </div>
     </div>
     </div>
     </div>

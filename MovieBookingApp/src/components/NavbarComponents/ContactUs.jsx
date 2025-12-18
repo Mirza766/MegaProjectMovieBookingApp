@@ -60,7 +60,7 @@ const dispatch=useDispatch();
     <div className="min-h-screen max-w-7xl mx-auto mt-25">
       <div className="flex flex-col justify-center items-center text-center  gap-6 space-y-7 lg:flex-row px-4">
       <div className="flex flex-col justify-center items-center text-center md:text-left w-full lg:w-1/2 gap-3 md:gap-4 lg:gap-5 ">
-      <h2 className="text-4xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-6xl font font-semibold leading-tight duration-700 delay-100 slide-in-from-left  mb-2 bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400 text-transparent  bg-clip-text">We’d Love to Hear From You</h2>
+      <h2 className="text-4xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-6xl font font-semibold leading-tight duration-700 delay-100 text-left  slide-in-from-left  mb-2 bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400 text-transparent  bg-clip-text">We’d Love to Hear From You</h2>
       <div className="flex flex-col gap-3 md:gap-4 lg:gap-5 text-2xl sm:text-2xl  xl:text-4xl font font-semibold leading-tight ">
       <p className="leading-tight duration-700 delay-200 slide-in-from-left bg-linear-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent">"Your ideas + our expertise = something extraordinary!"</p>
       <p className="leading-tight duration-700 delay-300 slide-in-from-left bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text">"Ready to get in touch? Let’s start the conversation today!"</p>

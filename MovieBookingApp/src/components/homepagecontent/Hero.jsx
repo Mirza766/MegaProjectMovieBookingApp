@@ -23,16 +23,16 @@ const handleCloseButtonPricing=(
 
 const mainPricingModel=(
   <PricingModel closePricingModal={closePricingModal} handleCloseButtonPricing={handleCloseButtonPricing}>
-<table className='table-master-content'>
+<table className='mt-10 sm:mt-10 bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>
 <thead>
-<tr className='header-master'>
-  <th className='table-header-Heading'>Category</th>
-  <th className='table-header-Heading'>Description</th>
-  <th className='table-header-Heading'>Ticket Price (PKR)</th>
-  <th className='table-header-Heading'>Special Features</th>
+<tr className='header-master text-left text-sm sm:text-sm md:text-md '>
+  <th className='table-header-Heading bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Category</th>
+  <th className='table-header-Heading bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Description</th>
+  <th className='table-header-Heading bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Ticket Price (PKR)</th>
+  <th className='table-header-Heading bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Special Features</th>
 </tr>
 </thead>
-<tbody>
+<tbody className=' text-left text-sm sm:text-sm md:text-md lg:text-lg'>
   <tr className='table-flow-content'>
       <td className='table-header heading'>Now Showing</td>
       <td className='table-header content'>Discover the latest movies currently running in theaters near you.</td>
@@ -67,7 +67,7 @@ const mainPricingModel=(
 
 const mainOverviewModal=(
 <OverviewModel closeOverviewModal={closeOverviewModal} handleCloseButtonOverview={handleCloseButtonOverview}>
-    <div className='overview-content'>
+    <div className='text-left'>
    <p className='overview-para'>
     <span className='overview-span'>CineWave</span> is a modern, customer-focused movie ticket booking platform that brings the magic of cinema closer to you. Founded with a vision to make movie-going seamless and exciting, CineWave allows users to explore films, view real-time showtimes, and book tickets effortlessly — all from one intuitive app.
 
