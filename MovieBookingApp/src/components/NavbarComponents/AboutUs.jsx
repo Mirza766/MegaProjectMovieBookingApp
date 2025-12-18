@@ -4,7 +4,7 @@ import "../stylingSheets/AboutUs.css";
 
 function AboutUs() {
   return (
-    <div className='aboutus-main'>
+    <div className=' mt-18 mb-15 aboutus-main'>
       <div className='about-us-master'>
       <div className='aboutus-main-head'>
         <h2 className='aboutus-head'>About CineWave</h2>

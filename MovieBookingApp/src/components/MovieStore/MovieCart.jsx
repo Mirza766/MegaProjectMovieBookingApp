@@ -21,21 +21,21 @@ const finalTotal=subtotal-discount+tax;
 
     return (
 
-
-    <div className='CartItems-container'>
-    <h2 className='cartData-head'>Cart Data</h2>
-   <p className='cartDataPara'>You Have purchased <strong> {TotalLength}</strong> items in your cart.</p>
-   <div className='CartItems-master-cont'>
-        <div className='CartItems-submaster-cont'>
-     <table  className='tablecontainer'>
-        <thead >
-            <tr className='headofCart' >
-                <th className='thtagshead'>Name</th>
-                <th  className='thtagshead'>Quantity</th>
-                <th  className='thtagshead'>Price</th>
-                <th  className='thtagshead'>Language</th>
-                <th  className='thtagshead'>Duration</th>
-                <th  className='thtagshead'>Release Year</th>
+<section className='max-w-7xl mx-auto mt-20 '>
+    <div className=' flex flex-col overflow-x-auto '>
+    <h2 className=' text-center mb-4 md:mb-5 justify-center bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400 text-transparent font-bold  bg-clip-text text-2xl sm:text-3xl lg:text-5xl '>Cart Data</h2>
+   <p className='text-gray-300 font-semibold text-xl md:text-2xl lg:text-3xl text-center mb-4'>You Have purchased <strong className='bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400  text-transparent bg-clip-text'> {TotalLength} items</strong>  in your cart.</p>
+   <div className='px-3 max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-4'>
+        <div className=' border border-slate-500  '>
+     <table  className='w-full  border-collapse '>
+        <thead  >
+            <tr className='bg-slate-500' >
+                <th className='p-3 text-white text-left'>Name</th>
+                <th  className='p-3 text-white text-left'>Quantity</th>
+                <th  className='p-3 text-white text-left'>Price</th>
+                <th  className='p-3 text-white text-left'>Language</th>
+                <th  className='p-3 text-white text-left'>Duration</th>
+                <th  className='p-3 text-white text-left'>Release Year</th>
             </tr>
         </thead>
         <tbody>
@@ -81,6 +81,7 @@ const finalTotal=subtotal-discount+tax;
 </div>
 </div> 
     </div>
+    </section>
   )
 }
 

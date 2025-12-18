@@ -39,7 +39,9 @@ const SignUpDataCart=React.memo(({user,onDelete})=>{
              <Typography variant='body2'>
               <b>Notifications: </b>
                 
-                    {user.notifications.join(' , ')}
+                    {user.notifications?.length > 0 
+  ? user.notifications.join(' , ') 
+  : "No new notifications"}
                     
             </Typography>
              <Button sx={{mt:2}}  fullWidth variant='contained'  onClick={()=>onDelete(user.id)}>Delete</Button>
@@ -66,9 +68,11 @@ const DeleteSignUp=useCallback((id)=>dispatch(deleteSignUpData(id)),[dispatch]);
 
   return (
     <>
-    <Box  textAlign='center' sx={{ padding: 4, backgroundColor: '#c7ebe9;', color:'#162f72;', fontWeight:'900',}}>
+    <Box  textAlign='center' sx={{ padding: 4,marginTop:5, color:'#162f72;', fontWeight:'900',}}>
       <Typography variant='h3' align='center'
-      marginBottom={6}>
+      marginBottom={6} sx={{background: 'linear-gradient(to right, #60A5FA, #93C5FD, #67E8F9)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent'}}>
         Sign Up Users Data
       </Typography>
       <Grid  justifyContent={'center'}container spacing={3}>

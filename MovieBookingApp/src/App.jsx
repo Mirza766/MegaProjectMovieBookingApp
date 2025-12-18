@@ -7,10 +7,13 @@ import {createBrowserRouter,  createRoutesFromElements, Route, RouterProvider } 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lazy } from 'react'
 import 'remixicon/fonts/remixicon.css';
-
-
+import FeedbackForm from './components/homepagecontent/FeedbackDataEntery';
+import StoryPage from './components/homepagecontent/StoryPage';
 
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import TimeLine from './components/homepagecontent/TimeLine';
+import TimelineConnectPage from './components/homepagecontent/TimelineConnectPage';
+import TermsAndCondition from './components/homepagecontent/TermsAndCondition';
 const SearchMovie=lazy(()=>import('./components/SearchMovie/SearchMovie'))
 const HomeContent=lazy(()=>import('./components/homepagecontent/HomeContent'))
 const Layout=lazy(()=>import('./components/OverallLayout/Layout'))
@@ -28,7 +31,7 @@ const SubscriptionPage=lazy(()=>import('./components/Subscription/SubscriptionPa
 const SubscriptionDataRetrieval=lazy(()=>import('./components/FormDataRetrieval/SubscriptionPageDataRetrieval'))
 const BookingPage=lazy(()=>import('./components/Booking/BookingPage'));
 const BookingDataRetrival=lazy(()=>import('./components/FormDataRetrieval/BookingDataRetrival'))
-
+const Feedback=lazy(()=>import('./components/homepagecontent/Feedback'))
 
 function App() {
   const [count, setCount] = useState(0)
@@ -55,6 +58,12 @@ const queryclient=new QueryClient();
    <Route path='bookmovie' element={<BookingPage/>} errorElement={<ErrorBoundary/>}/>
     <Route path='/dataentrycont' element={<SubscriptionDataRetrieval/>} errorElement={<ErrorBoundary/>}/>
    <Route path='/bookDataRetrieve' element={<BookingDataRetrival/>} errorElement={<ErrorBoundary/>}/>
+   <Route path='/feedback' element={<Feedback/>} errorElement={<ErrorBoundary/>}/>
+  <Route path='/feedbackdataenter' element={<FeedbackForm/>}/>
+  <Route path='/timeline' element={<TimeLine/>}/>
+   <Route path='/story' element={<StoryPage/>}/>
+  <Route path='/connectpage/:id' element={<TimelineConnectPage/>}/>
+  <Route path='/termandcond' element={<TermsAndCondition/>}/>
     </Route>
    
       </>

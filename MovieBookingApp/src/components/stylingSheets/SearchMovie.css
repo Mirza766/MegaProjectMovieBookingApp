@@ -6,17 +6,23 @@
     background-size: cover;
     object-fit: cover;
     padding-top: 10px;
+   
+    
+    
 }
 
 .Search-movie-container {
+    margin-top: 6rem;
+     max-width: 1400px;
+     margin: 0 auto;
     display: flex;
     flex-direction: column; 
     gap: 2rem;
+    
     padding: 10px;
     align-items: center;
     justify-content: center;
-    max-width: 1440px;
-    margin: 0 auto;
+    
 }
 
 

@@ -70,7 +70,8 @@ border:1px solid grey;
 }
 
 .detail-container{
-    padding: 20px;
+    padding: 2rem;
+  
    
 }
 
@@ -94,8 +95,8 @@ font-weight: 500;
 }
 
 .signUp-master{
-   margin-top: 18px;
-   background:#162f72;
+   margin-top: 5rem;
+
 }
 .signUp-total{
     background: white;
@@ -129,22 +130,20 @@ font-weight: 500;
 
 @media (max-width:900px){
     .signUp-total{
-        width: 70%;
+        width: 80%;
     }
 
    
 }
-
-@media (max-width:500px){
-    .signUp-total{
-        width: 80%;
-    }
-}
-
-
-@media (max-width:450px){
+@media (max-width:676px){
     .signUp-total{
         width: 90%;
     }
-     
 }
+@media (max-width:500px){
+    .signUp-total{
+        width: 90%;
+    }
+}
+
+

@@ -51,8 +51,9 @@
 }
 
 .content-mastermovie{
-    padding: 10px;
+    padding: 20px;
    color: #162f72;
+    
     display: flex;
     flex-direction: column;
     margin: 0px;
@@ -119,14 +120,14 @@
 
 @media (max-width:530px){
     .movieproductMasterCont{
-        height: 400px;
+        height: 800px;
     }
     .movieproduct-btns-inner{
         padding: 0px;
         font-size: 10px;
     }
     .movieproduct-img{
-        height: 250px;
+        height: 600px;
     }
     .content-mastermovie{
   padding: 1px;

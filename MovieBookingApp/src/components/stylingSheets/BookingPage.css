@@ -1,12 +1,14 @@
 .seat-grid {
+  color: white;
   display: grid;
   grid-template-columns: repeat(10, 40px);
-  gap: 10px;
+  gap: 5px;
   justify-content: center;
 }
 
 .renderSeatHead{
     text-align: center;
+    color: #eee;
 }
 
 
@@ -17,6 +19,12 @@
   border: 1px solid gray;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.seat:hover{
+background-color: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(4px);
+color:white
 }
 
 .seat.booked {
@@ -30,13 +38,13 @@
 
 
 .booking-container{
-    display:flex;
+    /* display:flex;
     flex-direction: column;
     justify-content:center ;
     align-items: center;
     padding-top:40px ;
     background: #162f72;
-    padding-bottom: 100px;
+    padding-bottom: 100px; */
  
 }
 
@@ -142,7 +150,7 @@
 
 @media (max-width:398px){
 .seat-grid {
-        grid-template-columns: repeat(10, 27px);
+        grid-template-columns: repeat(10, 26px);
 }
 .bookinglabel{
   font-size: 17px;

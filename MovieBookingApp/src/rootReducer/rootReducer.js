@@ -6,13 +6,18 @@ import { getMovieData } from "../redux/Product/ProductReducers";
 import { getCartData } from "../redux/CartData/CartDataReducers";
 import MovieBooking from "../redux/Booking/BookingReducers";
 
+import FeedbackData from "../redux/FeedbackSection/FeedbackSectionReducer";
+import { TimeLineData } from "../redux/Timeline/TimeLineReducer";
+
 export default combineReducers({
     ContactUsFormData,
     SignUpFormData,
     LoginFormData,
     getMovieData,
     getCartData,
-    MovieBooking
+    MovieBooking,
+    FeedbackData,
+    TimeLineData
     
 })
 

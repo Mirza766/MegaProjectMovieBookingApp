@@ -1,221 +1,164 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ImageGrid from './ImageGrid';
-
+import { ArrowRight, Sparkles,Play } from 'lucide-react';
+import { cardData,cardDataImg,floatingCards } from './CardSampleData';
 import { lazy } from 'react';
-
-const OverviewModel=lazy(()=>import('../../models/OverviewModel'));
-const PricingModel=lazy(()=>import('../../models/PricingModel'));
+import Hero from './Hero';
+import Carousel from './Carousel';
+import Testimonials from './Testimonials';
+import FAQsSection from './FAQsSection';
 const SubscriptionContent=lazy(()=>import('./SubscriptionContent'))
 
 
 function HomeContent() {
+    const [mousePosition,setMousePosition]=useState({x:0,y:0});
+    const [activeTab,setActiveTab]=useState('TheConjuring')
 
+useEffect(()=>{
+    function handlemouseMove(e){
+        setMousePosition({x:e.clientX, y:e.clientY});
+    }
+    window.addEventListener('mousemove',handlemouseMove);
+    return ()=>window.removeEventListener('mousemove',handlemouseMove);
 
+},[])
 
-
-const [overview,setOverviewModal]=useState(false);
-const [pricingmodel,setPricingModel]=useState(false);
-
-const closeOverviewModal=()=>setOverviewModal(false);
-const closePricingModal=()=>setPricingModel(false);
-
-const handleCloseButtonOverview=(
-    <button className='overview-button' onClick={closeOverviewModal}>Close</button>
-)
-const handleCloseButtonPricing=(
-  <button  className='overview-button' onClick={closePricingModal}>Close</button>
-)
-
-const mainPricingModel=(
-  <PricingModel closePricingModal={closePricingModal} handleCloseButtonPricing={handleCloseButtonPricing}>
-<table className='table-master-content'>
-<thead>
-<tr className='header-master'>
-  <th className='table-header-Heading'>Category</th>
-  <th className='table-header-Heading'>Description</th>
-  <th className='table-header-Heading'>Ticket Price (PKR)</th>
-  <th className='table-header-Heading'>Special Features</th>
-</tr>
-</thead>
-<tbody>
-  <tr className='table-flow-content'>
-      <td className='table-header heading'>Now Showing</td>
-      <td className='table-header content'>Discover the latest movies currently running in theaters near you.</td>
-      <td  className='table-header content'>800 – 1,200</td>
-      <td  className='table-header content'>Regular & recliner seats, instant booking confirmation</td>
-  </tr>
-  <tr className='table-flow-content'>
-      <td className='table-header heading'>Coming Soon</td>
-      <td className='table-header content'>Stay ahead — preview and pre-book tickets for upcoming releases.</td>
-      <td  className='table-header content'>1,000 – 1,500</td>
-      <td  className='table-header content'>Early access booking, pre-release offers</td>
-  </tr>
-  <tr className='table-flow-content'>
-      <td className='table-header heading'>Family & Kids</td>
-      <td className='table-header content'>Enjoy fun, family-friendly films perfect for all age groups.</td>
-      <td  className='table-header content'>Family Pack 2,800 (4 tickets)</td>
-      <td  className='table-header content'>Child discounts, weekend offers</td>
-  </tr>
-  <tr >
-      <td className='table-header heading'>Private Theater Booking</td>
-      <td className='table-header content'>Reserve an entire theater for private screenings or special events.</td>
-      <td  className='table-header content'>Starting from 25,000</td>
-      <td  className='table-header content'>Custom playlist, private screen, snacks available</td>
-  </tr>
-</tbody>
-</table>
-  </PricingModel>
-)
-
-
-
-
-const mainOverviewModal=(
-<OverviewModel closeOverviewModal={closeOverviewModal} handleCloseButtonOverview={handleCloseButtonOverview}>
-    <div className='overview-content'>
-   <p className='overview-para'>
-    <span className='overview-span'>CineWave</span> is a modern, customer-focused movie ticket booking platform that brings the magic of cinema closer to you. Founded with a vision to make movie-going seamless and exciting, CineWave allows users to explore films, view real-time showtimes, and book tickets effortlessly — all from one intuitive app.
-
-Our platform connects movie enthusiasts with theaters across the country, offering a fast, secure, and reliable booking experience. With features like <span  className='overview-span'>smart seat selection, real-time movie schedules, and exclusive offers,</span> CineWave ensures you never miss a show you love.
-
-At CineWave, we believe that booking a movie should be as fun as watching it. That’s why we combine technology, design, and data to deliver a personalized entertainment experience — anytime, anywhere.
-   </p>
-   </div>
-   {/* <div className='main-content'>
-   <h2 className='overview-core'>Core Values</h2>
-   <div className='para-content'>
-   <p className='core-para'><span className='para-span'>Customer First: </span>We design everything with you in mind.</p>
-<p className='core-para'><span className='para-span'>Innovation: </span>Constantly improving to offer a smarter way to book.</p>
-
-<p className='core-para'><span className='para-span'>Trust: </span>Secure payments and transparent ticketing.</p>
-
-<p className='core-para'><span className='para-span'>Passion: </span>We love movies — and it shows in our work.</p>
-</div>
-</div> */}
-</OverviewModel>)
-
+const currentFloatingCard=floatingCards[activeTab]
   return (
     <>
- 
-    <div className='hero-section'>
-        <div className='hero-total'>
-        <div className='hero-Uppercontent'>
-         
-        <h2 className='hero-heading'>
-            Book your favorite movies in seconds — anywhere, anytime.<span className='hero-boldtext'>It’s Showtime, Anytime.</span>
-        </h2>
+   <section className='relative text-white flex items-center justify-center
+    pt-18 sm:pt-20 px-4 sm:px-6 lg:px-8 overflow-hidden mt-10 lg:mt-20'>
+        <div className='absolute inset-0 opacity-30' style={{
+            background:`radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px,rgba(59,130,246,0.15),transparent 40%)`
+        }}/>
+         <div className='absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse '/>
+        <div className='absolute bottom-20 right-4 sm:right-10 w-48 h-48 sm:w-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse'/>
+        <div className='max-w-7xl mx-auto text-center relative w-full'>
+            <div className='max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 text-center lg:text-left gap-6 sm:gap-12 lg:gap-14 items-center relative'>
+              <div>
+                <div className='inline-flex items-center px-4 sm:px-6 lg:px-8 space-x-2 rounded-full bg-blue-500/10 border border-blue-500/20 transition-all duration-300 hover:scale-102 mb-4 sm:mb-6 lg:mb-8'>
+                  <Sparkles className='w-4 h-4 text-blue-500'/>
+                  <span className='text-sm text-blue-400'>Introducing Modern Booking App</span>
+                </div>
+                <h2 className='text-3xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-6xl font font-semibold leading-tight duration-700 delay-100 slide-in-from-bottom mb-2 '>
+                  <span className='block bg-linear-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent'>Book Your Movie in seconds</span>
+                  <span className='block bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400 text-transparent  bg-clip-text'>AnyWhere, AnyTime</span>
+                  <span className='block bg-linear-to-r from-white via-blue-200 to-cyan-100 text-transparent bg-clip-text'>
+                    Its Showtime</span>
+                </h2>
+                <p className='text-md sm:text-base lg:text-lg text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-6 sm:mb-8 animate-in slide-in-from-bottom duration-700 delay-200'>Experience effortless movie booking with real-time schedules and instant confirmation.
+                Your next show is just a tap away—anywhere, anytime.</p>
+                <div className='flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-8 sm:mb-12 animate-in slide-in-from-bottom duration-700 delay-300'>
+                
+                   <button className='group flex items-center gap-1 w-full  sm:w-auto justify-center rounded-lg text-sm sm:text-base bg-linear-to-b from-blue-600 to-blue-400 font-semibold px:6
+                   sm:px-8 sm:py-4 py-3 hover:scale-102 cursor-pointer transition-all duration-300  '>
+                      <Link to='/search-movie'>
+                    <span>Search Movie</span>
+                    </Link>
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300"/>
+                   
+                   </button>
+                   
+                    
+                   <button className='flex gap-1 font-semibold items-center justify-center group w-full sm:w-auto px-6 sm:px-8 py-3 bg-white/5 sm:py-4 rounded-lg duration-300 transition-all space-x-2 border border-white/5 hover:bg-white/10 backdrop-blur-sm text-sm cursor-pointer '>
+                    
+                    <div className='p-2 bg-white/10 rounded-full group-hover:bg-white/20 duration-300 transition-colors'>
+                    <Play className=' w-4 h-4 sm:w-5 sm:h-5 fill-white '/>
+                   </div>
+                   <Link to='/bookmovie'>
+                   <span>Book Ticket</span>
+                   </Link>
+                   </button>
+                   
+
+                   
+                   <button className='group flex items-center gap-1 w-full  sm:w-auto justify-center rounded-lg text-sm sm:text-base bg-linear-to-b from-blue-600 to-blue-400 font-semibold px:6
+                   sm:px-8 sm:py-4 py-3 hover:scale-102 transition-all duration-300  '>
+                    <Link to='/buy-movie'>
+                    <span>Buy Movies</span>
+                    </Link>
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300"/>
+                   </button>
+                   {/* </Link> */}
+
+                </div>
+              </div>
+              <div className='relative order-2 w-full'>
+                <div className='relative bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-2xl border border-white/10'>
+                <div className='bg-linear-to-r from-gray-900/20 to-gray-800/20 border rounded-xl overflow-hidden h-[280px] sm:h-[350px] lg:h-[450px] border-white/5 backdrop-blur-sm'>
+                   <div className='flex justify-between items-center  px-3 sm:px-4 md:px-5 py-2 sm:py-3 border-b border-white/10 backdrop-blur-sm'>
+                   <p className='font-semibold text-lg text-transparent bg-clip-text bg-linear-to-r from-blue-500 via-blue-200 to-blue-400'>Top Three Movies of the Month</p>
+
+                   <div className='flex flex-row '>
+         <img src="https://image.tmdb.org/t/p/w300/qNeV8JtTdsfQCtYcwNCf33hldg8.jpg" className=" w-10 h-10 rounded-full object-cover -ml-1.5" />
+         <img src="https://image.tmdb.org/t/p/w300/5aH4DGD9FIwLYhJwbTr7LwaRCSi.jpg" className=" w-10 h-10 rounded-full object-cover -ml-1.5 " />
+         <img src="https://image.tmdb.org/t/p/w300/unnGwqWmMAuszJnleyuqZ70MtrT.jpg" className=" w-10 h-10 rounded-full object-cover -ml-1.5" />
+        
+               </div>
+            </div>
+            <div className='p-3 sm:p-4 relative h-full'>
+                <div className='flex space-x-1 sm:space-x-2 mb-3 overflow-x-auto'>
+                    <button
+                    onClick={()=>setActiveTab('TheConjuring')}
+                    className={`px-3 py-2 backdrop-blur-sm text-xs rounded-t-lg border ${activeTab==="TheConjuring"? "bg-blue-500/30 border-blue-400/20":"bg-white/5 text-gray-300 border-white/10 hover:bg-white/10" } text-gray-300 transition-all duration-200 whitespace-nowrap`}
+                    >
+                    The Conjuring
+                    </button>
+                    <button
+                    onClick={()=>setActiveTab('EchoesofJustice')}
+                    className={`px-3 py-2 backdrop-blur-sm text-xs rounded-t-lg border ${activeTab==="EchoesofJustice"? "bg-blue-500/30 border-blue-400/20":"bg-white/5 text-gray-300 border-white/10 hover:bg-white/10" } text-gray-300 transition-all duration-200 whitespace-nowrap`}
+                    >
+                    Echoes of Justice
+                    </button>
+                    <button
+                    onClick={()=>setActiveTab('Titanic')}
+                    className={`px-3 py-2 backdrop-blur-sm text-xs rounded-t-lg border ${activeTab==="Titanic"? "bg-blue-500/30 border-blue-400/20":"bg-white/5 text-gray-300 border-white/10 hover:bg-white/10" } text-gray-300 transition-all duration-200 whitespace-nowrap`}
+                    >
+                    Titanic
+                    </button>
+                </div>
+                <div className='flex flex-row gap-2'>
+                <div className='w-1/2 items-center justify-center border border-slate-800 
+                hover:border-slate-700 shadow-xl hover:shadow-2xl shadow-blue-800/50 rounded-lg'>
+
+                    <img src={cardDataImg[activeTab]} className=' items-center justify-center h-40 sm:h-60 md:h-70 lg:h-70 w-full rounded-lg object-cover  '/>
+                </div>
+                 <div className='w-1/2 relative overflow-hidden h-60'>
+    <p className=' text-gray-400'>
+      {
+        cardData[activeTab]
+      }
+      </p>
        
-        <div className='hero-btns'>
-            <Link to='/search-movie' className='hero-btns-mod'>Search Movie</Link>
-           <Link to='/bookmovie' className='hero-btns-mod' >Book a Ticket</Link>
-            <Link to='/buy-movie' className='hero-btns-mod' >Visit Store Outlet </Link>
-        </div>
-        </div>
-   <div className='hero-container'>
-      <div className='Features-And-Categories'>
-        <h2 className='feat-head'>
-            App Features And Highlights
-        </h2>
-        <div className='master-content'>
-            <div className='master-total'>
-           <div className='img-and-head'>
-             <img src="/images/music.png"className='master-img' alt="Now Showing"/>
-              <p className='master-text'>Easy Movie Booking</p>
-           </div>
-            <p className='master-desc'>
-            Book your favorite movie in just a few taps — fast, simple, and secure.
-            </p>
-           </div>
-           <div className='master-total'>
-           <div className='img-and-head'>
-             <img src='/images/star.png' className='master-img' alt="Real-Time Showtimes"/>
-              <p className='master-text'>Real-Time Showtimes</p>
-           </div>
-            <p className='master-desc'>
-            Get live movie schedules from nearby cinemas and pick the best slot for you.
-            </p>
-           </div>
-           <div className='master-total'>
-           <div className='img-and-head'>
-             <img src="/images/plus.png"className='master-img' alt="Smart Seat Selection"/>
-              <p className='master-text'>Smart Seat Selection</p>
-           </div>
-            <p className='master-desc'>
-            Choose your perfect seat with an interactive seat map for a personalized experience.
-            </p>
-           </div>
-            <div className='master-total'>
-           <div className='img-and-head'>
-             <img src="/images/data-visualization.png"className='master-img' alt="Exclusive Offers & Discounts"/>
-              <p className='master-text'>Exclusive Offers & Discounts</p>
-           </div>
-            <p className='master-desc'>
-            Enjoy special deals and cashback on your favorite movie tickets.
-            </p>
-           </div>
-        </div>
-         <div className='master-btn'>
-            <button className='btn-styling' onClick={()=>setOverviewModal(true)}>Overview</button>
-            {overview && mainOverviewModal}
-        </div>
       </div>
-      <div className='Features-And-Categories'>
-        <h2 className='feat-head'>
-            Movie Booking Categories
-        </h2>
-        <div className='master-content'>
-            <div className='master-total'>
-           <div className='img-and-head'>
-             <img src="/images/game.png"className='master-img' alt="Now Showing"/>
-              <p className='master-text'>Now Showing</p>
-           </div>
-            <p className='master-desc'>
-            Discover the latest movies currently running in theaters near you.
-            </p>
-           </div>
-           <div className='master-total'>
-           <div className='img-and-head'>
-             <img src='/images/smile.png' className='master-img' alt="Real-Time Showtimes"/>
-              <p className='master-text'>Coming Soon</p>
-           </div>
-            <p className='master-desc'>
-            Stay ahead — preview and pre-book tickets for upcoming releases.
-            </p>
-           </div>
-           <div className='master-total'>
-           <div className='img-and-head'>
-             <img src="/images/code.png"className='master-img' alt="Smart Seat Selection"/>
-              <p className='master-text'>Family & Kids</p>
-           </div>
-            <p className='master-desc'>
-            Enjoy fun, family-friendly films perfect for all age groups.
-            </p>
-           </div>
-            <div className='master-total'>
-           <div className='img-and-head'>
-             <img src="/images/data-visualization.png"className='master-img' alt="Exclusive Offers & Discounts"/>
-              <p className='master-text'>Private Theater Booking</p>
-           </div>
-            <p className='master-desc'>
-           Reserve an entire theater for private screenings or special events.
-            </p>
-           </div>
-           
-        </div>
-        <div className='master-btn'>
-            <button className='btn-styling' onClick={()=>setPricingModel(true)}>View Pricing</button>
-            {pricingmodel && mainPricingModel}
-        </div>
       </div>
-   </div>
-   </div>
-   </div>
-    <SubscriptionContent/>
+            </div>                   
+                   </div>
+                    <div className={`hidden lg:block absolute bottom-4 right-4 transform translate-x-8 translate-y-8 w-72 ${floatingCards[activeTab].bgColor} backdrop-blur-xl rounded-lg p-4 border-white/20 shadow-2xl`}>
+<div className='flex items-center space-x-2 mb-2'>
+<div className={`w-6 h-6 ${currentFloatingCard.iconColor} flex items-center justify-center text-sm font-bold`}>
+    {floatingCards[activeTab].icon}</div>
+<span className={`text-sm font-medium ${currentFloatingCard.textColor}`}>{currentFloatingCard.title}</span>
+</div>
+<div className={`text-sm text-left font-medium ${currentFloatingCard.contentColor}`}>{currentFloatingCard.content}</div>
+           </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+   <Hero/>
+   <SubscriptionContent/>
    <ImageGrid/>
+   <Carousel/>
+   <FAQsSection/>
+   <Testimonials/>
+   
     </>
   )
 }
 
 export default HomeContent
+

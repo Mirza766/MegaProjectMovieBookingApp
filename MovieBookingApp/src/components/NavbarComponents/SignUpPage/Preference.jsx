@@ -3,22 +3,37 @@ import {useFormContext,Controller} from 'react-hook-form'
 import {Checkbox,FormControlLabel, InputLabel, Select, MenuItem, FormControl, FormHelperText, FormLabel, FormGroup} from '@mui/material'
 import '../../stylingSheets/SignUp.css';
 
+const selectSx = {
+   "& .MuiInputBase-input": { 
+    color: "#ffffff", 
+  },
+  input: { color: "#9CA3AF" },
+  label: { color: "#93C5FD" },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": { borderColor: "#ffffff" },
+    "&:hover fieldset": { borderColor: "#34D399" },
+    "&.Mui-focused fieldset": { borderColor: "#1E40AF" },
+  },
+  "& .MuiFormHelperText-root": { color: "#F87171" },
+  "& .MuiInputLabel-root.MuiInputLabel-shrink": { color: "#34D399", fontWeight: 400 },
+};
 
 const Preference=React.memo(function Preference() {
 
   const {control}=useFormContext();
-console.log("Prefernece Re-renders")
+
 
   return (
     <div className='signUpPreference'> 
-     <div className='signUpItem'> 
-      <h2 className='pref-head'>Step 3: Preferences</h2>
+     <div className='text-left bg-linear-to-r from-gray-900/10 to-gray-800/10 backdrop-blur-xl rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-2xl border border-white/10 '> 
+      <h2 className='text-blue-400 text-base font-semibold'>Step 3: Preferences</h2>
   <Controller
   name='favourateGenre'
   control={control}
   rules={{required:'Please Select a Genre'}}
+ 
   render={({field,fieldState})=>(
-    <FormControl fullWidth margin='normal' error={!!fieldState.error}>
+    <FormControl fullWidth margin='normal' error={!!fieldState.error}  sx={selectSx}>
     <InputLabel>Favourate Genre</InputLabel>
     <Select 
     {...field}
@@ -30,6 +45,7 @@ console.log("Prefernece Re-renders")
       <MenuItem value='Animation'>Animation</MenuItem>
     </Select>
     <FormHelperText>{fieldState.error?.message}</FormHelperText>
+    
     </FormControl>
   )}
   />
@@ -38,8 +54,9 @@ console.log("Prefernece Re-renders")
   name='city'
   control={control}
   rules={{required:'Please Select Location/City'}}
+  
   render={({field,fieldState})=>(
-    <FormControl fullWidth margin='normal' error={!!fieldState.error}>
+    <FormControl fullWidth margin='normal' error={!!fieldState.error} sx={selectSx}>
     <InputLabel>Location</InputLabel>
     <Select 
     {...field}
@@ -51,6 +68,7 @@ console.log("Prefernece Re-renders")
       <MenuItem value='Gujranwala'>Gujranwala</MenuItem>
     </Select>
     <FormHelperText>{fieldState.error?.message}</FormHelperText>
+                 
     </FormControl>
   )}
   />
@@ -60,7 +78,7 @@ console.log("Prefernece Re-renders")
   control={control}
   rules={{required:'Please Select Time Slot'}}
   render={({field,fieldState})=>(
-    <FormControl fullWidth margin='normal' error={!!fieldState.error}>
+    <FormControl fullWidth margin='normal' error={!!fieldState.error} sx={selectSx}>
     <InputLabel>TimeSlot</InputLabel>
     <Select 
     {...field}
@@ -71,6 +89,7 @@ console.log("Prefernece Re-renders")
       <MenuItem value=':Late Night Shows'>:Late Night Shows</MenuItem>
     </Select>
     <FormHelperText>{fieldState.error?.message}</FormHelperText>
+   
     </FormControl>
   )}
   />
@@ -80,7 +99,8 @@ console.log("Prefernece Re-renders")
   control={control}
   rules={{required:'Please Select Payment Method'}}
   render={({field,fieldState})=>(
-    <FormControl fullWidth margin='normal' error={!!fieldState.error}>
+    <FormControl fullWidth margin='normal' error={!!fieldState.error} sx={selectSx}>
+        
     <InputLabel>Payment Method</InputLabel>
     <Select 
     {...field}
@@ -90,7 +110,7 @@ console.log("Prefernece Re-renders")
       <MenuItem value='Debit/Credit Card'>Debit/Credit Card</MenuItem>
       <MenuItem value='Cash on Counter'>Cash on Counter</MenuItem>
     </Select>
-    <FormHelperText>{fieldState.error?.message}</FormHelperText>
+    <FormHelperText>{fieldState.error?.message}</FormHelperText>          
     </FormControl>
   )}
   />
@@ -100,9 +120,10 @@ name='notifications'
 control={control}
 render={({field})=>(
 <FormControl component='fieldset'>
-<FormLabel >Notification Preferences</FormLabel>
+<FormLabel sx={{color:'#f7f7f7', marginTop:3,fontSize: '18px'}}  >Notification Preferences</FormLabel>
 <FormGroup>
   <FormControlLabel
+  sx={{color:"#93C5FD"}}
    control={<Checkbox
    checked={field.value.includes('email')}
    onChange={(e)=>{
@@ -117,6 +138,7 @@ render={({field})=>(
    label='Email Alerts'
   />
   <FormControlLabel
+  sx={{color:"#93C5FD"}}
    control={<Checkbox
    checked={field.value.includes('sms')}
    onChange={(e)=>{
@@ -131,6 +153,7 @@ render={({field})=>(
    label='SMS Reminder'
   />
   <FormControlLabel
+  sx={{color:"#93C5FD"}}
    control={<Checkbox
    checked={field.value.includes('push')}
    onChange={(e)=>{

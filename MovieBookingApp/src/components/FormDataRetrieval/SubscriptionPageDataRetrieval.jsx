@@ -1,28 +1,74 @@
 import React, { useCallback, useContext } from 'react'
 import SubscriptionContext from '../context/SubscriptionContext'
-import "../stylingSheets/MovieCart.css";
+
 import {Button, TableCell} from '@mui/material';
 import { useDispatch } from 'react-redux';
 
 
 
-const SubscriptionCard=React.memo(({subscription,onDelete})=>{
-  console.log('Rendering Subscription Card',subscription.id )
+const SubscriptionTableRow = React.memo(({ subscription, onDelete }) => (
+  <tr className="transition-all duration-300 hover:bg-blue-500/10">
+    <td className="px-4 py-3 text-sm text-gray-200">{subscription.id}</td>
+    <td className="px-4 py-3 text-sm text-gray-200">{subscription.name}</td>
+    <td className="px-4 py-3 text-sm text-gray-200">{subscription.email}</td>
+    <td className="px-4 py-3 text-sm text-gray-200">{subscription.phoneNumber}</td>
+    <td className="px-4 py-3 text-blue-400 font-medium">{subscription.planName}</td>
+    <td className="px-4 py-3 text-green-400 font-semibold">${subscription.price}</td>
+    <td className="px-4 py-3">
+      <Button
+        variant="contained"
+        color="error"
+        size="small"
+        onClick={() => onDelete(subscription.id)}
+      >
+        Delete
+      </Button>
+    </td>
+  </tr>
+));
 
-  return(
-     <tr className='headinsideCart'>
-                <th className='thtags'>{subscription.id}</th>
-                 <th className='thtags'>{subscription.name}</th>
-                  <th className='thtags'>{subscription.email}</th>
-                   <th className='thtags'>{subscription.phoneNumber}</th>
-                    <th className='thtags'>{subscription.planName}</th>
-                     <th className='thtags'>${subscription.price}</th>
-                     <TableCell>
-                       <Button className='Subscribe-btton'  variant='contained' color='error' size="small" onClick={()=>onDelete(subscription.id)} >Delete</Button>
-                     </TableCell>
-            </tr>
-  )
-})
+
+
+const SubscriptionMobileCard = ({ subscription, onDelete }) => (
+  <div className="md:hidden  bg-white/5 backdrop-blur-lg border border-white/10
+   flex flex-col  justify-between 
+   rounded-xl p-6 mb-4 max-w-2xl mx-auto">
+    <Row label="ID" value={subscription.id} />
+    <Row label="Name" value={subscription.name} />
+    <Row label="Email" value={subscription.email} />
+    <Row label="Phone" value={subscription.phoneNumber} />
+    <Row label="Plan" value={subscription.planName} highlight="blue" />
+    <Row label="Price" value={`$${subscription.price}`} highlight="green" />
+
+    <Button
+      fullWidth
+      variant="contained"
+      color="error"
+      size="small"
+      onClick={() => onDelete(subscription.id)}
+    >
+      Delete Subscription
+    </Button>
+  </div>
+);
+
+const Row = ({ label, value, highlight }) => (
+  <div className="flex justify-between gap-10 text-sm mb-2">
+    <span className="text-gray-400">{label}</span>
+    <span
+      className={
+        highlight === "blue"
+          ? "text-blue-400 font-semibold"
+          : highlight === "green"
+          ? "text-green-400 font-bold"
+          : "text-white"
+      }
+    >
+      {value}
+    </span>
+  </div>
+);
+
 
 
 
@@ -34,36 +80,43 @@ const deleteSubscriber=useCallback((id)=>DeleteSubscription(id),[DeleteSubscript
 
 
   return (
-    <div className='CartItems-container'>
+    <div className='pt-20 px:4 flex flex-col items-center sm:mx-auto justify-center'>
       <h2 className='cartData-head'>Subscriptions Data</h2>
-      
-        <div className='CartItems-master-cont'>
-            <div className='CartItems-submaster-cont'>
-     <table  className='tablecontainer subscrip'>
-        <thead >
-            <tr className='headofCart' >
-                <th className='thtagshead'>User ID</th>
-                <th  className='thtagshead'>Name</th>
-                <th  className='thtagshead'>Email</th>
-                <th  className='thtagshead'>Phone Number</th>
-                <th  className='thtagshead'>Plan Name</th>
-                <th  className='thtagshead'>Price</th>
-                  <th  className='thtagshead'></th>
-            </tr>
-        </thead>
-        <tbody>
-            {
-               addSubscription?.map((sub) => (
-  <SubscriptionCard key={sub.id} subscription={sub} onDelete={deleteSubscriber} />
-))
-             
-            }
-          
-        </tbody>
-     </table>
-   
-  </div>
+
+{/* MOBILE VIEW */}
+<div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-2 w-full ">
+  {addSubscription?.map(sub => (
+    <SubscriptionMobileCard
+      key={sub.id}
+      subscription={sub}
+      onDelete={deleteSubscriber}
+    />
+  ))}
 </div>
+
+{/* DESKTOP VIEW */}
+<table className="hidden md:table w-full max-w-xl mx-auto bg-white/5 backdrop-blur-xl shadow-2xl border border-white/10">
+  <thead>
+    <tr className="bg-slate-800 text-white">
+      <th className="text-blue-500">User ID</th>
+      <th className="text-blue-500">Name</th>
+      <th className="text-blue-500">Email</th>
+      <th className="text-blue-500">Phone</th>
+      <th className="text-blue-500">Plan</th>
+      <th className="text-blue-500">Price</th>
+      <th className="text-blue-500"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {addSubscription?.map(sub => (
+      <SubscriptionTableRow
+        key={sub.id}
+        subscription={sub}
+        onDelete={deleteSubscriber}
+      />
+    ))}
+  </tbody>
+</table>
        
     </div>
   )

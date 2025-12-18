@@ -26,6 +26,9 @@ const debounceSearch=useDebouncing(movie,600)
   
   return (
     <div className='Search-movie-background'>
+      <div className='mt-19 text-white'>
+
+      
       <div className='Search-movie-container'>
       
       <div className='Search-movie-input'>
@@ -52,6 +55,7 @@ const debounceSearch=useDebouncing(movie,600)
          ))
         }
       </div>
+    </div>
     </div>
     </div>
   )

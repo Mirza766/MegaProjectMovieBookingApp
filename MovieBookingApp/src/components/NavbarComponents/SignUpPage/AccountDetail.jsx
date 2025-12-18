@@ -10,13 +10,11 @@ const AccountDetail=React.memo(function AccountDetail() {
 const {control,watch}=useFormContext();
 const password=watch('password');
 
-
-console.log("AccountDetail Rerender");
     return (
 
-    <div className='detail-container'>
-        <h2 className='detail-head'>Step 1: Account Details</h2>
-         <div className='detail-form'>
+    <div className='text-left bg-linear-to-r from-gray-900/10 to-gray-800/10 backdrop-blur-xl rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-2xl border border-white/10 '>
+        <h2 className=' text-blue-400 text-base font-semibold'>Step 1: Account Details</h2>
+         <div className='  detail-form'>
          <Controller
          name='fullname'
          control={control}
@@ -29,6 +27,29 @@ console.log("AccountDetail Rerender");
             margin='normal'
             error={!!fieldState.error}
             helperText={fieldState.error?.message}
+             sx={{
+          input: { color: "#9CA3AF" },
+          label: { color: "#93C5FD" },
+          "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#ffffff",        
+      },
+      "&:hover fieldset": {
+        borderColor: "#34D399",         
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#1E40AF",         
+      },
+    },
+    "& .MuiFormHelperText-root": {
+      color: "#F87171",                 
+    },
+    "& .MuiInputLabel-root.MuiInputLabel-shrink": {
+      color: "#34D399",
+      fontWeight: 400,
+                        
+    },
+            }}
             />
          )}       
          />
@@ -45,6 +66,30 @@ console.log("AccountDetail Rerender");
         label='Phone Number'
         error={!!fieldState.error}
         helperText={fieldState.error?.message}
+         sx={{
+          input: { color: "#9CA3AF" },
+          label: { color: "#93C5FD" },
+          "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#ffffff",        
+      },
+      "&:hover fieldset": {
+        borderColor: "#34D399",         
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#1E40AF",         
+      },
+    },
+    "& .MuiFormHelperText-root": {
+      color: "#F87171",                 
+    },
+    "& .MuiInputLabel-root.MuiInputLabel-shrink": {
+      color: "#34D399",
+      fontWeight: 400,
+                        
+    },
+
+            }}
         />
        )}
     />
@@ -75,6 +120,30 @@ console.log("AccountDetail Rerender");
         
         error={!!fieldState.error}
         helperText={fieldState.error?.message}
+         sx={{
+          input: { color: "#9CA3AF" },
+          label: { color: "#93C5FD" },
+          "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#ffffff",        
+      },
+      "&:hover fieldset": {
+        borderColor: "#34D399",         
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#1E40AF",         
+      },
+    },
+    "& .MuiFormHelperText-root": {
+      color: "#F87171",                 
+    },
+    "& .MuiInputLabel-root.MuiInputLabel-shrink": {
+      color: "#34D399",
+      fontWeight: 400,
+                        
+    },
+
+            }}
         />
        )}
     />
@@ -97,6 +166,30 @@ console.log("AccountDetail Rerender");
         type='password'
         error={!!fieldState.error}
         helperText={fieldState.error?.message}
+         sx={{
+          input: { color: "#9CA3AF" },
+          label: { color: "#93C5FD" },
+          "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#ffffff",        
+      },
+      "&:hover fieldset": {
+        borderColor: "#34D399",         
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#1E40AF",         
+      },
+    },
+    "& .MuiFormHelperText-root": {
+      color: "#F87171",                 
+    },
+    "& .MuiInputLabel-root.MuiInputLabel-shrink": {
+      color: "#34D399",
+      fontWeight: 400,
+                        
+    },
+
+            }}
         />
        )}
     />
@@ -120,6 +213,30 @@ console.log("AccountDetail Rerender");
         type='password'
         error={!!fieldState.error}
         helperText={fieldState.error?.message}
+         sx={{
+          input: { color: "#9CA3AF" },
+          label: { color: "#93C5FD"},
+          "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#ffffff",        
+      },
+      "&:hover fieldset": {
+        borderColor: "#34D399",         
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#1E40AF",         
+      },
+    },
+    "& .MuiFormHelperText-root": {
+      color: "#F87171",                 
+    },
+    "& .MuiInputLabel-root.MuiInputLabel-shrink": {
+      color: "#34D399",
+      fontWeight: 400,
+                        
+    },
+
+            }}
         />
        )}
     />
@@ -133,7 +250,7 @@ console.log("AccountDetail Rerender");
     render={({field,fieldState})=>(
       <div className='date-picker-div'>
       <DatePicker placeholderText='Select Date'
-        className='date-input'
+        className='date-input text-blue-400'
       selected={field.value}
       onChange={(date)=>field.onChange(date)}
       dateFormat='dd/MM/yyy'
