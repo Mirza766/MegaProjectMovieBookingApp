@@ -57,7 +57,7 @@ const mainMenu=(
 // sidebarlinkcontent
 const SidebarMenu=(
   <SideBarMenuModel handleCloseSideBarButton={handleCloseSideBarButton} closeSideBar={closeSideBar}>
-   <div className='mx-auto text-left max-w-7xl animate-in slide-in-from-left duration-700 delay-200 flex flex-col space-y-4 px-4 py-5 w-50 text-sm sm:w-50 md:w-60 sm:text-base lg:text-lg lg:w-60 '>
+   <div className='mx-auto text-left max-w-7xl animate-in slide-in-from-left duration-700 delay-200 flex flex-col space-y-4 px-4 py-5 w-48 text-sm sm:w-55 md:w-60 sm:text-base lg:text-lg lg:w-60 '>
     
 <button className= 'text-left text-green-300 hover:text-white'>
   <Link to='/'>
@@ -225,7 +225,7 @@ const NavContentMenuTotal=(
      </div>
     </div>
   </div> */}
-  <nav className= "h-auto fixed top-0 w-full z-200 transition-all duration-300 bg-slate-950/80 backdrop-blur-lg border-b">
+  <nav className= "h-auto fixed top-0 w-full z-2000 transition-all duration-300 bg-slate-950/80 backdrop-blur-lg border-b">
      <div className='max-w-7xl mx-auto px-4 py-2 flex justify-between items-center'>
         <div className='flex flex-row items-center gap-2 cursor-pointer'>
           <div className='cursor-pointer' onClick={

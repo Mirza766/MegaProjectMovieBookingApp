@@ -810,10 +810,7 @@ font-size: 25px;
        .img-head{
      font-size: 16px;
        }
-    .Image-Container {
-        flex-direction: column;
-        height: 473vh;
-    }
+ 
 
 }
 

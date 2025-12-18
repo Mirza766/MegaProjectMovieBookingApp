@@ -47,10 +47,14 @@
 
 .sidebarMenuCont{
     position: fixed;
-  inset:0;
+  right:0;
+  left:0;
+  bottom:0;
+  top:-9px;
+  
     width:100%;
     height: 100%;
-    z-index: 1500;
+    z-index: 900;
     justify-content: flex-start;
     background: transparent;
     max-width: 1400px;

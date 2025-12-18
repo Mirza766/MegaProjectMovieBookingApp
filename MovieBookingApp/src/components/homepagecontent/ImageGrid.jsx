@@ -4,13 +4,14 @@ import { lazy } from 'react';
 import { Link } from 'react-router-dom';
 function ImageGrid() {
   return (
-    <section className='max-w-7xl mx-auto h-auto Image-Container'>
+    <section className='max-w-7xl mx-auto Image-Container '>
         <div className='container1'>
             <div className='img-head-desc'>
-            <h2 className='text-3xl lg:text-5xl h-14 text-center bg-linear-to-b from-blue-400 via-gray-400 to-cyan-400 bg-clip-text text-transparent font-bold'>Experience the Magic on the Big Screen</h2>
+            <h2 className='text-2xl sm:text-3xl md:text-4xl  lg:text-5xl h-16 sm:h-19  text-center bg-linear-to-b from-blue-400 via-gray-400 to-cyan-400 bg-clip-text text-transparent font-bold'>Experience the Magic on the Big Screen</h2>
             <p className='text-base text-gray-300'>Step into the world of cinema — browse the latest blockbusters, fan favorites, and hidden gems.</p>
              </div>
-             <div className='img-grid '>
+
+             <div className='img-grid flex flex-col gap-4 '>
              
               
            <Link className='img-items item-1 hover:shadow-lg cursor-pointer  shadow-blue-400 backdrop-blur-lg duration-100 delay-100 transition-all rounded-lg border-gray-500/20 hover:border-gray-500/30' to='/story'>
@@ -58,6 +59,7 @@ function ImageGrid() {
              
                </Link>
              </div>
+         
 
         </div>
     </section>
@@ -65,3 +67,5 @@ function ImageGrid() {
 }
 
 export default ImageGrid
+
+

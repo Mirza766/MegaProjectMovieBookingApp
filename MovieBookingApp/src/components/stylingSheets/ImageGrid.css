@@ -138,8 +138,7 @@ transition:opacity 0.3s ease;
     .Image-Container{
       flex-direction: column;
                
-     max-height: 470vh;
-    /* height: auto; */
+ 
       
     }
 
@@ -161,27 +160,30 @@ transition:opacity 0.3s ease;
        }
 }
 
-@media (max-width:767px) {
 
-    
-}
-@media  (max-width: 520px){
+/* @media  (max-width: 520px){
      .img-grid{
     display: block;
+      
    }
  .Image-Container {
-     height: 450vh;
+     height: 500vh;
+     gap:6px
 
    }
+    .img-items{
+        margin-bottom: 1rem;  
+        max-height: 200px;
+    }
 
-}
+} */
 
-@media  (max-width: 480px){
+/* @media  (max-width: 480px){
    .Image-Container {
         height: 300vh;
        padding-top: 20px;
     } 
-} 
+}  */
 
 
 
