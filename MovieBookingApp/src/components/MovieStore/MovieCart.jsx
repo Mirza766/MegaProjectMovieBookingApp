@@ -21,33 +21,33 @@ const finalTotal=subtotal-discount+tax;
 
     return (
 
-<section className='max-w-7xl mx-auto mt-25'>
-    <div className=' flex flex-col  overflow-x-auto '>
+<section className='max-w-7xl mx-auto mt-25 overflow-x-auto '>
+    <div className=' flex flex-col  '>
     <h2 className=' text-center mb-4 md:mb-5 justify-center bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400 text-transparent font-bold  bg-clip-text text-2xl sm:text-3xl lg:text-5xl '>Cart Data</h2>
    <p className='text-gray-300 font-semibold text-xl md:text-2xl lg:text-3xl text-center mb-4'>You Have purchased <strong className='bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400  text-transparent bg-clip-text'> {TotalLength} items</strong>  in your cart.</p>
    <div className='px-4 w-full  mt-7 max-w-8xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-8'>
-        <div className='mb-20 mt-10 border border-slate-500'>
-     <table  className='w-full  border-collapse '>
+        <div className='mb-20 mt-10 border border-slate-500 overflow-x-auto'>
+     <table  className='  overflow-x-auto   border-collapse '>
         <thead  >
-            <tr className='bg-slate-500' >
-                <th className='p-3 text-white text-left'>Name</th>
-                <th  className='p-3 text-white text-left'>Quantity</th>
-                <th  className='p-3 text-white text-left'>Price</th>
-                <th  className='p-3 text-white text-left'>Language</th>
-                <th  className='p-3 text-white text-left'>Duration</th>
-                <th  className='p-3 text-white text-left'>Release Year</th>
+            <tr className='bg-slate-500 text-xs sm:text-sm md:text-md' >
+                <th className='p-1 text-white text-left'>Name</th>
+                <th  className='p-1 text-white text-left'>Quantity</th>
+                <th  className='p-1 text-white text-left'>Price</th>
+                <th  className='p-1 text-white text-left'>Language</th>
+                <th  className='p-1 text-white text-left'>Duration</th>
+                <th  className='p-1 text-white text-left'>Release Year</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody className='text-xs sm:text-sm md:text-md'>
             {
                 MovieCartData?.map((movieData)=>(
                <tr key={movieData.id} className=' text-white bg-slate-700/30'>
-                <th className='px-4 py-4 text-white text-left border border-gray-300  text-sm md:text-md lg:text-lg'>{movieData.title}</th>
-                 <th className='px-4 py-4 text-white text-left border border-gray-300 text-sm md:text-md lg:text-lg'>{movieData.quantity}</th>
-                  <th className='px-4 py-4  text-left border border-gray-300 text-sm md:text-md lg:text-lg text-green-500'>${movieData.price}</th>
-                   <th className='px-4 py-4 text-white text-left border border-gray-300 text-sm md:text-md lg:text-lg'>{movieData.language}</th>
-                    <th className='px-4 py-4 text-red-500 text-left border border-gray-300 text-sm md:text-md lg:text-lg'>{movieData.duration_minutes} min</th>
-                     <th className='px-4 py-4 text-white text-left border border-gray-300 text-sm md:text-md lg:text-lg'>{movieData.release_year}</th>
+                <th className='p-1 sm:p-4 text-white text-left border border-gray-300  text-sm md:text-md lg:text-lg'>{movieData.title}</th>
+                 <th className='p-1 sm:p-4 text-white text-left border border-gray-300 text-sm md:text-md lg:text-lg'>{movieData.quantity}</th>
+                  <th className='p-1 sm:p-4 text-left border border-gray-300 text-sm md:text-md lg:text-lg text-green-500'>${movieData.price}</th>
+                   <th className='p-1 sm:p-4 text-white text-left border border-gray-300 text-sm md:text-md lg:text-lg'>{movieData.language}</th>
+                    <th className='p-1 sm:p-4 text-red-500 text-left border border-gray-300 text-sm md:text-md lg:text-lg'>{movieData.duration_minutes} min</th>
+                     <th className='p-1 sm:p-4 text-white text-left border border-gray-300 text-sm md:text-md lg:text-lg'>{movieData.release_year}</th>
             </tr>
                 ))
              

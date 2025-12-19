@@ -23,35 +23,35 @@ const handleCloseButtonPricing=(
 
 const mainPricingModel=(
   <PricingModel closePricingModal={closePricingModal} handleCloseButtonPricing={handleCloseButtonPricing}>
-<table className='mt-10 sm:mt-10 bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>
-<thead>
-<tr className='header-master text-left text-sm sm:text-sm md:text-md '>
-  <th className='table-header-Heading bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Category</th>
-  <th className='table-header-Heading bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Description</th>
-  <th className='table-header-Heading bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Ticket Price (PKR)</th>
-  <th className='table-header-Heading bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Special Features</th>
+<table className='text-xs   bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>
+<thead className='text-xs sm:border-2 sm:border-blue-200 sm:text-sm md:text-md lg:text-lg p-2 sm:p-4 lg:p-6 '>
+<tr className=' text-left text-xs sm:text-sm md:text-md'>
+  <th className='table-header-Heading text-xs sm:text-sm md:text-md lg:text-lg bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Category</th>
+  <th className='table-header-Heading text-xs sm:text-sm md:text-md lg:text-lg bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Description</th>
+  <th className='table-header-Heading text-xs sm:text-sm md:text-md lg:text-lg bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Ticket Price (PKR)</th>
+  <th className='table-header-Heading text-xs sm:text-sm md:text-md lg:text-lg bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Special Features</th>
 </tr>
 </thead>
-<tbody className=' text-left text-sm sm:text-sm md:text-md lg:text-lg'>
-  <tr className='table-flow-content'>
+<tbody className=' text-left sm:border-2 sm:border-blue-200 border rounded-lg text-xs sm:text-sm md:text-md lg:text-lg'>
+  <tr className='table-flow-content  '>
       <td className='table-header heading'>Now Showing</td>
       <td className='table-header content'>Discover the latest movies currently running in theaters near you.</td>
       <td  className='table-header content'>800 – 1,200</td>
       <td  className='table-header content'>Regular & recliner seats, instant booking confirmation</td>
   </tr>
-  <tr className='table-flow-content'>
+  <tr className='table-flow-content sm:border-2 sm:border-blue-200'>
       <td className='table-header heading'>Coming Soon</td>
       <td className='table-header content'>Stay ahead — preview and pre-book tickets for upcoming releases.</td>
       <td  className='table-header content'>1,000 – 1,500</td>
       <td  className='table-header content'>Early access booking, pre-release offers</td>
   </tr>
-  <tr className='table-flow-content'>
+  <tr className='table-flow-content sm:border-2 sm:border-blue-200'>
       <td className='table-header heading'>Family & Kids</td>
       <td className='table-header content'>Enjoy fun, family-friendly films perfect for all age groups.</td>
       <td  className='table-header content'>Family Pack 2,800 (4 tickets)</td>
       <td  className='table-header content'>Child discounts, weekend offers</td>
   </tr>
-  <tr >
+  <tr className='table-flow-content sm:border-2 sm:border-blue-200' >
       <td className='table-header heading'>Private Theater Booking</td>
       <td className='table-header content'>Reserve an entire theater for private screenings or special events.</td>
       <td  className='table-header content'>Starting from 25,000</td>

@@ -12,8 +12,8 @@ useEffect(()=>{
 
     return ReactDOM.createPortal(
         <>
-    <div className='portal-root-css px-2   text-sm ' onClick={closeOverviewModal}>
-       <div className='portal-root-inner-div  not-first  max-w-xl lg:w-3xl w-full'>
+    <div className='portal-root-css px-2 text-sm ' onClick={closeOverviewModal}>
+       <div className='portal-root-inner-div p-2 sm:p-3 md:p-4 border rounded-lg sm:border-2 border-blue-400  not-first  max-w-xl lg:w-3xl w-full'>
       {children}
 
        </div>    

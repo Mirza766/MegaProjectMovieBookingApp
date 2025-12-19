@@ -611,7 +611,7 @@ text-align: center;
 align-content: center;
 backdrop-filter: blur(16px);
 -webkit-backdrop-filter: blur(16px);
-  z-index: 100;
+  z-index: 400;
 }
 
 .portal-root-inner-div {
@@ -620,10 +620,6 @@ backdrop-filter: blur(16px);
   align-items: flex-start;
   background-color: #121a2f;
   color: white;
-  padding: 30px;
-  
-  border-radius: 12px;
-  border: 3px solid rgb(224, 207, 224);
   max-width: 1280px;
   box-shadow:
     0 4px 6px rgba(0, 0, 0, 0.15),
@@ -732,11 +728,11 @@ backdrop-filter: blur(16px);
 }
 
 .table-flow-content{
-  border: 3px solid #ddd;
+  border: 1px solid #ddd;
 }
 
 .table-header-Heading{
-   border: 3px solid #ddd;
+   border: 1px solid #ddd;
    padding-left:5px;
    padding-right:5px ;
 }
@@ -744,11 +740,11 @@ backdrop-filter: blur(16px);
 
 .heading{
   font-weight: 700;
-  border: 3px solid #ddd;
+  border: 1px solid #ddd;
   padding:5px
 }
 .content{
-  border:3px solid #ddd;
+  border:1px solid #ddd;
   padding:5px
 }
 
