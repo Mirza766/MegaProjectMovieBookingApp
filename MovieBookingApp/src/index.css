@@ -613,12 +613,16 @@ backdrop-filter: blur(16px);
 -webkit-backdrop-filter: blur(16px);
   z-index: 400;
 }
-
+.bg-slate-400-blur {
+  background-color: rgba(148, 163, 184, 0.8); /* slate-400 with opacity */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
 .portal-root-inner-div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #121a2f;
+  background: #121a2f;
   color: white;
   max-width: 1280px;
   box-shadow:
