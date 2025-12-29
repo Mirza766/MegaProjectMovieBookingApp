@@ -8,6 +8,9 @@ import { addContactUsData } from "../../redux/ContactUs/ContactUsActions";
 import { ArrowRight } from "lucide-react";
 import ContactUsRetrieveData from "../FormDataRetrieval/ContactUsRetrieveData";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../AuthContext/AuthContext";
+import { useState } from "react";
+
 const selectSx = {
   "& .MuiInputBase-input": { 
     color: "#ffffff", 
@@ -28,7 +31,8 @@ function ContactUs() {
 const ContactUsUsers=useSelector((state)=>state.ContactUsFormData);
 const User=ContactUsUsers[ContactUsUsers.length-1];
   
-  const { reset, formState, register, setError, handleSubmit,control } = useForm({
+const {user,ContactData}=useAuth();
+  const { reset,setValue, formState, register, setError, handleSubmit,control } = useForm({
     defaultValues: {
       fullName: "",
       email: "",
@@ -38,22 +42,26 @@ const User=ContactUsUsers[ContactUsUsers.length-1];
     },
     mode: "onChange",
   });
-
+const [userData,setUserData]=useState(true);
 const dispatch=useDispatch();
+console.log("User Data: ",user);
+
+    if(userData && user){
+setValue("fullName",user.fullname);
+setValue("email",user.email);
+setValue("phoneNumber",user.phoneNumber);
+
+setUserData(false);
+}
+
 
   const { errors,isSubmitting,isSubmitSuccessful} = formState;
 
   const onSubmission = async(data) => {
-    try{
-      await new Promise((resolve)=>setTimeout(resolve,1000));
-      console.log("Form Submitted Successfully: ", data);
       const SubmittedDataArray=dispatch(addContactUsData(data));
       console.log('Global Data is: ',SubmittedDataArray)
-      reset();
-    }
-    catch(error){
-      console.log('Error is: ', error.message)
-    }
+    reset()
+   
   };
 
   return (
@@ -64,6 +72,9 @@ const dispatch=useDispatch();
       <div className="flex flex-col gap-3 md:gap-4 lg:gap-5 text-2xl sm:text-2xl  xl:text-4xl font font-semibold leading-tight ">
       <p className="leading-tight duration-700 delay-200 slide-in-from-left bg-linear-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent">"Your ideas + our expertise = something extraordinary!"</p>
       <p className="leading-tight duration-700 delay-300 slide-in-from-left bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text">"Ready to get in touch? Let’s start the conversation today!"</p>
+      <Link className='text-lg border border-slate-300 transition-colors delay-100 duration-300 hover:bg-green-400/20 bg-green-300/20 font-semibold flex justify-center items-center border-b-green-300 text-emerald-400 p-2 rounded-full' to='/contactusdata'>
+                     Finalize Your Query
+                     </Link>
       </div>
       </div>
       <div className="w-full flex flex-col lg:w-1/2 items-center justify-center text-center  order-2 ">

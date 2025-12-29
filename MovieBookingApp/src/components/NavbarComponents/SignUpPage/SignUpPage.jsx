@@ -6,17 +6,26 @@ import { addSignUpData } from '../../../redux/SignUp/SignUpActions';
 import {useDispatch} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { lazy } from 'react';
+import { useAuth } from '../../../AuthContext/AuthContext';
+import {  CheckCircle2, Clapperboard, Ticket, Zap } from 'lucide-react';
 import { ArrowRight,ArrowLeft } from 'lucide-react';
-
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 const AccountDetail=lazy(()=>import('./AccountDetail'))
 const Verification=lazy(()=>import('./Verification'))
 const Preference=lazy(()=>import('./Preference'))
 
 function SignUpPage() {
+const navigate=useNavigate();
 
+const {storetokeninLocal}=useAuth();  
 const dispatch=useDispatch();
 
-
+const features = [
+  { icon: <Clapperboard className="w-5 h-5" />, title: "Unlimited Access", desc: "Browse thousands of movies and shows." },
+  { icon: <Ticket className="w-5 h-5" />, title: "Easy Booking", desc: "Reserve your seats in seconds." },
+  { icon: <Zap className="w-5 h-5" />, title: "Instant Alerts", desc: "Get notified about new releases first." },
+];
 
 
 const methods=useForm({mode:'onChange',
@@ -44,17 +53,42 @@ const totalSteps=3;
 const progress=(step/totalSteps)*100;
 
 
+
+
+
 const onSubmission=async(data)=>{
   try{
 
-    await new Promise((resolve)=>setTimeout(resolve,2000));
-    dispatch(addSignUpData({...data,dob:new Date(data.dob).toISOString()}));
-    reset()
+    const response=await fetch(`http://localhost:5000/api/auth/register`,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'Accept': 'application/json'
+      },
+      body:JSON.stringify(data)
+    });
+console.log(response);
+ const res_data = await response.json();
+    // await new Promise((resolve)=>setTimeout(resolve,2000));
+ if(response.ok){
+ 
+  storetokeninLocal(res_data.token);
+    reset();
+navigate('/')
     
+ }
+  else{
+    toast.error(res_data.msg ? res_data.msg : "Email Already Exists");
+  }
+
+    console.log(data);
+    dispatch(addSignUpData({...data,dob:new Date(data.dob).toISOString()}));
+
   }
   catch(error){
-    console.log("Submission errror is: ",error.message)
+    console.log("Error While Signining up")
   }
+ 
 }
 
 const prevStep=()=>setStep((prev)=>prev-1);
@@ -68,6 +102,34 @@ const nextStep=async()=>
 
 
   return (
+    <div className=' mt-10 sm:mt-14 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2'>
+    
+     <div className='p-6 lg:flex flex-col justify-center items-center sm:px-10 space-y-8 pr-12'>
+          <div>
+            <h1 className='text-5xl font-extrabold text-white mb-4 leading-tight'>
+              Experience the <span className='text-blue-500'>Future</span> of Cinema.
+            </h1>
+            <p className='text-slate-400 text-lg'>
+              Join our community of movie enthusiasts and unlock exclusive features tailored just for you.
+            </p>
+          </div>
+
+          <div className='space-y-6'>
+            {features.map((f, i) => (
+              <div key={i} className='flex items-start gap-4 p-4 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-colors'>
+                <div className='p-2 bg-blue-500/10 rounded-lg text-blue-500'>{f.icon}</div>
+                <div>
+                  <h4 className='font-semibold text-white'>{f.title}</h4>
+                  <p className='text-sm text-slate-500'>{f.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        
+        </div>
+    
+
     <div className='signUp-master px-4'>
     <div className=' relative w-full max-w-xl bg-white/5 backdrop-blur-xl rounded-2xl p-2 shadow-2xl border border-white/10 '>
       <h2 className=' text-2xl sm:text-3xl md:text-4xl sm:h-10 md:h-15 font-bold bg-linear-to-r from-blue-300 to-cyan-300 text-transparent items-center justify-center flex mb-5 bg-clip-text'>Ready to sign up here</h2>
@@ -163,6 +225,7 @@ isSubmitSuccessful?(
     </div>
   </div>
   </div>
+   </div>
   )
 }
 

@@ -59,7 +59,7 @@ const plans = [
 
 function SubscriptionContent() {
     
-
+// const {user}=useAuth();
 const navigate=useNavigate();
 
 

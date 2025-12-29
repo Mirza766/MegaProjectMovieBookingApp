@@ -8,6 +8,10 @@ import { addTimelineData,editTimelineData,emptyTimelineData } from '../../redux/
 import { TimeLineData } from '../../redux/Timeline/TimeLineReducer';
 import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { useAuth } from '../../AuthContext/AuthContext';
+import { toast } from 'react-toastify';
+
+
 const timeline = [
   {
     id: 1,
@@ -111,8 +115,9 @@ const timeline = [
 
 
 
-function TimelineConnectPage() {
 
+function TimelineConnectPage() {
+  const {user,getCallBookingData}=useAuth();
 
   const { reset, formState, register, setError, handleSubmit,control } = useForm({
     defaultValues: {
@@ -127,7 +132,7 @@ function TimelineConnectPage() {
   const {BookedSlots,PersonData}=useSelector((state)=>state.TimeLineData);
 
 const [openMenu,setOpenMenu]=useState(false)
-
+const [confirmedData,setConfirmedData]=useState();
     const {id}=useParams();
 
 const selectedTimeline = timeline.find(
@@ -139,9 +144,9 @@ const lastUser = PersonData && PersonData.length > 0 ? PersonData[PersonData.len
   const lastBookedSlot = BookedSlots && BookedSlots.length > 0 ? BookedSlots[BookedSlots.length - 1] : null;
 
 
-useEffect(() => {
-    console.log("Updated Redux Store:", PersonData);
-  }, [PersonData]);
+// useEffect(() => {
+//     console.log("Updated Redux Store:", PersonData);
+//   }, [PersonData]);
 
 
 const onSubmit=async(data)=>{
@@ -150,19 +155,47 @@ const onSubmit=async(data)=>{
       return;
     }
 
+if (!data.SelectedSlot) return;
    await new Promise((resolve)=>setTimeout(resolve,1000));
-  const bookingData = {
-      name: selectedTimeline.name,
-      email: selectedTimeline.email,
-      phone: selectedTimeline.phone,
-      SelectedSlot: data.SelectedSlot 
-    };
+const bookingData = {
+    userId:user._id,
+    client:user.fullname,
+    agentName: selectedTimeline.name,
+    email: selectedTimeline.email,
+    phone: selectedTimeline.phone,
+    SelectedSlot: data.SelectedSlot 
+  };
 
-  dispatch(addTimelineData(bookingData))
-console.log(TimeLineData);
+  try {
+    const response = await fetch(`http://localhost:5000/api/bookcall/callbooking`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bookingData)
+    });
 
     
+    const result = await response.json();
 
+    if (response.ok) {
+      dispatch(addTimelineData(bookingData));
+      setConfirmedData(bookingData);
+      await getCallBookingData();
+           reset();
+      toast.success("Booking Saved!");
+    } else {
+     
+      toast.error(result.message || "Booking failed");
+    }
+  } catch (error) {
+    console.error("Fetch Error:", error);
+    alert("Backened not running!");
+  }
+  
+ 
+
+    
 }
 
 
@@ -288,22 +321,22 @@ const dispatch=useDispatch();
                       )
                     }        
         </button>
-           {
-    isSubmitSuccessful?(
-<div className=' mt-6 inline-flex items-center px-2 sm:px-4 lg:px-5 space-x-2 max-w-1xl rounded-lg bg-blue-500/10 border border-blue-500/20 transition-all animate-in  slide-in-from-top duration-700 delay-300  mb-4 sm:mb-6 lg:mb-8'>
-                  
-                  <span className='text-sm text-blue-400'> {
-      isSubmitSuccessful && <p>Your call has been booked with "{lastUser.name}" whose contact is "{lastUser.phone}" and email "{lastUser.email}"" on "{lastBookedSlot}"  </p>
-    }</span>
-   </div>
-    ):(
-      null
-    )
-}
+{confirmedData && (
+  <div className='mt-6 inline-flex items-center px-2 sm:px-4 lg:px-5 space-x-2 max-w-1xl rounded-lg bg-blue-500/10 border border-blue-500/20 transition-all animate-in slide-in-from-top duration-700 delay-300 mb-4 sm:mb-6 lg:mb-8'>
+    <span className='text-sm text-blue-400 p-3'>
+      <p>
+        Your call has been booked with "<strong>{confirmedData?.agentName}</strong>" 
+        whose contact is "{confirmedData?.phone}" 
+        and email "{confirmedData?.email}" 
+        on "<strong>{confirmedData?.SelectedSlot}</strong>"
+      </p>
+    </span>
+  </div>
+)}
+          
+
         </form>
 )}   
-      
-       
     </div>
     </div>
     </div>

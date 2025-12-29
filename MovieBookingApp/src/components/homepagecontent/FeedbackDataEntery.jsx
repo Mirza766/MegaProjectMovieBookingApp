@@ -3,6 +3,9 @@ import { useDispatch } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { addFeedbackData } from "../../redux/FeedbackSection/FeedbackSectionActions";
 import axios from "axios";
+import { useAuth } from "../../AuthContext/AuthContext";
+
+
 const selectSx = {
    "& .MuiInputBase-input": { 
     color: "#ffffff", 
@@ -26,7 +29,7 @@ const glassBgSx = {
         boxShadow: 3,
   background: 'linear-gradient(to right, rgba(17, 24, 39, 0.1), rgba(31, 41, 55, 0.1))',
   backdropFilter: 'blur(24px)',
-  WebkitBackdropFilter: 'blur(24px)', // Safari support
+  WebkitBackdropFilter: 'blur(24px)',
 };
 
 
@@ -45,7 +48,7 @@ import {
 
 const FeedbackForm = () => {
   const dispatch = useDispatch();
-  const { control, handleSubmit, reset } = useForm({
+  const { control, handleSubmit,setValue, reset } = useForm({
     defaultValues: {
       name: "",
       commentType: "",
@@ -70,6 +73,18 @@ const FeedbackForm = () => {
     };
     reader.readAsDataURL(file);
   };
+
+const [userData,setUserData]=useState(true);
+const {user}=useAuth();
+if(userData && user){
+setValue("name",user.fullname);
+setValue("email",user.email);
+setValue("phone",user.phoneNumber);
+
+setUserData(false);
+}
+
+
 
   const onSubmit = async(data) => {
     dispatch(

@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import 'react-datepicker/dist/react-datepicker.css';
-import {createBrowserRouter,  createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
+import {createBrowserRouter,  createRoutesFromElements, Route, RouterProvider, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lazy } from 'react'
 import 'remixicon/fonts/remixicon.css';
@@ -32,21 +32,31 @@ const SubscriptionDataRetrieval=lazy(()=>import('./components/FormDataRetrieval/
 const BookingPage=lazy(()=>import('./components/Booking/BookingPage'));
 const BookingDataRetrival=lazy(()=>import('./components/FormDataRetrieval/BookingDataRetrival'))
 const Feedback=lazy(()=>import('./components/homepagecontent/Feedback'))
-
+import ProtectedRoute from './components/routes/ProtectedRoute';
+import Logout from './components/Logout/logout';
+import GetOrderConfirmedData from './components/MovieStore/GetOrderConfirmedData';
+import CallBookingData from './components/FormDataRetrieval/CallBookingData';
+import ContactUsDatabase from './components/FormDataRetrieval/ContactUsDatabase';
+import GetSubscriptionDatabase from './components/FormDataRetrieval/getSubscriptionDatabase';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
-  const [count, setCount] = useState(0)
-//ClientProvider for Search Movie
+
+
 const queryclient=new QueryClient();
   const router=createBrowserRouter(
     createRoutesFromElements(
       <> 
    <Route element={<Layout/>} errorElement={<ErrorBoundary/>}>
+    <Route path='/signup' element={<SignUpPage/>} errorElement={<ErrorBoundary/>}/>
+    <Route path='/login' element={<Login/>} errorElement={<ErrorBoundary/>}/>
 
-    <Route path='/' element={<HomeContent/>} errorElement={<ErrorBoundary/>}/>
+
+
+     <Route element={<ProtectedRoute/>}>
+ <Route path='/' element={<HomeContent/>} errorElement={<ErrorBoundary/>}/>
     <Route path='/about' element={<AboutUs/> } errorElement={<ErrorBoundary/>}/>
     <Route path='/contact' element={<ContactUs/>} errorElement={<ErrorBoundary/>}/>
-     <Route path='/signup' element={<SignUpPage/>} errorElement={<ErrorBoundary/>}/>
-     <Route path='/login' element={<Login/>} errorElement={<ErrorBoundary/>}/>
+     
      <Route path='/contactusdata' element={<ContactUsRetrieveData/>}/>
      <Route path='/contactusedit/:id' element={<EditData/>} errorElement={<ErrorBoundary/>}/>
      <Route path='/signUpPage' element={<SignUpPageDataRetrievel/>}/>
@@ -64,6 +74,12 @@ const queryclient=new QueryClient();
    <Route path='/story' element={<StoryPage/>}/>
   <Route path='/connectpage/:id' element={<TimelineConnectPage/>}/>
   <Route path='/termandcond' element={<TermsAndCondition/>}/>
+  <Route path='/logout' element={<Logout/>}/>
+  <Route path='/getorderconfirm' element={<GetOrderConfirmedData/>}/>
+  <Route path='/getcallbooking' element={<CallBookingData/>}/> 
+  <Route path='/contactDatabase' element={<ContactUsDatabase/>}/>
+   <Route path='/getSubsc' element={<GetSubscriptionDatabase/>}/>
+     </Route>
     </Route>
    
       </>
@@ -80,10 +96,10 @@ const queryclient=new QueryClient();
   )
 }
 
-function wait(time){
-  return new Promise(resolve=>{
-    setTimeout(resolve,time)
-  })
-}
+// function wait(time){
+//   return new Promise(resolve=>{
+//     setTimeout(resolve,time)
+//   })
+// }
 
 export default App

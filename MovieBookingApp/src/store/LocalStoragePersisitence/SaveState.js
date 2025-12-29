@@ -8,12 +8,12 @@ import { SignUpFormData } from "../../redux/SignUp/SignUpReducers";
 export const saveState=(data)=>{
     try{
     const stateToSave={
-        ContactUsFormData:data.ContactUsFormData,
-        SignUpFormData:data.SignUpFormData,
-        LoginFormData:data.LoginFormData,
-        getCartData:data.getCartData,
-        MovieBooking:data.MovieBooking,
-        FeedbackData:data.FeedbackData
+        // ContactUsFormData:data.ContactUsFormData,
+        // SignUpFormData:data.SignUpFormData,
+        // LoginFormData:data.LoginFormData,
+        // getCartData:data.getCartData,
+        // MovieBooking:data.MovieBooking,
+        // FeedbackData:data.FeedbackData
     };
     localStorage.setItem("appData",JSON.stringify(stateToSave));
 

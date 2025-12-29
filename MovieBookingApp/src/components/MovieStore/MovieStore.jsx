@@ -30,7 +30,7 @@ const MovieData=useSelector((state)=>state.getMovieData);
       <div key={movie.id} className=' w-full  text-left bg-linear-to-r from-gray-900/10 to-gray-800/10 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-4 lg:p-2 border border-white/10 shadow-md hover:shadow-lg shadow-blue-400'>
       <div className=' flex flex-col justify-center  gap-3 border-2bg-linear-to-r from-gray-900/10 to-gray-800/10 backdrop-blur-xl border border-white/5 rounded-lg h-[660px] md:h-[580px] ' key={movie.id}>
        
-      <img className=' w-full rounded-lg overflow-hidden object-fit' src={movie.poster_url}/>
+      <img className=' w-full rounded-lg overflow-hidden object-cover' src={movie.poster_url}/>
 
       <div className='p-3 text-white '>
       <h3 className='font-semibold text-2xl text-blue-400'>{movie.title}</h3>

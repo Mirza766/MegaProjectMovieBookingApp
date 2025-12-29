@@ -6,7 +6,9 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Sparkles,ArrowRight,ArrowUpRight } from "lucide-react";
 import {Button,Checkbox,TextField,FormControlLabel,FormControl,Select,MenuItem,Menu,InputLabel, FormLabel, FormHelperText,styled} from '@mui/material'
 import { Controller } from "react-hook-form";
+
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import {
   setMovie,
   toggleSeat,
@@ -16,17 +18,18 @@ import {
 } from "../../redux/Booking/BookingActions";
 import { useForm } from "react-hook-form";
 import "../stylingSheets/BookingPage.css";
-
+import { useAuth } from "../../AuthContext/AuthContext";
 
 
 const BookingPage = () => {
+
   const dispatch = useDispatch();
   const { movies, selectedMovie, selectedSeats, bookingDetails, selectedDate, selectedTime } =
     useSelector((state) => state.MovieBooking);
 
 
  
-  const { register, handleSubmit, reset,control,formState} = useForm({
+  const { register, handleSubmit,setValue, reset,control,formState} = useForm({
     defaultValues: {
       name: "",
       email: "",
@@ -34,7 +37,18 @@ const BookingPage = () => {
     },
   });
 
+const [userData,setUserData]=useState(true);
+const {user,bookingData}=useAuth();
+if(userData && user){
+setValue("name",user.fullname);
+setValue("email",user.email);
+setValue("phone",user.phoneNumber);
 
+setUserData(false);
+}
+
+
+console.log(user);
   const {isSubmitSuccessful,isSubmitting}=formState;
 
 
@@ -47,10 +61,43 @@ const BookingPage = () => {
       alert("Please select movie, date, time, and at least one seat!");
       return;
     }
+
 await new Promise((resolve)=>setTimeout(resolve,1000));
     const bookingPayload = {
       ...data, 
+      movie: selectedMovie.title,   
+    date: selectedDate,          
+    time: selectedTime,          
+    seats: selectedSeats,        
     };
+
+
+
+try{
+   const response=await fetch(`http://localhost:5000/api/book/booking`,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'Accept': 'application/json'
+      },
+      body:JSON.stringify(bookingPayload)
+     
+    });
+
+console.log(response);
+if(response.ok){
+  await bookingData();
+}
+
+
+}
+catch(error){
+  console.log('Error While Booking Data',error);
+}
+
+
+
+
 
 
     dispatch(confirmBooking(bookingPayload));
@@ -64,10 +111,7 @@ await new Promise((resolve)=>setTimeout(resolve,1000));
     dispatch(setMovie(Number(e.target.value)));
   };
 
-//   const handleDateChange = (e) => {
-//     // dispatch(setDate(e.target.value));
-   
-// };
+
 
  const handleDateChange = (selectedDate) => {
   dispatch(setDate(selectedDate ? selectedDate.format("YYYY-MM-DD") : ""));

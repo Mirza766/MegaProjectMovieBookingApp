@@ -1,90 +1,152 @@
-import React from 'react'
-import Header from '../homepagecontent/Header'
-import "../stylingSheets/MovieCart.css";
-import { useSelector } from 'react-redux';
 
+import React from 'react'
+import "../stylingSheets/MovieCart.css";
+import { useSelector, useDispatch } from 'react-redux';
+import { useAuth } from '../../AuthContext/AuthContext';
+import { removeDataFromCart } from '../../redux/CartData/CartDataActions';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function MovieCart() {
-    
+  const dispatch = useDispatch();
+  const { user, getCartData } = useAuth();
+  const MovieCartData = useSelector((state) => state.getCartData);
+
+  const saveCartToDb = async () => {
+    try {
+      const orderData = {
+        name: user.fullname,
+        email: user.email,
+        userId: user._id,
+        items: MovieCartData,
+      }
+      const response = await fetch('http://localhost:5000/api/cart/order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(orderData)
+      });
+      const result = await response.json();
+      if (response.ok) {
+        await getCartData();
+        toast.success(`Order successful! ID: ${result._id}`);
+        dispatch(removeDataFromCart());
+      } else {
+        toast.error(result.msg ? result.msg : "No Items Selected");
+      }
+    } catch (error) {
+      console.error("Failed to save cart:", error);
+    }
+  }
 
 
+  const TotalLength = MovieCartData.length;
+  const subtotal = MovieCartData.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const discount = MovieCartData.reduce((sum, item) => {
+    return item.quantity >= 3 ? sum + (item.price * item.quantity * 0.1) : sum;
+  }, 0);
+  const tax = ((subtotal - discount) * 0.02);
+  const finalTotal = subtotal - discount + tax;
 
-  const MovieCartData=useSelector((state)=>state.getCartData)
-  const TotalLength=MovieCartData.length
-  const subtotal=MovieCartData.reduce((sum,item)=>sum+item.price,0);
-  const discount=MovieCartData.reduce((sum,item)=>{
-    return item.quantity>=3?sum+item.price*item.quantity*0.1:sum
-  },0)
-const tax=((subtotal-discount)*0.02);
-const finalTotal=subtotal-discount+tax;
+  return (
+    <section className='max-w-7xl mx-auto mt-20 px-4 mb-20'>
+      <div className='flex flex-col items-center'>
+        <h2 className='text-center mb-4 bg-linear-to-r from-blue-400 to-cyan-400 text-transparent font-bold bg-clip-text text-3xl md:text-5xl'>
+          Your Movie Cart
+        </h2>
+        <p className='text-gray-300 font-medium text-lg mb-10'>
+          You have <span className='text-blue-400 font-bold'>{TotalLength} items</span> ready for checkout.
+        </p>
 
-
-    return (
-
-<section className='max-w-7xl mx-auto mt-25 overflow-x-auto '>
-    <div className=' flex flex-col  '>
-    <h2 className=' text-center mb-4 md:mb-5 justify-center bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400 text-transparent font-bold  bg-clip-text text-2xl sm:text-3xl lg:text-5xl '>Cart Data</h2>
-   <p className='text-gray-300 font-semibold text-xl md:text-2xl lg:text-3xl text-center mb-4'>You Have purchased <strong className='bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400  text-transparent bg-clip-text'> {TotalLength} items</strong>  in your cart.</p>
-   <div className='px-4 w-full  mt-7 max-w-8xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-8'>
-        <div className='mb-20 mt-10 border border-slate-500 overflow-x-auto'>
-     <table  className='  overflow-x-auto   border-collapse '>
-        <thead  >
-            <tr className='bg-slate-500 text-xs sm:text-sm md:text-md' >
-                <th className='p-1 text-white text-left'>Name</th>
-                <th  className='p-1 text-white text-left'>Quantity</th>
-                <th  className='p-1 text-white text-left'>Price</th>
-                <th  className='p-1 text-white text-left'>Language</th>
-                <th  className='p-1 text-white text-left'>Duration</th>
-                <th  className='p-1 text-white text-left'>Release Year</th>
-            </tr>
-        </thead>
-        <tbody className='text-xs sm:text-sm md:text-md'>
-            {
-                MovieCartData?.map((movieData)=>(
-               <tr key={movieData.id} className=' text-white bg-slate-700/30'>
-                <th className='p-1 sm:p-4 text-white text-left border border-gray-300  text-sm md:text-md lg:text-lg'>{movieData.title}</th>
-                 <th className='p-1 sm:p-4 text-white text-left border border-gray-300 text-sm md:text-md lg:text-lg'>{movieData.quantity}</th>
-                  <th className='p-1 sm:p-4 text-left border border-gray-300 text-sm md:text-md lg:text-lg text-green-500'>${movieData.price}</th>
-                   <th className='p-1 sm:p-4 text-white text-left border border-gray-300 text-sm md:text-md lg:text-lg'>{movieData.language}</th>
-                    <th className='p-1 sm:p-4 text-red-500 text-left border border-gray-300 text-sm md:text-md lg:text-lg'>{movieData.duration_minutes} min</th>
-                     <th className='p-1 sm:p-4 text-white text-left border border-gray-300 text-sm md:text-md lg:text-lg'>{movieData.release_year}</th>
-            </tr>
-                ))
-             
-            }
+        <div className='w-full flex flex-col lg:flex-row gap-10 items-start'>
           
-        </tbody>
-     </table>
-</div>
-<div className='mb-10 relative w-full max-w-xl bg-white/5 backdrop-blur-xl rounded-2xl ml-5 lg:ml-0 p-4 shadow-2xl border border-white/10 hover:shadow-blue-400 delay-100 duration-600'>
-    <div className='w-full  text-left bg-linear-to-r from-gray-900/10 to-gray-800/10 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-4 shadow-2xl border border-white/10'>
-    <h2 className='text-center text-xl font-bold bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400  text-transparent bg-clip-text'>Price Summary</h2>
-    <div className='cruse-data'>
-    <div className='adjustPrice'>
-        <span className='bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400  text-transparent bg-clip-text font-semibold'>Sub Total:</span>
-        <span className='text-gray-300'>${subtotal.toFixed(2)}</span>
-    </div>
-    <div className='adjustPrice'>
-        <span className='bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400  text-transparent bg-clip-text font-semibold' >Discount (10% for 3+ items)</span>
-        <span className='text-green-500'>${discount.toFixed(2)}</span>
-    </div>
-      <div className='adjustPrice'>
-        <span className='bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400  text-transparent bg-clip-text font-semibold'>Tax:</span>
-        <span className='text-rose-500'>${tax.toFixed(2)}</span>
-    </div>
+          <div className='w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6'>
+            {MovieCartData?.map((movie) => (
+              <div key={movie.id} className='flex bg-slate-800/40 border border-white/10 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all group'>
+           
+                <div className='w-1/3 overflow-hidden'>
+                  <img 
+                    src={movie.poster_url} 
+                    alt={movie.title} 
+                    className='h-full w-full object-cover  transition-transform duration-500'
+                  />
+                </div>
+                
+          
+                <div className='w-2/3 p-4 flex flex-col justify-between'>
+                  <div>
+                    <h3 className='text-white font-bold text-lg truncate'>{movie.title}</h3>
+                    <div className='flex gap-2 mt-1'>
+                      <span className='text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded-full border border-blue-500/30'>
+                        {movie.language}
+                      </span>
+                      <span className='text-[10px] bg-red-500/20 text-red-300 px-2 py-0.5 rounded-full border border-red-500/30'>
+                        {movie.duration_minutes} min
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className='mt-4 flex justify-between items-end'>
+                    <div>
+                      <p className='text-gray-400 text-xs'>Qty: {movie.quantity}</p>
+                      <p className='text-green-400 font-bold text-xl'>${movie.price}</p>
+                    </div>
+                    <p className='text-gray-500 text-xs mb-1'>{movie.release_year}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          
+          <div className='w-full lg:w-1/3 sticky top-24'>
+            <div className='bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl'>
+              <h2 className='text-xl font-bold text-white mb-6 border-b border-white/10 pb-4'>Price Summary</h2>
+              
+              <div className='space-y-4'>
+                <div className='flex justify-between'>
+                  <span className='text-gray-400'>Sub Total</span>
+                  <span className='text-white'>${subtotal.toFixed(2)}</span>
+                </div>
+                
+                <div className='flex justify-between'>
+                  <span className='text-gray-400'>Discount (10% for 3+)</span>
+                  <span className='text-green-500'>-${discount.toFixed(2)}</span>
+                </div>
+
+                <div className='flex justify-between'>
+                  <span className='text-gray-400'>Estimated Tax (2%)</span>
+                  <span className='text-rose-500'>+${tax.toFixed(2)}</span>
+                </div>
+
+                <div className='pt-4 border-t border-white/10 flex justify-between items-center'>
+                  <span className='text-lg font-bold text-white'>Final Total</span>
+                  <span className='text-2xl font-bold text-blue-400'>${finalTotal.toFixed(2)}</span>
+                </div>
+              </div>
+
+              <div className='mt-8 flex flex-col gap-3'>
+                <button 
+                  onClick={saveCartToDb}
+                  className="w-full py-4 bg-linear-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-cyan-500 text-white font-bold rounded-xl transition-all shadow-lg active:scale-95"
+                >
+                  Proceed to Checkout
+                </button>
+                <Link to='/getorderconfirm' className='w-full'>
+                  <button className="w-full py-3 bg-white/5 hover:bg-white/10 text-gray-300 font-semibold rounded-xl border border-white/10 transition-all">
+                    See Your Orders
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
-    <div className='adjustPrice'>
-        <span className='bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400  text-transparent bg-clip-text font-semibold'>Final Total:</span>
-        <span className='text-gray-300'>${finalTotal.toFixed(2)}</span>
-    </div>
-    
- 
-</div>
-</div>
-</div> 
-    </div>
     </section>
   )
 }
 
-export default MovieCart
+export default MovieCart;

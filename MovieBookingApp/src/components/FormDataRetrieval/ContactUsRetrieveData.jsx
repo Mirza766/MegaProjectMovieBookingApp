@@ -8,9 +8,9 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import "../stylingSheets/ContactUsRetrieveData.css";
 import { ArrowRight, Delete, DeleteIcon, Edit } from 'lucide-react';
+import { useAuth} from '../../AuthContext/AuthContext';
 
-
-const ContactCard=React.memo(({user,onEdit,onDelete})=>{
+const ContactCard=React.memo(({user,onEdit,onDelete,onConfirm})=>{
 
 return (
 <div className='relative w-full  bg-white/5 backdrop-blur-xl rounded-2xl p-2 sm:p-3  shadow-2xl hover:shadow-blue-400 transition-all delay-100 duration-300 border border-white/10 hover:-translate-y-2 '>
@@ -35,6 +35,13 @@ return (
                     <Delete className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300"/>
                    </button>
         </div>
+        <div className='flex justify-center w-full'>
+
+          <button className='group mt-3 flex items-center  gap-1 w-full  sm:w-auto justify-center rounded-lg text-sm sm:text-base bg-linear-to-b from-blue-600 to-blue-400 font-semibold px:6
+                   sm:px-8 sm:py-4 py-3 hover:scale-102 cursor-pointer transition-all duration-300' onClick={()=>onConfirm(user.id)}>
+            Confirm Booking
+          </button>
+        </div>
         </div>
         </div>
 )
@@ -44,6 +51,9 @@ return (
 
 function ContactUsRetrieveData() {
 
+
+const {contactUser,ContactData}=useAuth();
+console.log(contactUser);
 const dispatch=useDispatch();
 const navigate=useNavigate();
 const ContactUsUsers=useSelector((state)=>state.ContactUsFormData);
@@ -53,6 +63,30 @@ const ClearData=useCallback((id)=>dispatch(deleteContactUsData(id)),[dispatch])
 
 const onEdit=useCallback((id)=>navigate(`/contactusedit/${id}`),[navigate])
 
+const confirmContact=useCallback(async(id)=>{
+
+    try{
+      await new Promise((resolve)=>setTimeout(resolve,1000));
+     const matchedRecord = ContactUsUsers.find((contact) => contact.id === id);
+     console.log(matchedRecord)
+    const response=await fetch(`http://localhost:5000/api/form/contact`,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'Accept': 'application/json'
+      },
+      body:JSON.stringify(matchedRecord)
+    });
+    if(response.ok){
+      ClearData(matchedRecord.id);
+      await ContactData();
+    }
+   console.log(response);
+}
+ catch(error){
+      console.error("Sync Error:", error.message);
+    }
+  },[ContactUsUsers]);
 
     return (
    <div className='cont-retrieve-masterclass'>
@@ -63,11 +97,10 @@ const onEdit=useCallback((id)=>navigate(`/contactusedit/${id}`),[navigate])
    
      {
       ContactUsUsers.map((user)=>(
-        <ContactCard key={user.id} user={user} onEdit={onEdit} onDelete={ClearData}/>
+        <ContactCard key={user.id} user={user} onEdit={onEdit} onDelete={ClearData} onConfirm={confirmContact}/>
       ))
      }
         </div>
-  
    </div>
   )
 }

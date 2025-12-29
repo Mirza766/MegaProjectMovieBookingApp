@@ -1,99 +1,169 @@
-import React from 'react'
-import "../stylingSheets/Login.css";
-import {useForm,FormProvider,Controller} from 'react-hook-form'
-import {Button,Checkbox,TextField,FormControlLabel} from '@mui/material'
 
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { Button, TextField } from '@mui/material';
+import { useAuth } from '../../AuthContext/AuthContext';
 import { useDispatch } from 'react-redux';
 import { addLoginData } from '../../redux/Login/LogininActions';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { LogIn, Mail, Lock, Film } from 'lucide-react';
+import { ToastContainer, toast } from 'react-toastify';
+
 function Login() {
+  const navigate = useNavigate();
+  const { storetokeninLocal } = useAuth();
+  const dispatch = useDispatch();
 
+  const { control, formState, handleSubmit, reset } = useForm({
+    mode: 'onChange',
+    defaultValues: { email: '', password: '' }
+  });
+  const { isSubmitting } = formState;
 
-
-
-const {control,formState,handleSubmit,reset}=useForm({
-  mode:'onChange',
-  defaultValues:{
-    email:'',
-    password:''
-  }
-})
-const {isSubmitting}=formState
-
-
-const dispatch=useDispatch();
-
-
-
-const onSubmission=async(data)=>{
-try{
-await new Promise((resolve)=>setTimeout(resolve,1000))
-   dispatch(addLoginData(data));
-   reset();   
-}
-catch(error){
-  console.log('Error is: ',error.message)
-}
-  
-}
+  const onSubmission = async (data) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      const res_data = await response.json();
+       
+      if (response.ok) {
+        storetokeninLocal(res_data.token);
+        reset();
+        navigate('/');
+      } else {
+        toast(res_data.msg ? res_data.msg : "Invalid Credentials");
+      }
+      dispatch(addLoginData(data));
+    } catch (error) {
+      console.log('Error is: ', error.message);
+    }
+  };
 
   return (
-    <div className='login-master-cont'>
-    <div className='login-cont'>
-   <h2 className='Login-heading'>Login Page</h2>
-   <div className='Login-form'></div>  
-   <form onSubmit={handleSubmit(onSubmission)}>
+    <div className=" mt-15 min-h-screen w-full flex items-center justify-center bg-slate-950 px-4">
    
-     <Controller
-             name='email'
-             control={control}
-             rules={{required:'Please Specify your Email',
-              pattern:{
- value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: "Enter a valid email format"
-              },
-              validate:{
-              validateEmail:async(fieldValue)=>{
-                const response=await fetch('/db/db.json')
-                const data=await response.json();
-                const users=data.users || [];
-                const exists=users.some((user)=>user.email===fieldValue)
-                 return exists || "Email Doesnot Exists. Enter saifmirza766@gmail.com or se json file"
-              }
-             }}}
-             render={({field,fieldState})=>(
-                <TextField
-                {...field}
-                label='Email'
-                fullWidth
-                margin='normal'
-                error={!!fieldState.error}
-                helperText={fieldState.error?.message}
-                />
-             )}       
-             />
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full" />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-slate-500/10 blur-[120px] rounded-full" />
+      </div>
+
+      <div className="w-full max-w-[450px] z-10">
+        <div className="bg-slate-900/40 backdrop-blur-2xl border border-slate-800 rounded-3xl p-8 shadow-2xl">
+        
+          <div className="text-center mb-8">
+            <div className="inline-flex p-3 rounded-2xl bg-blue-600/10 text-blue-500 mb-4">
+              <Film size={32} />
+            </div>
+            <h2 className="text-3xl font-bold text-white tracking-tight">Welcome Back</h2>
+            <p className="text-slate-400 mt-2">Enter your credentials to access your account</p>
+          </div>
+
+          <form onSubmit={handleSubmit(onSubmission)} className="space-y-5">
+           
+            <div className="relative">
               <Controller
-             name='password'
-             control={control}
-             rules={{required:'Please Specify your Password'}}
-             render={({field,fieldState})=>(
-                <TextField
-                {...field}
-                label='password'
+                name="email"
+                control={control}
+                rules={{
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Enter a valid email format"
+                  }
+                }}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    label="Email Address"
+                    variant="outlined"
+                    fullWidth
+                    error={!!fieldState.error}
+                    helperText={fieldState.error?.message}
+                    sx={muiStyles}
+                  />
+                )}
+              />
+            </div>
+
+           
+            <div className="relative">
+              <Controller
+                name="password"
+                control={control}
+                rules={{ required: 'Password is required' }}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    label="Password"
+                    type="password"
+                    variant="outlined"
+                    fullWidth
+                    error={!!fieldState.error}
+                    helperText={fieldState.error?.message}
+                    sx={muiStyles}
+                  />
+                )}
+              />
+            </div>
+
+           
+            <div className="pt-2">
+              <Button
                 fullWidth
-                margin='normal'
-                error={!!fieldState.error}
-                helperText={fieldState.error?.message}
-                />
-             )}       
-             />
-             <Button fullWidth variant='contained' type='submit'>{isSubmitting?'Loading....':'Login'}</Button>
-             <Link to='/loginPage'>Go to Login Global Data</Link>
-     </form>  
+                variant="contained"
+                type="submit"
+                disabled={isSubmitting}
+                sx={{
+                  py: 1.5,
+                  borderRadius: '12px',
+                  backgroundColor: '#2563eb',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  textTransform: 'none',
+                  '&:hover': { backgroundColor: '#1d4ed8' },
+                  boxShadow: '0 10px 15px -3px rgba(37, 99, 235, 0.2)'
+                }}
+              >
+                {isSubmitting ? 'Authenticating...' : 'Sign In'}
+              </Button>
+            </div>
+          </form>
+
+       
+          <div className="mt-8 pt-6 border-t border-slate-800 text-center space-y-3">
+            <p className="text-slate-400 text-sm">
+              Don't have an account?{' '}
+              <Link to="/signup" className="text-blue-500 hover:text-blue-400 font-medium transition-colors">
+                Create one
+              </Link>
+            </p>
+         
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-    
-  )
+  );
 }
 
-export default Login
+
+const muiStyles = {
+  '& .MuiOutlinedInput-root': {
+    color: '#f8fafc',
+    backgroundColor: 'rgba(15, 23, 42, 0.5)',
+    borderRadius: '12px',
+    '& fieldset': { borderColor: '#334155' },
+    '&:hover fieldset': { borderColor: '#475569' },
+    '&.Mui-focused fieldset': { borderColor: '#3b82f6' },
+  },
+  '& .MuiInputLabel-root': { color: '#94a3b8' },
+  '& .MuiInputLabel-root.Mui-focused': { color: '#3b82f6' },
+  '& .MuiFormHelperText-root': { color: '#f87171' }
+};
+
+export default Login;
