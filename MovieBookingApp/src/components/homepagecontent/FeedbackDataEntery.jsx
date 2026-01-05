@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { addFeedbackData } from "../../redux/FeedbackSection/FeedbackSectionActions";
 import axios from "axios";
 import { useAuth } from "../../AuthContext/AuthContext";
-
+import {toast} from 'react-toastify'
 
 const selectSx = {
    "& .MuiInputBase-input": { 
@@ -48,86 +48,89 @@ import {
 
 const FeedbackForm = () => {
   const dispatch = useDispatch();
-  const { control, handleSubmit,setValue, reset } = useForm({
+  const { user, AuthorizationToken,getAllFeedbacksData  } = useAuth(); // Extract token
+  
+  const { control, handleSubmit, setValue, reset } = useForm({
     defaultValues: {
       name: "",
       commentType: "",
-      comment: "",
+      message: "",
     },
   });
 
   const [imageBase64, setImageBase64] = useState("");
-    const [file,setFile]=useState('');
-    const [status,setStatus]=useState('idle');
-    const [uploadProgress,setUploadProgress]=useState(0); 
+  const [file, setFile] = useState(null);
+  const [status, setStatus] = useState('idle');
+  const [uploadProgress, setUploadProgress] = useState(0);
 
+  // Auto-fill user data
+  const [userDataFilled, setUserDataFilled] = useState(false);
+  useEffect(() => {
+    if (user && !userDataFilled) {
+      setValue("name", user.fullname);
+      setUserDataFilled(true);
+    }
+  }, [user, setValue, userDataFilled]);
 
   const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    setFile(e.target.files[0]);
-    if (!file) return;
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    if (!selectedFile) return;
 
     const reader = new FileReader();
     reader.onloadend = () => {
       setImageBase64(reader.result);
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(selectedFile);
   };
 
-const [userData,setUserData]=useState(true);
-const {user}=useAuth();
-if(userData && user){
-setValue("name",user.fullname);
-setValue("email",user.email);
-setValue("phone",user.phoneNumber);
-
-setUserData(false);
-}
-
-
-
-  const onSubmit = async(data) => {
-    dispatch(
-      addFeedbackData({
-        id: Date.now(),
-        ...data,
-        image: imageBase64,
-      })
-    );
-
-    reset();
-    console.log(data);
-    setImageBase64("");
-
-
+  const onSubmit = async (data) => {
     setStatus('uploading');
     setUploadProgress(0);
-    const formData=new FormData();
-    formData.append('file',file);
-    try{
-   await axios.post('https://httpbin.org/post',formData,{
-         headers:{
-   'Content-Type':'multipart/form-data'
-    },
-    onUploadProgress:(ProgressEvent)=>{
-        const progress=ProgressEvent.total?
-        Math.round((ProgressEvent.loaded*100)/ProgressEvent.total):0;
-        setUploadProgress(progress);
+
+    // 1. Prepare FormData for Multer/Cloudinary
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('queryType', data.queryType); 
+    formData.append('message', data.message);     
+    
+    if (file) {
+      formData.append('image', file); // 'image' must match upload.single('image')
     }
-    });
 
+    try {
+ 
+      const response = await axios.post('http://localhost:5000/api/feedback/submit', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent) => {
+          const progress = progressEvent.total
+            ? Math.round((progressEvent.loaded * 100) / progressEvent.total)
+            : 0;
+          setUploadProgress(progress);
+        },
+      });
 
-    setStatus('success');
-    setUploadProgress(100);
-}
-catch(error){
-    setStatus('error');
-    setUploadProgress(0);
-}
-
-
+      if (response.status === 200) {
+       console.log("Response",response.data);
+       getAllFeedbacksData();
+        dispatch(addFeedbackData(response.data.data));
+        
+        setStatus('success');
+        toast.success("Feedback & Image uploaded successfully!");
+        
+     
+        reset();
+        setFile(null);
+        setImageBase64("");
+      }
+    } catch (error) {
+      console.error("Upload Error:", error);
+      setStatus('error');
+      toast.error(error.response?.data?.msg || "Submission Failed");
+    }
   };
-
   return (
     <Box 
       component="form"
@@ -159,7 +162,7 @@ catch(error){
 
 
          <Controller
-          name='commentType'
+          name='queryType'
           control={control}
           rules={{required: "Please select feedback type"}}
           render={({field,fieldState})=>(
@@ -179,13 +182,13 @@ catch(error){
       
 
         <Controller
-          name="comment"
+          name="message"
           control={control}
-          rules={{ required: "Comment is required" }}
+          rules={{ required: "Message is required" }}
           render={({ field, fieldState }) => (
             <TextField
               {...field}
-              label="Comment"
+              label="Message"
               multiline
               rows={4}
               error={!!fieldState.error}

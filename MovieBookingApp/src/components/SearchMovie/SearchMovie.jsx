@@ -20,7 +20,6 @@ const debounceSearch=useDebouncing(movie,600)
 
   });
 
-  console.log(data?.results)
   
 
   

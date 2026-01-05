@@ -7,6 +7,9 @@ const bookingRoute=require('./routers/booking-routers');
 const callBookingRoute=require('./routers/callbooking-router');
 const orderRoute=require('./routers/order-routers');
 const SubscriberRoute=require('./routers/subscription-router');
+const adminRouter=require('./routers/admin-router');
+const callBookingBookedRoute=require('./routers/callbookingbookedSlots-routers');
+const feedbackRoute=require('./routers/feedback-router');
 const cors=require('cors');
 const authRouter=require('./routers/auth-routers');
 const errorMiddlewares=require('./middlewares/error-middleware')
@@ -28,7 +31,9 @@ app.use('/api/book',bookingRoute);
 app.use('/api/cart',orderRoute);
 app.use('/api/bookcall',callBookingRoute);
 app.use('/api/subscription',SubscriberRoute);
-
+app.use('/api/admin',adminRouter);
+app.use('/api/bookSlots',callBookingBookedRoute);
+app.use('/api/feedback',feedbackRoute);
 app.use(errorMiddlewares)
 
 const PORT = 5000;

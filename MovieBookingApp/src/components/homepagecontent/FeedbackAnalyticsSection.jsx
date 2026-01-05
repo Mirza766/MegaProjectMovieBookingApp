@@ -1,19 +1,9 @@
-// import React from 'react'
-// import { useSelector } from 'react-redux'
-// function FeedbackAnalyticsSection() {
-//     const FeedbackForm=useSelector((state)=>state.FeedbackData);
-//   return (
-//     <section className='max-w-'>
-        
-//     </section>
-//   )
-// }
 
-// export default FeedbackAnalyticsSection
 
 import { MessageSquare, ThumbsUp, ThumbsDown } from 'lucide-react';
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useAuth } from '../../AuthContext/AuthContext';
 
 
 const AnimatedCircularProgress = ({ percentage, colorClass, icon: Icon, label,total}) => {
@@ -21,8 +11,9 @@ const AnimatedCircularProgress = ({ percentage, colorClass, icon: Icon, label,to
   const strokeWidth = 8;
   const normalizedRadius = radius - strokeWidth / 2;
   const circumference = normalizedRadius * 2 * Math.PI;
- 
+
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
+
 
   return (
     <div className="flex flex-col items-center justify-center p-4 bg-slate-800/50 rounded-2xl border border-slate-700/50 hover:shadow-xl hover:shadow-blue-500/20 transition-all cursor-pointer duration-300 hover:scale-102 mb-4 sm:mb-6 lg:mb-8">
@@ -72,14 +63,15 @@ const AnimatedCircularProgress = ({ percentage, colorClass, icon: Icon, label,to
 
 
 function FeedbackFormAnalyticsSection() {
+ const {Feedback}=useAuth();
+  // const FeedbackForm = useSelector((state) => state.FeedbackData);
+// const FeedbackForm =Feedback;
+// console.log("FeedbackForm from Redux",FeedbackForm)
+// console.log("FeedbackForm from database",Feedback)
 
-  const FeedbackForm = useSelector((state) => state.FeedbackData);
-  console.log(FeedbackForm);
-
-
-  const total = FeedbackForm.length;
-  const positiveCount = FeedbackForm.filter(item => item.commentType === 'Positive').length;
-  const negativeCount = FeedbackForm.filter(item => item.commentType === 'Negative').length;
+  const total = Feedback.length;
+  const positiveCount = Feedback.filter(item => item.queryType === 'Positive').length;
+  const negativeCount = Feedback.filter(item => item.queryType === 'Negative').length;
 
   const positivePercentage = total > 0 ? Math.round((positiveCount / total) * 100) : 0;
   const negativePercentage = total > 0 ? Math.round((negativeCount / total) * 100) : 0;

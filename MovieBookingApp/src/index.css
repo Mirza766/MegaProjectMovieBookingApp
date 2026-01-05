@@ -625,10 +625,10 @@ backdrop-filter: blur(16px);
   background: #121a2f;
   color: white;
   max-width: 1280px;
-  box-shadow:
+  /* box-shadow:
     0 4px 6px rgba(0, 0, 0, 0.15),
     0 8px 20px rgba(0, 0, 0, 0.25),
-    0 25px 50px -12px rgba(34, 248, 248, 0.25);
+    0 25px 50px -12px rgba(34, 248, 248, 0.25); */
 }
 
 /* @media (max-width: 768px) {

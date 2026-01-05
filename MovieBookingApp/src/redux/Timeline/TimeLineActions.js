@@ -1,4 +1,4 @@
-import { ADD_TIMELINE_DATA,DELETE_TIMELINE_DATA,EMPTY_TIMELINE_DATA,EDIT_TIMELINE_DATA} from "./TimeLineConstants"
+import { SET_BOOKED_SLOTS,ADD_TIMELINE_DATA,DELETE_TIMELINE_DATA,EMPTY_TIMELINE_DATA,EDIT_TIMELINE_DATA} from "./TimeLineConstants"
 
 
 
@@ -16,6 +16,13 @@ export const deleteTimelineData=(data)=>{
         payload:data,
     }
 }
+
+export const setBookedSlots = (data) => {
+    return {
+        type: SET_BOOKED_SLOTS,
+        payload: data,
+    };
+};
 export const emptyTimelineData=(data)=>{
     return{
         type:EMPTY_TIMELINE_DATA,

@@ -1,4 +1,4 @@
-import { ADD_TIMELINE_DATA,DELETE_TIMELINE_DATA,EMPTY_TIMELINE_DATA,EDIT_TIMELINE_DATA} from "./TimeLineConstants"
+import { SET_BOOKED_SLOTS,ADD_TIMELINE_DATA,DELETE_TIMELINE_DATA,EMPTY_TIMELINE_DATA,EDIT_TIMELINE_DATA} from "./TimeLineConstants"
 import {v4 as uuidv4} from "uuid"
 
 const initialState={
@@ -16,6 +16,11 @@ export const TimeLineData=(state=initialState,action)=>{
         }
         case EMPTY_TIMELINE_DATA:
             return []
+        case SET_BOOKED_SLOTS:
+            return {
+             ...state,
+             BookedSlots: action.payload 
+    };
         case DELETE_TIMELINE_DATA:
             return state.filter((data)=>(
                 data.id!==action.payload

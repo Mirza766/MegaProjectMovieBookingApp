@@ -10,10 +10,13 @@ export const AuthProvider = ({ children }) => {
     const [bookedCallData,setBookedCallData]=useState();
     const [subscData,setSubscData]=useState();
     const [cartData,setCartData]=useState();
+    const [isLoading,setIsLoading]=useState(true);
+    const [Feedback,setFeedback]=useState();
     const storetokeninLocal = (token) => {
         setToken(token);
         return localStorage.setItem('token', token);
     };
+    const AuthorizationToken=`Bearer ${token}`;
 
     let isLoggedIn = !!token;
 
@@ -24,11 +27,15 @@ export const AuthProvider = ({ children }) => {
     };
 
     const userAuthentication = async () => {
-        if (!token) return;
+        if (!token) {
+         setIsLoading(false);
+            return;
+        }
         try {
+            setIsLoading(true)
             const response = await fetch('http://localhost:5000/api/auth/user', {
                 method: 'GET',
-                headers: { Authorization: `Bearer ${token}` },
+                headers: { Authorization:AuthorizationToken},
             });
             if (response.ok) {
                 const data = await response.json();
@@ -36,6 +43,8 @@ export const AuthProvider = ({ children }) => {
             }
         } catch (error) {
             console.error("Error Fetching Data", error);
+        }finally{
+            setIsLoading(false);
         }
     };
 
@@ -49,7 +58,7 @@ const ContactData=async()=>{
             if (response.ok) {
                 const data = await response.json();
                 setContactUser(data);
-                console.log("Contact Data: ",data);
+               
             }
         } catch (error) {
             console.error("Error Fetching Data", error);
@@ -66,7 +75,7 @@ const getCartData=async()=>{
             if (response.ok) {
                 const data = await response.json();
                 setCartData(data);
-                console.log("Cart Data: ",data);
+            
             }
         } catch (error) {
             console.error("Error Fetching Data", error);
@@ -83,12 +92,35 @@ const getCallBookingData=async()=>{
             if (response.ok) {
                 const data = await response.json();
                 setBookedCallData(data);
-                console.log("Booked Call Data: ",data);
+               
             }
         } catch (error) {
             console.error("Error Fetching Data", error);
         }
 }
+
+ const getAllFeedbacksData = async () => {
+  
+    try {
+     
+      const response = await fetch('http://localhost:5000/api/feedback/getfeedback', {
+        method: 'GET',
+        headers: { Authorization: AuthorizationToken },
+      });
+
+      if (response.ok) {
+        const res_data = await response.json();
+        const finalData = Array.isArray(res_data) ? res_data : (res_data.users || res_data.msg || []);
+        setFeedback(finalData);
+  
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+    } finally {
+   
+    }
+  };
+
 
     const bookingData=async()=>{
          if (!token) return;
@@ -100,7 +132,7 @@ const getCallBookingData=async()=>{
             if (response.ok) {
                 const data = await response.json();
                 setBookingUser(data);
-                console.log("Booking Data: ",data);
+                
             }
         } catch (error) {
             console.error("Error Fetching Data", error);
@@ -118,7 +150,7 @@ const getCallBookingData=async()=>{
             if (response.ok) {
                 const data = await response.json();
                 setSubscData(data);
-                console.log("Booking Data: ",data);
+               
             }
         } catch (error) {
             console.error("Error Fetching Data", error);
@@ -132,12 +164,13 @@ const getCallBookingData=async()=>{
         bookingData();
         getCallBookingData();
         SubscriptionData();
+        getAllFeedbacksData();
     }, [token]);
 
     return (
         <AuthContext.Provider value={{ isLoggedIn, storetokeninLocal, logoutUser, user,bookingUser,getCartData, 
         bookingData, 
-        ContactData,contactUser,cartData,getCallBookingData,bookedCallData,subscData,SubscriptionData}}>
+        ContactData,contactUser,cartData,getCallBookingData,bookedCallData,subscData,SubscriptionData,AuthorizationToken,isLoading,Feedback,getAllFeedbacksData}}>
             {children}
         </AuthContext.Provider>
     );

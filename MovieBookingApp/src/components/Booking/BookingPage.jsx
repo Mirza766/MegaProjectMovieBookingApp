@@ -48,12 +48,11 @@ setUserData(false);
 }
 
 
-console.log(user);
   const {isSubmitSuccessful,isSubmitting}=formState;
 
 
   React.useEffect(() => {
-    console.log("Updated bookings:", bookingDetails);
+  
   }, [bookingDetails]);
 
   const onSubmit = async(data) => {

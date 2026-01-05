@@ -53,7 +53,7 @@ function ContactUsRetrieveData() {
 
 
 const {contactUser,ContactData}=useAuth();
-console.log(contactUser);
+
 const dispatch=useDispatch();
 const navigate=useNavigate();
 const ContactUsUsers=useSelector((state)=>state.ContactUsFormData);
@@ -68,7 +68,7 @@ const confirmContact=useCallback(async(id)=>{
     try{
       await new Promise((resolve)=>setTimeout(resolve,1000));
      const matchedRecord = ContactUsUsers.find((contact) => contact.id === id);
-     console.log(matchedRecord)
+  
     const response=await fetch(`http://localhost:5000/api/form/contact`,{
       method:'POST',
       headers:{
@@ -81,7 +81,7 @@ const confirmContact=useCallback(async(id)=>{
       ClearData(matchedRecord.id);
       await ContactData();
     }
-   console.log(response);
+  
 }
  catch(error){
       console.error("Sync Error:", error.message);

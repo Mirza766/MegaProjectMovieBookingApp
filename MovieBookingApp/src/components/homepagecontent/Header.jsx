@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import "../stylingSheets/NavbarImg.css";
 import { lazy } from "react";
+
 import {
   ArrowBigDownDashIcon,
   ChevronDown,
@@ -28,18 +29,24 @@ const NavBarMenuModal = lazy(() => import("../../models/NavBarMenuModal"));
 const SideBarMenuModel = lazy(() => import("../../models/SideBarMenuModel"));
 const NavContentMenu = lazy(() => import("../../models/NavContentMenu"));
 import { useAuth } from "../../AuthContext/AuthContext";
-
+import { Navigate } from "react-router-dom";
 function Header() {
   const [openSideBar, setOpenSideBar] = useState(false);
   const [isOpen, setisOpen] = useState(false);
   const [openNavContent, setNavContent] = useState();
   const [openMenu, setOpenMenu] = useState();
 
+const {user,isLoading,isLoggedIn}=useAuth();
+
   const closeMenuButton = () => setisOpen(false);
   const closeSideBar = () => setOpenSideBar(false);
   const closeNavContent = () => setNavContent(false);
 
-  const { isLoggedIn } = useAuth();
+  if(isLoading){
+    return <h1>isLoading...</h1>
+  }
+
+const isAdmin = isLoggedIn && user && user.isAdmin;
 
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
@@ -70,13 +77,14 @@ function Header() {
       handleCloseMenuButton={handleCloseMenuButton}
     >
       <div
-        className="flex flex-col gap-2 border rounded-lg border-gray-400 p-1
-    bg-slate-950/20 backdrop-blur-lg justify-left absolute right-0 top-18 w-34 h-34 items-center justify-center  text-green-400 sm:mb-8 animate-in slide-in-from-top duration-700 delay-200 "
+        className={`flex flex-col gap-1 border rounded-lg border-gray-400 p-1
+    bg-slate-950/20 backdrop-blur-lg justify-left absolute right-0 top-18 w-34 ${isLoggedIn}?"h-20":"h-24" 
+    items-center justify-center  text-green-400 sm:mb-8 animate-in slide-in-from-top duration-700 delay-200 `}
       >
         {isLoggedIn ? (
           <Link to="/logout">
             <p
-              className="text-base border-b px-2 py-1 border-gray-400 hover:text-white"
+              className="text-base  px-2 py-1 border-gray-400 hover:text-white"
               style={{ cursor: "pointer" }}
             >
               logout
@@ -85,12 +93,12 @@ function Header() {
         ) : (
           <>
             <Link to="/signup">
-              <p className="text-base border-b px-2 py-1 border-gray-400 hover:text-white">
+              <p className="text-basepx-2 py-1 border-gray-400 hover:text-white">
                 Sign/up
               </p>
             </Link>
             <Link to="/login">
-              <p className=" text-base border-b px-2 py-1 border-gray-400 hover:text-white">
+              <p className=" text-base  px-2 py-1 border-gray-400 hover:text-white">
                 login
               </p>
             </Link>
@@ -106,6 +114,24 @@ function Header() {
       closeSideBar={closeSideBar}
     >
       <div className="mx-auto text-left max-w-7xl animate-in slide-in-from-left duration-700 delay-200 flex flex-col space-y-4 px-4 py-5 w-48 text-sm sm:w-55 md:w-60 sm:text-base lg:text-lg lg:w-60 ">
+        {
+          user?.isAdmin? (
+         <button className="text-left text-green-300 hover:text-white">
+          <Link to="/admin">
+            <div className="flex flex-row  items-center items-left  gap-2">
+              <Home size={18} />
+              <span className="text-md">Admin Panel</span>
+            </div>
+          </Link>
+        </button>
+          ):
+          (
+            null
+          )
+        }
+         
+        
+        
         <button className="text-left text-green-300 hover:text-white">
           <Link to="/">
             <div className="flex flex-row  items-center items-left  gap-2">
@@ -171,7 +197,7 @@ function Header() {
               </Link>
             </button>
 
-            <button className="cursor-pointer  hover:text-white">
+            {/* <button className="cursor-pointer  hover:text-white">
               <Link to="/signUpPage">
                 <div className="flex flex-row  items-center items-left  gap-2">
                   <LoaderPinwheelIcon size={18} />
@@ -180,7 +206,7 @@ function Header() {
                   </span>
                 </div>
               </Link>
-            </button>
+            </button> */}
 
             <button className="cursor-pointer  hover:text-white">
               <Link to="/getorderconfirm">

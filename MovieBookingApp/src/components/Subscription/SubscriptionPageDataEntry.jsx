@@ -54,7 +54,7 @@ function SubscriptionPage() {
       console.log('Error:', error.message);
     }
   };
-      console.log(lastSubscription);
+   
 
   return (
     <div className='min-h-screen bg-slate-950 text-white pt-28 pb-12 px-4 sm:px-6 lg:px-8'>

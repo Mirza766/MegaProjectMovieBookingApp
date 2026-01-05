@@ -39,6 +39,21 @@ import CallBookingData from './components/FormDataRetrieval/CallBookingData';
 import ContactUsDatabase from './components/FormDataRetrieval/ContactUsDatabase';
 import GetSubscriptionDatabase from './components/FormDataRetrieval/getSubscriptionDatabase';
 import 'react-toastify/dist/ReactToastify.css';
+import Error404 from './components/homepagecontent/Error404';
+import AdminLayout from './components/layouts/AdminLayout';
+import AdminUsers from './components/layouts/AdminUsers';
+import AdminContacts from './components/layouts/AdminContacts';
+import AdminCallBookings from './components/layouts/AdminCallBookings';
+import AdminOrders from './components/layouts/AdminOrders';
+import AdminUpdate from './components/layouts/AdminUpdate';
+import AdminContactEditForm from './components/layouts/AdminContactUpdate';
+import AdminTickets from './components/layouts/AdminTickets';
+import AdminTicketsData from './components/layouts/AdminTicketsData';
+import AdminCallBookingData from './components/layouts/AdminCallBookingData';
+import AdminOrdersUpdate from './components/layouts/AdminOrdersUpdate';
+import AdminSubscriptions from './components/layouts/AdminSubscription';
+import AdminSubscriptionUpdate from './components/layouts/AdminSubscriptionUpdate';
+
 function App() {
 
 
@@ -79,7 +94,23 @@ const queryclient=new QueryClient();
   <Route path='/getcallbooking' element={<CallBookingData/>}/> 
   <Route path='/contactDatabase' element={<ContactUsDatabase/>}/>
    <Route path='/getSubsc' element={<GetSubscriptionDatabase/>}/>
-     </Route>
+   <Route path='*' element={<Error404/>}/>
+   <Route path='/admin' element={<AdminLayout/>}>
+   <Route path='users' element={<AdminUsers/>}/>
+   <Route path='contacts' element={<AdminContacts/>}/>
+   <Route path='tickets' element={<AdminTickets/>}/>
+   <Route path='callbookings' element={<AdminCallBookings/>}/>
+   <Route path='orders' element={<AdminOrders/>}/>
+   <Route path='subscription' element={<AdminSubscriptions/>}/>  
+   <Route path='users/:id/edit' element={<AdminUpdate/>}/>
+   <Route path='contacts/:id/edit' element={<AdminContactEditForm/>}/>
+   <Route path='tickets/:id/edit' element={<AdminTicketsData/>}/>
+   <Route path='callbookings/:id/edit' element={<AdminCallBookingData/>}/>
+    <Route path='orders/:id/edit' element={<AdminOrdersUpdate/>}/>
+    <Route path='subscriptions/:id/edit' element={<AdminSubscriptionUpdate/>}/>
+   </Route>
+  
+    </Route>
     </Route>
    
       </>

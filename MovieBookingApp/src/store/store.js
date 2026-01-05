@@ -10,11 +10,11 @@ import productSaga from '../redux/Product/ProductSaga'
 const SagaMiddleware=createSagaMiddleware();
 const store=configureStore({reducer:rootReducer,
     middleware:()=>[SagaMiddleware],
-    preloadedState:loadState()
+    // preloadedState:loadState()
 })
 SagaMiddleware.run(productSaga)
 
-store.subscribe(()=>{
-    saveState(store.getState());
-})
+// store.subscribe(()=>{
+//     saveState(store.getState());
+// })
 export default store

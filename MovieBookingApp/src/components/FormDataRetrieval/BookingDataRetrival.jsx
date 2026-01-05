@@ -9,7 +9,7 @@ function BookingDataRetrival() {
 const {bookingDetails}=useSelector((state)=>state.MovieBooking);
 const {bookingUser}=useAuth();
 
-console.log(bookingUser);
+
 
     return (
        <div className='mt-20 max-w-7xl mx-auto'>

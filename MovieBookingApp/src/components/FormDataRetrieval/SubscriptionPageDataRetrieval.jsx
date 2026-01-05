@@ -1,6 +1,6 @@
 import React, { useCallback, useContext } from 'react'
 import SubscriptionContext from '../context/SubscriptionContext'
-
+import { useAuth } from '../../AuthContext/AuthContext';
 import {Button, TableCell} from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
@@ -97,12 +97,13 @@ function SubscriptionDataRetrieval() {
 
 const {addSubscription,DeleteSubscription}=useContext(SubscriptionContext);
 const deleteSubscriber=useCallback((id)=>DeleteSubscription(id),[DeleteSubscription]);
+const {SubscriptionData}=useAuth();
 const confirmSubscription=useCallback(async(id)=>{
 
     try{
       await new Promise((resolve)=>setTimeout(resolve,1000));
      const matchedRecord = addSubscription.find((subsc) => subsc.id === id);
-     console.log(matchedRecord)
+ 
     const response=await fetch(`http://localhost:5000/api/subscription/subscriber`,{
       method:'POST',
       headers:{

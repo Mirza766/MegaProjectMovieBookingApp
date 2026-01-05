@@ -15,7 +15,7 @@ export const saveState=(data)=>{
         // MovieBooking:data.MovieBooking,
         // FeedbackData:data.FeedbackData
     };
-    localStorage.setItem("appData",JSON.stringify(stateToSave));
+    // localStorage.setItem("appData",JSON.stringify(stateToSave));
 
     }
     catch(err){

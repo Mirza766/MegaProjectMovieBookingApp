@@ -44,7 +44,7 @@ const {user,ContactData}=useAuth();
   });
 const [userData,setUserData]=useState(true);
 const dispatch=useDispatch();
-console.log("User Data: ",user);
+
 
     if(userData && user){
 setValue("fullName",user.fullname);
@@ -59,7 +59,7 @@ setUserData(false);
 
   const onSubmission = async(data) => {
       const SubmittedDataArray=dispatch(addContactUsData(data));
-      console.log('Global Data is: ',SubmittedDataArray)
+    
     reset()
    
   };
@@ -163,6 +163,7 @@ setUserData(false);
     </FormControl>
   )}
   />
+  
    <Controller
                  name='message'
                  control={control}

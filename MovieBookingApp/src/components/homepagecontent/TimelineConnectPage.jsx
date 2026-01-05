@@ -10,7 +10,7 @@ import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../AuthContext/AuthContext';
 import { toast } from 'react-toastify';
-
+import { setBookedSlots } from '../../redux/Timeline/TimeLineActions';
 
 const timeline = [
   {
@@ -117,8 +117,11 @@ const timeline = [
 
 
 function TimelineConnectPage() {
+
+
   const {user,getCallBookingData}=useAuth();
 
+  const {AuthorizationToken}=useAuth();
   const { reset, formState, register, setError, handleSubmit,control } = useForm({
     defaultValues: {
       
@@ -133,12 +136,15 @@ function TimelineConnectPage() {
 
 const [openMenu,setOpenMenu]=useState(false)
 const [confirmedData,setConfirmedData]=useState();
-    const {id}=useParams();
+const [bookedSlot,setBookedSlot]=useState();
 
+    const {id}=useParams();
+console.log(user)
 const selectedTimeline = timeline.find(
   (time) => time.id === Number(id)
 );
 
+const dispatch=useDispatch();
 
 const lastUser = PersonData && PersonData.length > 0 ? PersonData[PersonData.length - 1] : null;
   const lastBookedSlot = BookedSlots && BookedSlots.length > 0 ? BookedSlots[BookedSlots.length - 1] : null;
@@ -175,32 +181,57 @@ const bookingData = {
       body: JSON.stringify(bookingData)
     });
 
-    
-    const result = await response.json();
+  
+  const res_data=await response.json();
 
     if (response.ok) {
-      dispatch(addTimelineData(bookingData));
-      setConfirmedData(bookingData);
-      await getCallBookingData();
-           reset();
-      toast.success("Booking Saved!");
-    } else {
-     
-      toast.error(result.message || "Booking failed");
-    }
-  } catch (error) {
-    console.error("Fetch Error:", error);
-    alert("Backened not running!");
-  }
-  
- 
+      const slotRes = await fetch(`http://localhost:5000/api/bookSlots/slotbooking`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ SelectedSlot: data.SelectedSlot })
 
+
+      })
     
+    
+    if(slotRes){
+    const slotResult = await slotRes.json();
+    dispatch(addTimelineData(bookingData));
+    setConfirmedData(bookingData);
+        toast.success("Appointment Confirmed!");
+        reset();
+    }
+  }
+  else{
+     toast(res_data.msg ? res_data.msg : "Seat Already Booked");
+  }
+ } catch (error) {
+     toast.error("Booking failed");
+  }
 }
 
+const fetchDisabledSlots = async () => {
+  try {
+    const response = await fetch(`http://localhost:5000/api/bookSlots/getbookedslot`, {
+      headers: { Authorization: AuthorizationToken }
+    });
+    const data = await response.json();
+    if (response.ok) {
+       
+       dispatch(setBookedSlots(data.bookedSlots || []));
+    }
+  } catch (err) {
+    console.log("Error fetching slots", err);
+  }
+};
 
 
-const dispatch=useDispatch();
+  useEffect(()=>{
+   fetchDisabledSlots();
+  },[dispatch,AuthorizationToken])
+
+
+
     return (
       
     <div className=' text-white flex flex-col  mt-25 max-w-7xl sm:max-w-4xl mx-auto px-4'>

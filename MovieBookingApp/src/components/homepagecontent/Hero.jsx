@@ -21,47 +21,83 @@ const handleCloseButtonPricing=(
   <button  className='overview-button' onClick={closePricingModal}>Close</button>
 )
 
-const mainPricingModel=(
-  <PricingModel closePricingModal={closePricingModal} handleCloseButtonPricing={handleCloseButtonPricing}>
-<table className='text-xs   bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>
-<thead className='text-xs sm:border-2 sm:border-blue-200 sm:text-sm md:text-md lg:text-lg p-2 sm:p-4 lg:p-6 '>
-<tr className=' text-left text-xs sm:text-sm md:text-md'>
-  <th className='table-header-Heading text-xs sm:text-sm md:text-md lg:text-lg bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Category</th>
-  <th className='table-header-Heading text-xs sm:text-sm md:text-md lg:text-lg bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Description</th>
-  <th className='table-header-Heading text-xs sm:text-sm md:text-md lg:text-lg bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Ticket Price (PKR)</th>
-  <th className='table-header-Heading text-xs sm:text-sm md:text-md lg:text-lg bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text'>Special Features</th>
-</tr>
-</thead>
-<tbody className=' text-left sm:border-2 sm:border-blue-200 border rounded-lg text-xs sm:text-sm md:text-md lg:text-lg'>
-  <tr className='table-flow-content  '>
-      <td className='table-header heading'>Now Showing</td>
-      <td className='table-header content'>Discover the latest movies currently running in theaters near you.</td>
-      <td  className='table-header content'>800 – 1,200</td>
-      <td  className='table-header content'>Regular & recliner seats, instant booking confirmation</td>
-  </tr>
-  <tr className='table-flow-content sm:border-2 sm:border-blue-200'>
-      <td className='table-header heading'>Coming Soon</td>
-      <td className='table-header content'>Stay ahead — preview and pre-book tickets for upcoming releases.</td>
-      <td  className='table-header content'>1,000 – 1,500</td>
-      <td  className='table-header content'>Early access booking, pre-release offers</td>
-  </tr>
-  <tr className='table-flow-content sm:border-2 sm:border-blue-200'>
-      <td className='table-header heading'>Family & Kids</td>
-      <td className='table-header content'>Enjoy fun, family-friendly films perfect for all age groups.</td>
-      <td  className='table-header content'>Family Pack 2,800 (4 tickets)</td>
-      <td  className='table-header content'>Child discounts, weekend offers</td>
-  </tr>
-  <tr className='table-flow-content sm:border-2 sm:border-blue-200' >
-      <td className='table-header heading'>Private Theater Booking</td>
-      <td className='table-header content'>Reserve an entire theater for private screenings or special events.</td>
-      <td  className='table-header content'>Starting from 25,000</td>
-      <td  className='table-header content'>Custom playlist, private screen, snacks available</td>
-  </tr>
-</tbody>
-</table>
-  </PricingModel>
-)
+const mainPricingModel = (
+  <PricingModel 
+    closePricingModal={closePricingModal} 
+    handleCloseButtonPricing={handleCloseButtonPricing}
+  >
 
+    <div className=" overflow-hidden rounded-3xl w-full border border-slate-800 bg-slate-950/40 backdrop-blur-xl shadow-2xl max-w-full">
+      
+     
+      <div className="lg:hidden flex flex-col divide-y divide-slate-800">
+        {[
+          { cat: "Now Showing", price: "800 – 1,200", desc: "Latest movies currently running in theaters.", feat: "Recliner seats, instant booking" },
+          { cat: "Coming Soon", price: "1,000 – 1,500", desc: "Pre-book tickets for upcoming releases.", feat: "Early access, pre-release offers" },
+          { cat: "Family & Kids", price: "2,800 (4 tix)", desc: "Family-friendly films perfect for all ages.", feat: "Child discounts, weekend offers" },
+          { cat: "Private", price: "From 25,000", desc: "Reserve entire theater for private events.", feat: "Private screen, custom playlist" }
+        ].map((item, i) => (
+          <div key={i} className="p-2 space-y-2 bg-slate-900/20 active:bg-blue-500/10 transition-colors">
+            <div className="flex justify-between items-start">
+              <span className="text-blue-400 font-black uppercase tracking-tighter text-lg">{item.cat}</span>
+              <div className="px-3 py-1 rounded-lg bg-slate-800 border border-slate-700">
+                <span className="text-xs font-mono font-bold text-cyan-400">{item.price}</span>
+              </div>
+            </div>
+            <p className="text-xs text-slate-400 text-left leading-relaxed">{item.desc}</p>
+            <div className="flex items-center gap-2 text-[10px] text-slate-500 italic">
+              <span className="w-1 h-1 bg-blue-500 rounded-full"></span>
+              {item.feat}
+            </div>
+          </div>
+        ))}
+      </div>
+
+   
+      <div className=" hidden lg:block w-full overflow-x-auto">
+        <table className="w-full  text-left border-collapse">
+          <thead>
+            <tr className="bg-slate-900/50 border-b border-slate-800">
+              {["Category", "Description", "Ticket Price (PKR)", "Special Features"].map((header) => (
+                <th key={header} className="px-3 py-2 text-xs font-black uppercase tracking-[0.2em] bg-linear-to-r from-blue-400 via-blue-200 to-cyan-300 text-transparent bg-clip-text whitespace-nowrap">
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-800/50">
+            {[
+              { cat: "Now Showing", desc: "Discover the latest movies currently running in theaters near you.", price: "800 – 1,200", feat: "Regular & recliner seats, instant booking" },
+              { cat: "Coming Soon", desc: "Stay ahead — preview and pre-book tickets for upcoming releases.", price: "1,000 – 1,500", feat: "Early access booking, pre-release offers" },
+              { cat: "Family & Kids", desc: "Enjoy fun, family-friendly films perfect for all age groups.", price: "Pack: 2,800 (4 tix)", feat: "Child discounts, weekend offers" },
+              { cat: "Private Screening", desc: "Reserve an entire theater for private screenings or special events.", price: "From 25,000", feat: "Custom playlist, private screen & snacks" }
+            ].map((row, i) => (
+              <tr key={i} className="group transition-all duration-300 hover:bg-blue-500/5 cursor-default">
+                <td className="px-3 py-2">
+                  <span className="text-base font-bold text-white group-hover:text-blue-400 transition-colors whitespace-nowrap">{row.cat}</span>
+                </td>
+                <td className="px-3 py-2">
+                  <p className="text-sm text-slate-400 leading-relaxed max-w-xs">{row.desc}</p>
+                </td>
+                <td className="px-3 py-2">
+                  <div className="inline-block px-3 py-1 rounded-lg bg-slate-800 border border-slate-700 group-hover:border-blue-500/50 transition-all">
+                     <span className="text-sm font-mono font-bold text-cyan-400 whitespace-nowrap">{row.price}</span>
+                  </div>
+                </td>
+                <td className="px-3 py-2">
+                  <span className="text-sm text-slate-500 group-hover:text-slate-300 transition-colors italic">{row.feat}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      
+      {/* Decorative Bottom Glow */}
+      <div className="h-1 w-full bg-linear-to-r from-transparent via-blue-500/50 to-transparent"></div>
+    </div>
+  </PricingModel>
+);
 
 
 
