@@ -1,4 +1,4 @@
-const { UserCog2 } = require('lucide-react');
+
 const {User}=require('../models/user-model');
 
 const register=async(req,res,next)=>{
