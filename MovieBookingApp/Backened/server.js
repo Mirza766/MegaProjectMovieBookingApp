@@ -14,7 +14,7 @@ const cors=require('cors');
 const authRouter=require('./routers/auth-routers');
 const errorMiddlewares=require('./middlewares/error-middleware')
 const corsData={
-    origin:"http://localhost:5173",
+    origin:"https://megaprojectmoviebookingappcompletef.vercel.app",
     methods:'GET,POST,PUT,DELETE,PATCH,PUT,HEAD',
     credentials:true,
 }
